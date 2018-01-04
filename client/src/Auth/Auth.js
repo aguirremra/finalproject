@@ -2,7 +2,6 @@ import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth0-variables';
 import history from '../history';
 console.log("callbackUrl: " + AUTH_CONFIG.callbackUrl);
-console.log('fromEnv: ' + process.env.callbackUrl)
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
