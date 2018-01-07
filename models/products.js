@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes){
     },
     user_comment: {
       type: DataTypes.STRING
-    };
+    }
 
   });
 
