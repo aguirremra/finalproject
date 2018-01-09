@@ -17,13 +17,12 @@ module.exports = function(sequelize, DataTypes){
     url: {
       type: DataTypes.STRING
     },
-    }
     description: {
       type: DataTypes.STRING
     },
     category: {
       type: DataTypes.STRING
-    };
+    }
 
   });
 
