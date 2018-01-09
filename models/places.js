@@ -25,9 +25,9 @@ module.exports = function(sequelize, DataTypes){
     },
     address: {
       type: DataTypes.STRING
-    };
+    }
 
   });
 
-  return Product;
+  return Place;
 }; 
