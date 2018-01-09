@@ -1,8 +1,8 @@
-console.log('models/products is loaded');
+console.log('models/places is loaded');
 module.exports = function(sequelize, DataTypes){
-  var Product = sequelize.define("Product", {
+  var Place = sequelize.define("Place", {
     
-    product_id: {
+    place_id: {
       type: DataTypes.STRING
     },
     user_id: {
@@ -17,11 +17,13 @@ module.exports = function(sequelize, DataTypes){
     url: {
       type: DataTypes.STRING
     },
-    }
     description: {
       type: DataTypes.STRING
     },
     category: {
+      type: DataTypes.STRING
+    },
+    address: {
       type: DataTypes.STRING
     };
 
