@@ -1,6 +1,6 @@
 import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth0-variables';
-import history from '../../history';
+import history from '../history';
 console.log("callbackUrl: " + AUTH_CONFIG.callbackUrl);
 
 export default class Auth {
