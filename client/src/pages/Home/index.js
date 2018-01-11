@@ -29,18 +29,19 @@ class Home extends Component {
             {
               isAuthenticated() && (
                   <div>
+                    <a 
+                      href="/profile"
+                      className="btn btn-link"
+                    >
+                      Profile
+                    </a>                  
                     <button
                       className="btn btn-link"
                       onClick={this.logout.bind(this)}
                     >
                       Log Out
                     </button>
-                    <a 
-                      href="/profile"
-                      className="btn btn-link"
-                    >
-                      Profile
-                    </a>
+
                   </div>
                 )
             }            

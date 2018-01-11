@@ -24,18 +24,19 @@ class Products extends Component {
           <header>
             <div className="text-center">
                 <div>
+                  <a 
+                    href="/profile"
+                    className="btn btn-link"
+                  >
+                    Profile
+                  </a>                
                   <button
                     className="btn btn-link"
                     onClick={this.logout.bind(this)}
                   >
                     Log Out
                   </button> 
-                  <a 
-                    href="/profile"
-                    className="btn btn-link"
-                  >
-                    Profile
-                  </a> 
+ 
                 </div>        
             </div>
 
