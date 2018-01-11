@@ -53,7 +53,9 @@ class Home extends Component {
 
                   <a href="/people" className="btn btn-default">people</a>
 
-                  <a href="/products" className="btn btn-default">products</a>                                                                 
+                  <a href="/products" className="btn btn-default">products</a>
+
+                  <a href="/places" className="btn btn-default">places</a>                                                                 
                 </nav>
 
                 )

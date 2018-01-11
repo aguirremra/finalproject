@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Products from './pages/Products';
 import People from './pages/People';
+import Places from './pages/Places';
 import Callback from './pages/Callback';
 import Auth from './pages/Auth';
 import history from './pages/history';
@@ -43,7 +44,14 @@ const App = () =>
             ) : (
               <Products auth={auth} {...props} />
             )
-          )} />                    
+          )} />
+          <Route path="/places" render={(props) => (
+            !auth.isAuthenticated() ? (
+              <Redirect to="/home"/>
+            ) : (
+              <Products auth={auth} {...props} />
+            )
+          )} />                              
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);
             return <Callback {...props} /> 

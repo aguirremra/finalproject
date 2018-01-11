@@ -61,11 +61,12 @@ class Land extends Component {
                 <nav>
                   <a href="/home" className="btn btn-default">home</a>
 
-                  <a href="/profile" className="btn btn-default">profile</a>
-
                   <a href="/people" className="btn btn-default">people</a>
 
-                  <a href="/products" className="btn btn-default">products</a>                                                                 
+                  <a href="/products" className="btn btn-default">products</a> 
+
+                  <a href="/places" className="btn btn-default">places</a>
+
                 </nav>
 
                 )
