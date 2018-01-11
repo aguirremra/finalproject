@@ -19,9 +19,9 @@ class Profile extends Component {
     return (
       <div className="container">
         <div className="profile-area">
-          <h1>{profile.name}</h1>
+          <h1>Hello, {profile.given_name}</h1>
           <Panel header="Profile">
-            <img src={profile.picture} alt="profile" />
+            <img src={profile.picture} alt="profile" title={profile.given_name} />
             <div>
               <ControlLabel><Glyphicon glyph="user" /> Nickname</ControlLabel>
               <h3>{profile.nickname}</h3>
