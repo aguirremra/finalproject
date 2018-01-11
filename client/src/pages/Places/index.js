@@ -59,7 +59,7 @@ class Places extends Component {
 
         <div className="col-12">
 
-          <h2 className="text-center">Search for People</h2>
+          <h2 className="text-center">Search for Places</h2>
 
           <p className="text-center">[[search field here]]</p>
 
