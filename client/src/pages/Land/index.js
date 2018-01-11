@@ -19,11 +19,13 @@ class Land extends Component {
 
     return (
 
+
+
       <div>
 
-        <div className="container-fluid">
-          <header className="container">
-            <div className="access text-center">
+        <div className="container">
+          <header>
+            <div className="text-center">
             {
               !isAuthenticated() && (
                   <button
@@ -36,6 +38,7 @@ class Land extends Component {
             }
             {
               isAuthenticated() && (
+
                   <button
                     className="btn btn-link"
                     onClick={this.logout.bind(this)}
@@ -62,6 +65,40 @@ class Land extends Component {
             }            
 
           </header>
+
+        </div>
+
+        <div className="container-fluid">
+
+          <div className="jumbotron">
+
+            <div className="container">
+
+            {
+              !isAuthenticated() && (
+              <div>
+                <h1>Welcome to LiT List!</h1>
+                <p>Log in to explore our site</p>
+              </div>
+              )
+            }
+
+            {
+              isAuthenticated() && (
+              <div>
+                <h1>Welcome back to LiT List!</h1>
+                <p>Use the menu to record your favorites!</p>
+              </div>
+              )
+            }
+
+
+            </div>
+
+
+          </div>
+
+
 
         </div>
 
