@@ -23,18 +23,24 @@ class Products extends Component {
         <div className="container">
           <header>
             <div className="text-center">
+                <div>
                   <button
                     className="btn btn-link"
                     onClick={this.logout.bind(this)}
                   >
                     Log Out
-                  </button>          
+                  </button> 
+                  <a 
+                    href="/profile"
+                    className="btn btn-link"
+                  >
+                    Profile
+                  </a> 
+                </div>        
             </div>
 
             <nav>
                   <a href="/home" className="btn btn-default">home</a>
-
-                  <a href="/profile" className="btn btn-default">profile</a>
 
                   <a href="/people" className="btn btn-default">people</a>
 

@@ -38,13 +38,20 @@ class Land extends Component {
             }
             {
               isAuthenticated() && (
-
-                  <button
-                    className="btn btn-link"
-                    onClick={this.logout.bind(this)}
-                  >
-                    Log Out
-                  </button>
+                  <div>
+                    <button
+                      className="btn btn-link"
+                      onClick={this.logout.bind(this)}
+                    >
+                      Log Out
+                    </button>
+                    <a 
+                      href="/profile"
+                      className="btn btn-link"
+                    >
+                      Profile
+                    </a> 
+                  </div>                 
                 )
             }            
             </div>
