@@ -49,7 +49,7 @@ const App = () =>
             !auth.isAuthenticated() ? (
               <Redirect to="/home"/>
             ) : (
-              <Products auth={auth} {...props} />
+              <Places auth={auth} {...props} />
             )
           )} />                              
           <Route path="/callback" render={(props) => {
