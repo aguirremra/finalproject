@@ -7,6 +7,9 @@ export default {
 	},
 	//Save user to database
 	saveUser: function(userData){
-		return axios.post('/api/user', articleData);
+		// return axios.post('/api/user', articleData);
+	},
+	getPlaces: function(searchString){
+		return axios.get('http://localhost:8080/api/places?q=' + searchString);
 	}
 };
