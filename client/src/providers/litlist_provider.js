@@ -10,6 +10,6 @@ export default {
 		// return axios.post('/api/user', articleData);
 	},
 	getPlaces: function(searchString){
-		return axios.get('http://localhost:8080/api/places?q=' + searchString);
+		return axios.get('/api/places?q=' + searchString);
 	}
 };
