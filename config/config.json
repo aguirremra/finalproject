@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "_McGraw16061904",
     "database": "litlist",
     "host": "127.0.0.1",
     "dialect": "mysql"
