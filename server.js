@@ -3,6 +3,10 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const PORT = process.env.PORT || 8080;
 const app = express();
+const cors = require('cors');
+
+// ENABLE CROSS ORIGIN REQUESTS
+app.use(cors());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
