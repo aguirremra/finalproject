@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import API from '../providers/litlist_provider';
+import API from '../../providers/litlist_provider';
 
-class Home extends Component {
+class Places extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -16,11 +16,27 @@ class Home extends Component {
     this.renderSearch = this.renderSearch.bind(this);
   }
 
+  componentWillMount() {
+    this.setState({ profile: {} });
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
+  }
+
   login() {
     this.props.auth.login();
   }
 
-  handleFormSubmit(event){
+  logout() {
+    this.props.auth.logout();
+  }
+
+   handleFormSubmit(event){
     console.log(this.state.searchString);
     event.preventDefault();
     API
@@ -32,7 +48,7 @@ class Home extends Component {
         this.setState({resultsArray: returns})
         console.log(this.state.resultsArray);
       });      
-  };
+  }; 
 
   handleChange(event){
     this.setState({
@@ -58,34 +74,60 @@ class Home extends Component {
 
 
   render() {
-    const { isAuthenticated } = this.props.auth;
+    const { profile } = this.state;
     return (
-      <div className="container">
-        {
-          isAuthenticated() && (
-              <h4>
-                You are logged in! You can now view your{' '}
-                <Link to="profile">profile area</Link>
-                .
-              </h4>
-            )
-        }
-        {
-          !isAuthenticated() && (
-              <h4>
-                You are not logged in! Please{' '}
-                <a
-                  style={{ cursor: 'pointer' }}
-                  onClick={this.login.bind(this)}
-                >
-                  Log In
-                </a>
-                {' '}to continue.
-              </h4>
-            )
-        }
-        <div>
-          <h2>Place Results Here!</h2>
+      <div>
+        <div className="container">
+          <header>
+            <div className="text-center">
+                <div>
+                  <a 
+                    href="/profile"
+                    className="btn btn-link"
+                  >
+                    Profile
+                  </a>                
+                  <button
+                    className="btn btn-link"
+                    onClick={this.logout.bind(this)}
+                  >
+                    Log Out
+                  </button>
+
+                </div>          
+            </div>
+
+            <nav>
+                  <a href="/home" className="btn btn-default">home</a>
+
+                  <a href="/people" className="btn btn-default">people</a>
+
+                  <a href="/products" className="btn btn-default">products</a>
+
+                  <a href="/places" className="btn btn-default">places</a>                                                                 
+            </nav>
+
+
+          </header>
+
+    </div>      
+    <div className="container mt-5">
+
+      <div className="row">
+
+        <div className="col-12">
+
+          <h2 className="text-center">Search for Places</h2>
+
+          <p className="text-center">[[search field here]]</p>
+
+
+        </div>
+
+
+      </div>
+
+      <div className="row">
             <form onSubmit={this.handleFormSubmit}>
                 <div className="form-group">
                     <label htmlFor="searchString">Search Term:</label>
@@ -93,15 +135,29 @@ class Home extends Component {
                 </div>
                 <button type="submit" className="btn btn-default" id="run-search"><i className="fa fa-search"></i> Search </button>
                 <button type="button" className="btn btn-default" id="clear-all" onClick={this.handleFormClear}><i className="fa fa-trash"></i> Clear Results </button>
-            </form>          
-        </div>
+            </form> 
+
+
+      </div>
+
+      <div className="row">
+
           <div className="panel-body">
             {this.renderSearch()}
           </div>
 
+
+      </div>
+
+
+
+    
+    </div> 
+
+ 
       </div>
     );
   }
 }
 
-export default Home;
+export default Places;

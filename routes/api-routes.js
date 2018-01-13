@@ -9,6 +9,9 @@ module.exports = function(app){
   app.post('/api/user', apiController.saveUser);
 
   app.get('/api/favorites', apiController.getFavorites);
+  
+  app.get('/api/places', apiController.getPlaces);
+
 	// Define any API routes before this runs
 	// app.use("*", function(req, res) {
 	//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
