@@ -131,9 +131,8 @@ class Places extends Component {
 
       <div className="row">
 
-          <div className="panel-body">
             {this.renderSearch()}
-          </div>
+          
       </div>
 
     </div> 
