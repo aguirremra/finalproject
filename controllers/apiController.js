@@ -4,7 +4,6 @@ const googlePlaceService = require('../providers/googlePlaceService.js')();
 
 const controller = function() {
 
-  const userID = req.query.user_id
 // People page
   // Load all users initially
     this.getUsers = function(req, res){
@@ -15,6 +14,7 @@ const controller = function() {
     };
   // Load all products and places for user that is clicked on
     this.getFavorites = function(req, res){
+      const userID = req.query.user_id
       let result = {};
       let p1 = db.Place.findAll({ 
           where: { 
@@ -75,8 +75,7 @@ const controller = function() {
             message: 'The request to GooglePlaces failed'
           });
         })
-    
-    }    
+    };      
     return this;
 };
 
