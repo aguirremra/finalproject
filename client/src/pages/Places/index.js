@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../providers/litlist_provider';
+import ResultsPlace from '../../components/ResultsPlace';
 
 class Places extends Component {
   constructor(props){
@@ -65,10 +66,13 @@ class Places extends Component {
   renderSearch(){
       return this.state.resultsArray.map((place, i) => {
         return (
-          <div key={i} id={"result_" + (i +1)} className="well">
-            <h4>{place.formatted_address}</h4>
-          </div>
-        )
+          <ResultsPlace 
+            address={place.formatted_address}
+            key={i} 
+            itemId={`"result_" + (i +1)`}
+          />
+
+        );
       })
   }
 
