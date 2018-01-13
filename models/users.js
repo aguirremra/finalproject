@@ -4,6 +4,12 @@ module.exports = function(sequelize, DataTypes){
     
     sub: {
       type: DataTypes.STRING
+    },
+    image: {
+      type: DataTypes.STRING
+    },
+    name: {
+      type: DataTypes.STRING
     }
 
   });
