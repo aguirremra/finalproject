@@ -25,7 +25,6 @@ const controller = function() {
           console.log("place data: " + placeData)
           result.places = placeData;
         });
-<<<<<<< HEAD
 
         let p2 = db.Product.findAll({ 
           where: { 
@@ -59,21 +58,6 @@ const controller = function() {
         console.log("Data " + data);
       });
     };      
-=======
-      };
-
-    this.saveUser = function(req, res){
-        db.User.update(
-          req.body,
-            {
-              where: {
-                  id: req.params.id
-              }
-        }).then(function(data){
-          res.json(data);
-          console.log("Data " + data);
-        });
-      };  
 
     this.getPlaces = function(req, res) {
       let q = req.query.q;
@@ -91,9 +75,7 @@ const controller = function() {
             message: 'The request to GooglePlaces failed'
           });
         })
-     
-    }    
->>>>>>> master
+    };      
     return this;
 };
 
