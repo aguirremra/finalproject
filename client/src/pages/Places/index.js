@@ -63,18 +63,31 @@ class Places extends Component {
     this.setState(this.baseState)
   };
 
+  insertDiv(number) {
+    if(number % 4 === 0) {
+      return(<div>row break</div>);
+      } else {
+        return;
+      }
+    }; 
+
+  
+
   renderSearch(){
+
       return this.state.resultsArray.map((place, i) => {
         return (
           <ResultsPlace 
+            name={place.name}
+            rating={place.rating}
             address={place.formatted_address}
             key={i} 
             itemId={`"result_" + (i +1)`}
           />
-
-        );
+         );
+        
       })
-  }
+}
 
 
   render() {
