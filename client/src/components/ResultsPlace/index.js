@@ -12,7 +12,7 @@ saveToFavorites(event) {
     return (
     	<div className="col-4">
 	    	<div className="card mb-5">
-			  <img className="card-img-top" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/230557/lincecum.png" alt="Placeholder image" title="Placeholder image"/>
+			  <img className="card-img-top" src={"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyCntC7u_9XoHw_F9SqoNVzjYGZAkPOvO2k&photoreference=" + this.props.photo} alt="Placeholder image" title="Placeholder image"/>
 			  <div className="card-body">
 			    <h5 className="card-title">{this.props.name}</h5>
 			    <p className="card-text">rating: {this.props.rating}</p>
@@ -21,13 +21,9 @@ saveToFavorites(event) {
 			  </div>
 			</div>
     	</div>
-
     );
   }
 
 };
 
 export default ResultsPlace;
-
-
-

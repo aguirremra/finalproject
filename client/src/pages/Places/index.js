@@ -37,7 +37,7 @@ class Places extends Component {
     this.props.auth.logout();
   }
 
-   handleFormSubmit(event){
+  handleFormSubmit(event) {
     console.log(this.state.searchString);
     event.preventDefault();
     API
@@ -49,46 +49,43 @@ class Places extends Component {
         this.setState({resultsArray: returns})
         console.log(this.state.resultsArray);
       });      
-  }; 
+  } 
 
-  handleChange(event){
+  handleChange(event) {
     this.setState({
       [event.target.id]: event.target.value
     });
-  };
+  }
 
-  handleFormClear(event){
+  handleFormClear(event) {
     console.log("Clear me!");
     event.preventDefault();
-    this.setState(this.baseState)
-  };
+    this.setState(this.baseState);
+  }
 
   insertDiv(number) {
     if(number % 4 === 0) {
       return(<div>row break</div>);
       } else {
         return;
-      }
-    }; 
+      };
+  }
 
-  
-
-  renderSearch(){
-
-      return this.state.resultsArray.map((place, i) => {
-        return (
-          <ResultsPlace 
-            name={place.name}
-            rating={place.rating}
-            address={place.formatted_address}
-            key={i} 
-            itemId={`"result_" + (i +1)`}
-          />
-         );
-        
-      })
-}
-
+  renderSearch() {
+    return this.state.resultsArray.map((place, i) => {
+      return (
+        <ResultsPlace 
+          name={place.name}
+          rating={place.rating}
+          address={place.formatted_address}
+          key={i}
+          place_id={place.place_id}
+          photo={place.photos[0].photo_reference}
+          types={place.types}
+        />
+      );        
+    });
+  }
 
   render() {
     const { profile } = this.state;
@@ -123,10 +120,7 @@ class Places extends Component {
 
                   <a href="/places" className="btn btn-default">places</a>                                                                 
             </nav>
-
-
           </header>
-
     </div>      
     <div className="container">
 
