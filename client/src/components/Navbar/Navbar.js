@@ -20,6 +20,9 @@ class Navbar extends Component {
 			      <li className="nav-item">
 			        <a className="nav-link" href="/places">Places</a>
 			      </li>
+			      <li className="nav-item">
+			        <a className="nav-link" href="/products">Products</a>
+			      </li>			      
 			    </ul>
 			    <span className="navbar-text">
 			      Search for stuff. Save your favorites
