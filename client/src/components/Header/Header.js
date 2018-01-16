@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
-//Header if someone is not user or has not logged in yet
+
 
 class Header extends Component {
   goTo(route) {
