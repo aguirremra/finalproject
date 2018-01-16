@@ -1,6 +1,8 @@
 console.log("apiController");
 var db = require("../models");
 const googlePlaceService = require('../providers/googlePlaceService.js')();
+const productService = require('../providers/productService.js')();
+let parseString = require('xml2js').parseString;
 
 const controller = function() {
 
@@ -75,7 +77,41 @@ const controller = function() {
             message: 'The request to GooglePlaces failed'
           });
         })
-    };      
+    };
+
+    this.getProducts = function(req, res) {
+      let q = req.query.q;
+      let promise = productService.fetchProducts(q);
+      console.log("Promise: ", promise);
+      promise.then(
+        result => {
+          // console.log('RESPONSE - AmazonProduct', result);
+          let productResponse;
+          parseString(result.responseBody, function(err, xml2JSresult) {
+              if (err) { console.log('ERR - Something went wrong parsing XML', err); }
+              productResponse = xml2JSresult;
+          });
+          console.log('RESPONSE - AmazonProduct', productResponse);
+          console.log("Product Brand:", productResponse.ItemSearchResponse.Items[0].Item[1].ItemAttributes[0].Brand[0]);
+          console.log("Product Title:", productResponse.ItemSearchResponse.Items[0].Item[1].ItemAttributes[0].Title[0]);
+          console.log("List Price:", productResponse.ItemSearchResponse.Items[0].Item[0].ItemAttributes[0].ListPrice[0].FormattedPrice[0]);
+          console.log("UPC:", productResponse.ItemSearchResponse.Items[0].Item[0].ItemAttributes[0].UPC[0]);
+          console.log("Category:", productResponse.ItemSearchResponse.Items[0].Item[0].ItemAttributes[0].Binding[0]);
+          console.log("Small Image:", productResponse.ItemSearchResponse.Items[0].Item[0].SmallImage[0].URL[0]);
+          console.log("Medium Image:", productResponse.ItemSearchResponse.Items[0].Item[2].MediumImage[0].URL[0]);
+          console.log("Large Image:", productResponse.ItemSearchResponse.Items[0].Item[2].LargeImage[0].URL[0]);
+          res.json(productResponse.ItemSearchResponse.Items[0]);
+        })
+      .catch(
+        err => {
+          console.log('The request to Amazon failed', err);
+          res.json({
+            error: err,
+            message: 'The request to Amazon failed'
+          });
+        })     
+    };
+    
     return this;
 };
 
