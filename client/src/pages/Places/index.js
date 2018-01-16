@@ -17,26 +17,6 @@ class Places extends Component {
     this.renderSearch = this.renderSearch.bind(this);
   }
 
-  componentWillMount() {
-    this.setState({ profile: {} });
-    const { userProfile, getProfile } = this.props.auth;
-    if (!userProfile) {
-      getProfile((err, profile) => {
-        this.setState({ profile });
-      });
-    } else {
-      this.setState({ profile: userProfile });
-    }
-  }
-
-  login() {
-    this.props.auth.login();
-  }
-
-  logout() {
-    this.props.auth.logout();
-  }
-
   handleFormSubmit(event) {
     console.log(this.state.searchString);
     event.preventDefault();
@@ -63,13 +43,7 @@ class Places extends Component {
     this.setState(this.baseState);
   }
 
-  insertDiv(number) {
-    if(number % 4 === 0) {
-      return(<div>row break</div>);
-      } else {
-        return;
-      };
-  }
+
 
   renderSearch() {
     return this.state.resultsArray.map((place, i) => {
@@ -88,40 +62,10 @@ class Places extends Component {
   }
 
   render() {
-    const { profile } = this.state;
+
     return (
       <div>
-        <div className="container">
-          <header>
-            <div className="text-center">
-                <div>
-                  <a 
-                    href="/profile"
-                    className="btn btn-link"
-                  >
-                    Profile
-                  </a>                
-                  <button
-                    className="btn btn-link"
-                    onClick={this.logout.bind(this)}
-                  >
-                    Log Out
-                  </button>
-
-                </div>          
-            </div>
-
-            <nav>
-                  <a href="/home" className="btn btn-default">home</a>
-
-                  <a href="/people" className="btn btn-default">people</a>
-
-                  <a href="/products" className="btn btn-default">products</a>
-
-                  <a href="/places" className="btn btn-default">places</a>                                                                 
-            </nav>
-          </header>
-    </div>      
+      
     <div className="container">
 
      <div className="jumbotron">
