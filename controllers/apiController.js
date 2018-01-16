@@ -51,12 +51,28 @@ const controller = function() {
     };
 
 // Adds user to User table when use OAuth for first time
-// TO DO: add check to see if already exists
     this.saveUser = function(req, res){
-      db.User.create(req.body).then(function(data){
-        res.json(data);
-        console.log("Data " + data);
-      });
+      const userID = req.query.sub;
+      console.log("This is the userID: " + userID)
+// Check to see if already exists
+        db.User.findOrCreate({
+          where: {
+            sub: userID
+          }
+        })
+        .spread(function(userResult, created){
+          if (!created){
+            console.log("User exists");
+            res.end();
+          }
+          else {
+            db.User.create(req.body).then(function(data){
+              console.log("Req.body: " + req.body)
+              res.json(data);
+              console.log("User created - Data: " + data);
+            });
+          }     
+        }); 
     };      
 
     this.getPlaces = function(req, res) {
