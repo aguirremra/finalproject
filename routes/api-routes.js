@@ -12,6 +12,8 @@ module.exports = function(app){
 
   app.get('/api/places', apiController.getPlaces);
 
+    app.get('/api/products', apiController.getProducts);
+
 	// Define any API routes before this runs
 	// app.use("*", function(req, res) {
 	//   res.sendFile(path.join(__dirname, "../client/build/index.html"));

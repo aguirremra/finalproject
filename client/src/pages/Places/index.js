@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../providers/litlist_provider';
+import ResultsPlace from '../../components/ResultsPlace';
 
 class Places extends Component {
   constructor(props){
@@ -62,15 +63,31 @@ class Places extends Component {
     this.setState(this.baseState)
   };
 
+  insertDiv(number) {
+    if(number % 4 === 0) {
+      return(<div>row break</div>);
+      } else {
+        return;
+      }
+    }; 
+
+  
+
   renderSearch(){
+
       return this.state.resultsArray.map((place, i) => {
         return (
-          <div key={i} id={"result_" + (i +1)} className="well">
-            <h4>{place.formatted_address}</h4>
-          </div>
-        )
+          <ResultsPlace 
+            name={place.name}
+            rating={place.rating}
+            address={place.formatted_address}
+            key={i} 
+            itemId={`"result_" + (i +1)`}
+          />
+         );
+        
       })
-  }
+}
 
 
   render() {
@@ -111,51 +128,30 @@ class Places extends Component {
           </header>
 
     </div>      
-    <div className="container mt-5">
+    <div className="container">
 
-      <div className="row">
-
-        <div className="col-12">
-
-          <h2 className="text-center">Search for Places</h2>
-
-          <p className="text-center">[[search field here]]</p>
-
-
+     <div className="jumbotron">
+     <h2 className="text-center">Search for Places</h2>
+       <form className="mt-5" onSubmit={this.handleFormSubmit}>
+        <div className="input-group mb-3">
+        <div className="input-group-prepend">
+            <button id="run-search" className="btn btn-outline-secondary" type="submit">search</button>
         </div>
-
-
-      </div>
-
-      <div className="row">
-            <form onSubmit={this.handleFormSubmit}>
-                <div className="form-group">
-                    <label htmlFor="searchString">Search Term:</label>
-                    <input type="text" className="form-control" id="searchString" onChange={this.handleChange} value={this.state.searchString} />
-                </div>
-                <button type="submit" className="btn btn-default" id="run-search"><i className="fa fa-search"></i> Search </button>
-                <button type="button" className="btn btn-default" id="clear-all" onClick={this.handleFormClear}><i className="fa fa-trash"></i> Clear Results </button>
-            </form> 
-
-
-      </div>
+            <input type="text" id="searchString" onChange={this.handleChange} className="form-control" value={this.state.searchString} />
+         </div>
+       </form>
+      </div> 
 
       <div className="row">
 
-          <div className="panel-body">
             {this.renderSearch()}
-          </div>
-
-
+          
       </div>
 
-
-
-    
     </div> 
 
  
-      </div>
+</div>
     );
   }
 }

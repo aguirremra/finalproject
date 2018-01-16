@@ -11,5 +11,8 @@ export default {
 	},
 	getPlaces: function(searchString){
 		return axios.get('/api/places?q=' + searchString);
+	},
+	getProducts: function(searchString){
+		return axios.get('/api/products?q=' + searchString);
 	}
 };
