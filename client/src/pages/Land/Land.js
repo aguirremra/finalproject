@@ -10,7 +10,8 @@ class Land extends Component {
 
         <div className="jumbotron mt-5">
           <Container width="container">
-            <h1 className="display-4">Welcome to LiT List! Landing Page</h1>
+            <h1 className="display-4">Welcome to LiT List!</h1>
+            <h2>Landing Page</h2>
             <p className="lead">This is the landing page for those who havent' signed up or logged in yet.</p>
           </Container>
         </div>
