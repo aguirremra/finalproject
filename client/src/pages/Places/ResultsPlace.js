@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./ResultsPlace.css";
+import "./Places.css";
 
 class ResultsPlace extends Component {
 

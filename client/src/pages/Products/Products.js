@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../providers/litlist_provider';
+import Container from '../../components/Containers/Container';
+import ResultsProducts from './ResultsProducts';
 
 class Products extends Component {
   constructor(props){
@@ -59,66 +61,43 @@ class Products extends Component {
   renderSearch(){
       return this.state.resultsArray.map((product, i) => {
         return (
-          <div key={i} id={"result_" + (i +1)} className="well">
-            <h4>Brand: {product.ItemAttributes[0].Brand[0]}</h4>
-            <h4>Title: {product.ItemAttributes[0].Title[0]}</h4>
-            <h4>Price: {product.ItemAttributes[0].ListPrice[0].FormattedPrice[0]}</h4>
-            <h4>UPC: {product.ItemAttributes[0].UPC}</h4>
-            <h4>Category: {product.ItemAttributes[0].Binding}</h4>
-            <img src={product.MediumImage[0].URL} height="100" width="100"/>
-            <h4><a href={product.ItemLinks[0].ItemLink[0].URL[0]} target="_blank">Buy me Now!</a></h4>
-          </div>
+           <ResultsProducts
+            brand={product.ItemAttributes[0].Brand[0]}
+            title={product.ItemAttributes[0].Title[0]}
+            price={product.ItemAttributes[0].ListPrice[0].FormattedPrice[0]}
+            upc={product.ItemAttributes[0].UPC}
+            category={product.ItemAttributes[0].Binding}
+            img={product.MediumImage[0].URL}
+            purchase_link={product.ItemLinks[0].ItemLink[0].URL[0]}
+            key={i}
+            product_id={"result_" + (i +1)}
+          />
         )
       })
   }
 
   render() {
-    const { profile } = this.state;
+
     return (
-      <div>
-       
-    <div className="container mt-5">
-
-      <div className="row">
-
-
-
-
-        <div className="col-12">
-
+      <Container width="container">
+         <div className="jumbotron">
           <h2 className="text-center">Search for Products</h2>
-
-          <p className="text-center">[[search field here]]</p>
-
-
-        </div>
-      </div>
-
-      <div className="row">
-            <form onSubmit={this.handleFormSubmit}>
-                <div className="form-group">
-                    <label htmlFor="searchString">Search Term:</label>
-                    <input type="text" className="form-control" id="searchString" onChange={this.handleChange} value={this.state.searchString} />
-                </div>
-                <button type="submit" className="btn btn-default" id="run-search"><i className="fa fa-search"></i> Search </button>
-                <button type="button" className="btn btn-default" id="clear-all" onClick={this.handleFormClear}><i className="fa fa-trash"></i> Clear Results </button>
-            </form> 
-
-
-      </div>
-
-      <div className="row">
-
-          <div className="panel-body">
-            {this.renderSearch()}
+           <form className="mt-5" onSubmit={this.handleFormSubmit}>
+            <div className="input-group mb-3">
+            <div className="input-group-prepend">
+                <button id="run-search" className="btn btn-outline-secondary" type="submit">search</button>
+            </div>
+                <input type="text" id="searchString" onChange={this.handleChange} className="form-control" value={this.state.searchString} />
+             </div>
+           </form>
           </div>
 
+          <div className="row">
+                {this.renderSearch()}              
+          </div>
+      </Container>
 
-      </div>
-    
-    </div> 
- 
-      </div>
+
     );
   }
 }

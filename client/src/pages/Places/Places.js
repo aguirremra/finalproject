@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../providers/litlist_provider';
-import ResultsPlace from '../../components/ResultsPlace';
+import ResultsPlace from './ResultsPlace';
+import Container from '../../components/Containers/Container';
 
 class Places extends Component {
   constructor(props){
@@ -43,8 +44,6 @@ class Places extends Component {
     this.setState(this.baseState);
   }
 
-
-
   renderSearch() {
     return this.state.resultsArray.map((place, i) => {
       return (
@@ -64,32 +63,25 @@ class Places extends Component {
   render() {
 
     return (
-      <div>
-      
-    <div className="container">
 
-     <div className="jumbotron">
-     <h2 className="text-center">Search for Places</h2>
-       <form className="mt-5" onSubmit={this.handleFormSubmit}>
-        <div className="input-group mb-3">
-        <div className="input-group-prepend">
-            <button id="run-search" className="btn btn-outline-secondary" type="submit">search</button>
-        </div>
-            <input type="text" id="searchString" onChange={this.handleChange} className="form-control" value={this.state.searchString} />
-         </div>
-       </form>
-      </div> 
+      <Container width="container">
+         <div className="jumbotron">
+          <h2 className="text-center">Search for Places</h2>
+           <form className="mt-5" onSubmit={this.handleFormSubmit}>
+            <div className="input-group mb-3">
+            <div className="input-group-prepend">
+                <button id="run-search" className="btn btn-outline-secondary" type="submit">search</button>
+            </div>
+                <input type="text" id="searchString" onChange={this.handleChange} className="form-control" value={this.state.searchString} />
+             </div>
+           </form>
+          </div>
 
-      <div className="row">
+          <div className="row">
+                {this.renderSearch()}              
+          </div>
+      </Container>
 
-            {this.renderSearch()}
-          
-      </div>
-
-    </div> 
-
- 
-</div>
     );
   }
 }
