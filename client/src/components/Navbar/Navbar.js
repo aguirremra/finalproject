@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Container from '../Containers/Container';
+import './Navbar.css';
 
 class Navbar extends Component {
 	render() {
@@ -11,7 +12,7 @@ class Navbar extends Component {
 			  </button>
 			  <div className="collapse navbar-collapse" id="navbarText">
 			    <ul className="navbar-nav mr-auto">
-			      <li className="nav-item active">
+			      <li className="nav-item">
 			        <a className="nav-link" href="/home">Home </a>
 			      </li>
 			      <li className="nav-item">
