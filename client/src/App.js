@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Redirect, Route, Router } from 'react-router-dom';
-import Land from './pages/Land';
+
+import Auth from './pages/Auth';
+import Callback from './pages/Callback';
+import history from './pages/history';
+import Header from './components/Header';
 import Home from './pages/Home';
-import Profile from './pages/Profile';
-import Products from './pages/Products';
+import Land from './pages/Land';
 import People from './pages/People';
 import Places from './pages/Places';
-import Callback from './pages/Callback';
-import Auth from './pages/Auth';
-import history from './pages/history';
+import Products from './pages/Products';
+import Profile from './pages/Profile';
 
 const auth = new Auth();
 
@@ -22,6 +24,7 @@ const App = () =>
 
     <Router history={history}>
         <div>
+        <Header auth={auth}/>
           <Route exact path="/" render={(props) => <Land auth={auth} {...props} />} />
           <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
           <Route path="/profile" render={(props) => (

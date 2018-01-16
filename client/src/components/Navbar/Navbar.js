@@ -12,13 +12,13 @@ class Navbar extends Component {
 			  <div className="collapse navbar-collapse" id="navbarText">
 			    <ul className="navbar-nav mr-auto">
 			      <li className="nav-item active">
-			        <a className="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			        <a className="nav-link" href="/home">Home </a>
 			      </li>
 			      <li className="nav-item">
-			        <a className="nav-link" href="#">Features</a>
+			        <a className="nav-link" href="/people">People</a>
 			      </li>
 			      <li className="nav-item">
-			        <a className="nav-link" href="#">Pricing</a>
+			        <a className="nav-link" href="/places">Places</a>
 			      </li>
 			    </ul>
 			    <span className="navbar-text">
