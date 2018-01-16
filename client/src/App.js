@@ -11,7 +11,9 @@ import Land from './pages/Land';
 import Main from './components/Containers/Main';
 import People from './pages/People';
 import Places from './pages/Places';
+import PlacesFav from './pages/PlacesFav';
 import Products from './pages/Products';
+import ProductsFav from './pages/ProductsFav';
 import Profile from './pages/Profile';
 
 const auth = new Auth();
@@ -57,7 +59,21 @@ const App = () =>
             ) : (
               <Places auth={auth} {...props} />
             )
-          )} />                              
+          )} />
+          <Route path="/placesfav" render={(props) => (
+            !auth.isAuthenticated() ? (
+              <Redirect to="/"/>
+            ) : (
+              <PlacesFav auth={auth} {...props} />
+            )
+          )} /> 
+          <Route path="/productsfav" render={(props) => (
+            !auth.isAuthenticated() ? (
+              <Redirect to="/"/>
+            ) : (
+              <ProductsFav auth={auth} {...props} />
+            )
+          )} />                                                    
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);
             return <Callback {...props} /> 

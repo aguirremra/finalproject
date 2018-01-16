@@ -23,7 +23,13 @@ class Navbar extends Component {
 			      </li>
 			      <li className="nav-item">
 			        <a className="nav-link" href="/products">Products</a>
-			      </li>			      
+			      </li>
+			      <li className="nav-item">
+			        <a className="nav-link" href="/placesfav">Favorite Places</a>
+			      </li>
+			      <li className="nav-item">
+			        <a className="nav-link" href="/productsfav">Favorite Products</a>
+			      </li>				      				      			      
 			    </ul>
 			    <span className="navbar-text">
 			      Search for stuff. Save your favorites
