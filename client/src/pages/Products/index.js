@@ -51,7 +51,8 @@ class Products extends Component {
         console.log("Category:", res.data.Item[itemNum].ItemAttributes[0].Binding[0]);
         console.log("Small Image:", res.data.Item[itemNum].SmallImage[0].URL[0]);
         console.log("Medium Image:", res.data.Item[itemNum].MediumImage[0].URL[0]);
-        console.log("Large Image:", res.data.Item[itemNum].LargeImage[0].URL[0]);  
+        console.log("Large Image:", res.data.Item[itemNum].LargeImage[0].URL[0]);
+        console.log("URL: ", res.data.Item[itemNum].ItemLinks[0].ItemLink[0].URL[0]); 
         // if (!res.data.results) return; 
 
         let returns = [];
@@ -84,7 +85,8 @@ class Products extends Component {
             <h4>Price: {product.ItemAttributes[0].ListPrice[0].FormattedPrice[0]}</h4>
             <h4>UPC: {product.ItemAttributes[0].UPC}</h4>
             <h4>Category: {product.ItemAttributes[0].Binding}</h4>
-            <img src={product.LargeImage[0].URL} height="100" width="100"/>
+            <img src={product.MediumImage[0].URL} height="100" width="100"/>
+            <h4><a href={product.ItemLinks[0].ItemLink[0].URL[0]} target="_blank">Buy me Now!</a></h4>
           </div>
         )
       })
