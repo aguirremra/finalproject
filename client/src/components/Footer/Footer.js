@@ -11,7 +11,7 @@ class Footer extends Component {
       <footer>
         <Container width="container">
 
-          <p className="text-center">&copy; 2017 LiT List &#183; <a href="https://github.com/aguirremra/finalproject" target="_blank">GitHub</a> &#183; Powered by <a href="https://reactjs.org/" target="_blank">React</a></p>
+          <p className="text-center">&copy; 2018 LiT List &#183; <a href="https://github.com/aguirremra/finalproject" target="_blank">GitHub</a> &#183; Powered by <a href="https://reactjs.org/" target="_blank">React</a></p>
 
         </Container>
 
