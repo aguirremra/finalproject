@@ -10,9 +10,13 @@ module.exports = function(app){
 
   app.get('/api/favorites', apiController.getFavorites);
 
+  app.get('/api/favproducts', apiController.getFavoritePlaces);
+
+  app.get('/api/favplaces', apiController.getFavoriteProducts);
+
   app.get('/api/places', apiController.getPlaces);
 
-    app.get('/api/products', apiController.getProducts);
+  app.get('/api/products', apiController.getProducts);
 
 	// Define any API routes before this runs
 	// app.use("*", function(req, res) {
