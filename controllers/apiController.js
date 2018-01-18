@@ -145,24 +145,18 @@ const controller = function() {
     }; 
 
     this.saveProduct = function(req, res) {
-      const userID = req.params.user_id;
-      console.log("this is the user ID: " + userID);
-
       db.Product.create(req.body).then(function(data){
         console.log("Req.body: " + req.body);
         res.json(data);
-        console.log("Product saved for user " + userID);
+        console.log("Product saved");
       })
     };
 
     this.savePlace = function(req, res) {
-      const userID = req.params.user_id;
-      console.log("this is the user ID: " + userID);
-
       db.Place.create(req.body).then(function(data){
         console.log("Req.body: " + req.body);
         res.json(data);
-        console.log("Place saved for user " + userID);
+        console.log("Place saved");
       })
     };
 
