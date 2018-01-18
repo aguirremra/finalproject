@@ -52,30 +52,21 @@ const controller = function() {
         });
     };
 
-// Adds user to User table when use OAuth for first time
-    this.saveUser = function(req, res){
-      const userID = req.query.sub;
-      console.log("This is the userID: " + userID)
-// Check to see if already exists
-        db.User.findOrCreate({
-          where: {
-            sub: userID
-          }
-        })
-        .spread(function(userResult, created){
-          if (!created){
-            console.log("User exists");
-            res.end();
-          }
-          else {
-            db.User.create(req.body).then(function(data){
-              console.log("Req.body: " + req.body)
-              res.json(data);
-              console.log("User created - Data: " + data);
-            });
-          }     
-        }); 
-    };      
+// get all favorite products regardless of user
+    this.getFavoriteProducts = function(req, res) {
+      db.Product.findAll().then(function(data){
+        res.json(data);
+        console.log("Data " + data);
+      });
+    };
+
+// get all favorite places regardless of user
+    this.getFavoritePlaces = function(req, res) {
+      db.Place.findAll().then(function(data){
+        res.json(data);
+        console.log("Data " + data);
+      });
+    };     
 
     this.getPlaces = function(req, res) {
       let q = req.query.q;
@@ -128,6 +119,48 @@ const controller = function() {
         })     
     };
     
+// Adds user to User table when use OAuth for first time
+    this.saveUser = function(req, res){
+      const userID = req.query.sub;
+      console.log("This is the userID: " + userID)
+// Check to see if already exists
+        db.User.findOrCreate({
+          where: {
+            sub: userID
+          }
+        })
+        .spread(function(userResult, created){
+          if (!created){
+            console.log("User exists");
+            res.end();
+          }
+          else {
+            db.User.create(req.body).then(function(data){
+              console.log("Req.body: " + req.body)
+              res.json(data);
+              console.log("User created - Data: " + data);
+            });
+          }     
+        }); 
+    }; 
+
+    this.saveProduct = function(req, res) {
+      db.Product.create(req.body).then(function(data){
+        console.log("Req.body: " + req.body);
+        res.json(data);
+        console.log("Product saved");
+      })
+    };
+
+    this.savePlace = function(req, res) {
+      db.Place.create(req.body).then(function(data){
+        console.log("Req.body: " + req.body);
+        res.json(data);
+        console.log("Place saved");
+      })
+    };
+
+
     return this;
 };
 
