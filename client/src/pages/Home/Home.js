@@ -5,6 +5,7 @@ import './Home.css';
 class Home extends Component {
 
   render() {
+    console.log("window.locaion.href ", window.location.href);
 
     return (
 
