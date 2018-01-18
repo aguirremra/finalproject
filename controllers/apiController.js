@@ -52,6 +52,22 @@ const controller = function() {
         });
     };
 
+// get all favorite places regardless of user
+    this.getFavoritePlaces = function(req, res) {
+      db.Place.findAll().then(function(data){
+        res.json(data);
+        console.log("Data " + data);
+      });
+    };
+
+// get all favorite products regardless of user
+    this.getFavoriteProducts = function(req, res) {
+      db.Product.findAll().then(function(data){
+        res.json(data);
+        console.log("Data " + data);
+      });
+    };
+
 // Adds user to User table when use OAuth for first time
     this.saveUser = function(req, res){
       const userID = req.query.sub;
