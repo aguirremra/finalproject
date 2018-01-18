@@ -14,6 +14,9 @@ module.exports = function(app){
 
     app.get('/api/products', apiController.getProducts);
 
+    app.get('api/callback', function(req, res) {
+      console.log('AUTH0 Called back', req.params);
+    });
 	// Define any API routes before this runs
 	// app.use("*", function(req, res) {
 	//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
