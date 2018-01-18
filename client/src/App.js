@@ -31,6 +31,7 @@ const App = () =>
         <Header auth={auth}/>
         <Main>
           <Route exact path="/" render={(props) => <Land auth={auth} {...props} />} />
+          <Route path="/test" render={(props) => <h1>You got here</h1>} />
           <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
           <Route path="/profile" render={(props) => (
             !auth.isAuthenticated() ? (
