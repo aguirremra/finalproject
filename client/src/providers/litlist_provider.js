@@ -27,7 +27,8 @@ export default {
 	saveProduct: function(productData){
 		return axios.post('/api/saveproduct', productData);
 	},
-	savePlace: function(placeData){
-		return axios.post('api/saveplace', placeData);
+	savePlace: function(place){
+		console.log("savePlace in litlist provider");
+		return axios.post('/api/saveplace', place);
 	}
 };

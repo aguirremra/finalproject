@@ -8,7 +8,16 @@ module.exports = function(sequelize, DataTypes){
     user_id: {
       type: DataTypes.STRING
     },
+    user_nickname: {
+      type: DataTypes.STRING
+    },
+    user_image: {
+      type: DataTypes.STRING
+    },
     user_comment: {
+      type: DataTypes.STRING
+    },         
+    name: {
       type: DataTypes.STRING
     },
     image: {
@@ -17,13 +26,15 @@ module.exports = function(sequelize, DataTypes){
     url: {
       type: DataTypes.STRING
     },
-    description: {
-      type: DataTypes.STRING
-    },
     category: {
       type: DataTypes.STRING
+    },
+    brand: {
+      type: DataTypes.STRING
+    },
+    price: {
+      type: DataTypes.STRING
     }
-
   });
 
   return Product;

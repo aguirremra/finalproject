@@ -10,12 +10,14 @@ class Products extends Component {
     this.state = {
       places: [],
       searchString: "",
-      resultsArray: []
+      resultsArray: [],
+      profile: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleFormClear = this.handleFormClear.bind(this);
     this.renderSearch = this.renderSearch.bind(this);
+    this.getSelectedProduct = this.getSelectedProduct.bind(this);
   }
 
    handleFormSubmit(event){
@@ -70,9 +72,38 @@ class Products extends Component {
             img={product.MediumImage ? product.MediumImage[0].URL : "http://i1.wp.com/williamlobb.com/wp-content/uploads/2017/10/amazon-frown.jpeg"}
             purchase_link={product.ItemLinks[0].ItemLink ? product.ItemLinks[0].ItemLink[0].URL[0] : "http://www.amazon.com"}
             key={i}
+            getProduct={this.getSelectedProduct}
           />
         )
       })
+  }
+
+  getSelectedProduct(product){
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+        console.log("Profile ", profile);
+        console.log("Product ", product);
+        // return product;
+        API.saveProduct({
+          product_id: product.upc.toString(), 
+          name: product.title,
+          image: product.img.toString(),
+          category: product.category.toString(),
+          brand: product.brand,
+          url: product.purchase_link,
+          price: product.price,
+          user_id: profile.sub,
+          user_nickname: profile.nickname,
+          user_image: profile.picture 
+        })
+          .then(res => console.log(res))
+          .catch(err => console.log(err));
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
   }
 
   render() {

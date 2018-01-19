@@ -154,6 +154,7 @@ const controller = function() {
     };
 
     this.savePlace = function(req, res) {
+      console.log("create place");
       db.Place.create(req.body).then(function(data){
         console.log("Req.body: " + req.body);
         res.json(data);

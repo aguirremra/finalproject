@@ -10,12 +10,14 @@ class Places extends Component {
     this.state = {
       places: [],
       searchString: "",
-      resultsArray: []
+      resultsArray: [],
+      profile: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleFormClear = this.handleFormClear.bind(this);
     this.renderSearch = this.renderSearch.bind(this);
+    this.getSelectedPlace = this.getSelectedPlace.bind(this);
   }
 
   handleFormSubmit(event) {
@@ -55,9 +57,35 @@ class Places extends Component {
           place_id={place.place_id}
           photo={place.photos[0].photo_reference}
           types={place.types}
+          getPlace={this.getSelectedPlace}
         />
       );        
     });
+  }
+
+  getSelectedPlace(place){
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+        console.log("Profile ", profile);
+        // return place;
+        API.savePlace({
+          place_id: place.place_id, 
+          name: place.name,
+          image: place.photo,
+          address: place.address,
+          category: place.category,
+          user_id: profile.sub,
+          user_nickname: profile.nickname,
+          user_image: profile.picture 
+        })
+          .then(res => console.log(res))
+          .catch(err => console.log(err));
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
   }
 
   render() {
