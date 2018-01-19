@@ -25,9 +25,6 @@ module.exports = function(app){
 
   app.post('/api/saveplace', apiController.savePlace);
 
-  app.get('api/callback', function(req, res) {
-    console.log('AUTH0 Called back', req.params);
-  });
 	// Define any API routes before this runs
 	app.get("*", function(req, res) {
 	  res.sendFile(path.join(__dirname, "../client/build/index.html"));
