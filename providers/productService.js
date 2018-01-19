@@ -1,12 +1,13 @@
 console.log('productServices');
+require('dotenv').config();
 // let axios = require('axios');
 const { OperationHelper } = require('apac');
 let parseString = require('xml2js').parseString;
 
 const opHelper = new OperationHelper({
-    awsId: 'AKIAIIZXHYHLKOCM65WQ',
-    awsSecret: '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',
-    assocId: 'litlist-20'
+    awsId: process.env.awsId,
+    awsSecret: process.env.awsSecret,
+    assocId: process.env.assocId
 });
 
 const productProvider = function() {
