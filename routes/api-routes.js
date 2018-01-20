@@ -18,6 +18,8 @@ module.exports = function(app){
 
   app.get('/api/places', apiController.getPlaces);
 
+  app.get('/api/placedetails', apiController.getPlaceDetails)
+
 //---------------------- POST Requests -----------------------
   app.post('/api/user', apiController.saveUser);
 
