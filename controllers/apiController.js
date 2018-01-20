@@ -122,12 +122,18 @@ const controller = function() {
     
 // Adds user to User table when use OAuth for first time
     this.saveUser = function(req, res){
-      const userID = req.params.sub;
-      console.log("This is the userID: " + userID)
+      const userID = req.body.sub;
+      console.log("This is the userID: ", userID)
 // Check to see if already exists
         db.User.findOrCreate({
           where: {
             sub: userID
+          },
+          defaults: {
+            sub: userID,
+            image: req.body.image,
+            name: req.body.name,
+            nickname: req.body.nickname
           }
         })
         .spread(function(userResult, created){
@@ -136,11 +142,8 @@ const controller = function() {
             res.end();
           }
           else {
-            db.User.create(req.body).then(function(data){
-              console.log("Req.body: " + req.body)
-              res.json(data);
-              console.log("User created - Data: " + data);
-            });
+            console.log("User created");
+            res.end();
           }     
         }); 
     }; 

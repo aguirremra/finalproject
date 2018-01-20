@@ -13,14 +13,14 @@ class Home extends Component {
         this.setState({ profile });
         console.log("Profile ", profile);
 
-        // API.saveUser({
-        //   sub: profile.sub,
-        //   image: profile.picture,
-        //   name: profile.name,
-        //   nickname: profile.nickname
-        // })
-        //   .then(res => console.log(res))
-        //   .catch(err => console.log(err));        
+        API.saveUser({
+          sub: profile.sub,
+          image: profile.picture,
+          name: profile.name,
+          nickname: profile.nickname
+        })
+          .then(res => console.log(res))
+          .catch(err => console.log(err));        
       });
     } else {
       this.setState({ profile: userProfile });
