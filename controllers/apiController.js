@@ -121,7 +121,7 @@ const controller = function() {
     
 // Adds user to User table when use OAuth for first time
     this.saveUser = function(req, res){
-      const userID = req.query.sub;
+      const userID = req.params.sub;
       console.log("This is the userID: " + userID)
 // Check to see if already exists
         db.User.findOrCreate({
