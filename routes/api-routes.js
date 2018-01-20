@@ -26,8 +26,8 @@ module.exports = function(app){
   app.post('/api/saveplace', apiController.savePlace);
 
 	// Define any API routes before this runs
-	// app.use("*", function(req, res) {
-	//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
-	// });
+	app.get("*", function(req, res) {
+	  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+	});
   
 }

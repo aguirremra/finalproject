@@ -10,12 +10,14 @@ class Products extends Component {
     this.state = {
       places: [],
       searchString: "",
-      resultsArray: []
+      resultsArray: [],
+      profile: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleFormClear = this.handleFormClear.bind(this);
     this.renderSearch = this.renderSearch.bind(this);
+    this.getSelectedProduct = this.getSelectedProduct.bind(this);
   }
 
    handleFormSubmit(event){
@@ -26,15 +28,15 @@ class Products extends Component {
       .getProducts(this.state.searchString)
       .then((res) => {
         console.log("RESPONSE - AmazonProduct: ", res.data.Item);
-        console.log("Product Brand:", res.data.Item[itemNum].ItemAttributes[0].Brand[0]);
-        console.log("Product Title:", res.data.Item[itemNum].ItemAttributes[0].Title[0]);
-        console.log("List Price:", res.data.Item[itemNum].ItemAttributes[0].ListPrice[0].FormattedPrice[0]);
-        console.log("UPC:", res.data.Item[itemNum].ItemAttributes[0].UPC[0]);
-        console.log("Category:", res.data.Item[itemNum].ItemAttributes[0].Binding[0]);
-        console.log("Small Image:", res.data.Item[itemNum].SmallImage[0].URL[0]);
-        console.log("Medium Image:", res.data.Item[itemNum].MediumImage[0].URL[0]);
-        console.log("Large Image:", res.data.Item[itemNum].LargeImage[0].URL[0]);
-        console.log("URL: ", res.data.Item[itemNum].ItemLinks[0].ItemLink[0].URL[0]); 
+        // console.log("Product Brand:", res.data.Item[itemNum].ItemAttributes[0].Brand[0]);
+        // console.log("Product Title:", res.data.Item[itemNum].ItemAttributes[0].Title[0]);
+        // console.log("List Price:", res.data.Item[itemNum].ItemAttributes[0].ListPrice[0].FormattedPrice[0]);
+        // console.log("UPC:", res.data.Item[itemNum].ItemAttributes[0].UPC[0]);
+        // console.log("Category:", res.data.Item[itemNum].ItemAttributes[0].Binding[0]);
+        // console.log("Small Image:", res.data.Item[itemNum].SmallImage[0].URL[0]);
+        // console.log("Medium Image:", res.data.Item[itemNum].MediumImage[0].URL[0]);
+        // console.log("Large Image:", res.data.Item[itemNum].LargeImage[0].URL[0]);
+        // console.log("URL: ", res.data.Item[itemNum].ItemLinks[0].ItemLink[0].URL[0]); 
         // if (!res.data.results) return; 
 
         let returns = [];
@@ -64,16 +66,44 @@ class Products extends Component {
            <ResultsProducts
             brand={product.ItemAttributes[0].Brand[0]}
             title={product.ItemAttributes[0].Title[0]}
-            price={product.ItemAttributes[0].ListPrice[0].FormattedPrice[0]}
-            upc={product.ItemAttributes[0].UPC}
-            category={product.ItemAttributes[0].Binding}
-            img={product.MediumImage[0].URL}
-            purchase_link={product.ItemLinks[0].ItemLink[0].URL[0]}
+            price={product.ItemAttributes[0].ListPrice ? product.ItemAttributes[0].ListPrice[0].FormattedPrice[0] : "expen$ive"}
+            upc={product.ItemAttributes[0].UPC ? product.ItemAttributes[0].UPC : "xoxoxoxoxo"}
+            category={product.ItemAttributes[0].Binding ? product.ItemAttributes[0].Binding : "no Category"}
+            img={product.MediumImage ? product.MediumImage[0].URL : "http://i1.wp.com/williamlobb.com/wp-content/uploads/2017/10/amazon-frown.jpeg"}
+            purchase_link={product.ItemLinks[0].ItemLink ? product.ItemLinks[0].ItemLink[0].URL[0] : "http://www.amazon.com"}
             key={i}
-            product_id={"result_" + (i +1)}
+            getProduct={this.getSelectedProduct}
           />
         )
       })
+  }
+
+  getSelectedProduct(product){
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+        console.log("Profile ", profile);
+        console.log("Product ", product);
+        // return product;
+        API.saveProduct({
+          product_id: product.upc.toString(), 
+          name: product.title,
+          image: product.img.toString(),
+          category: product.category.toString(),
+          brand: product.brand,
+          url: product.purchase_link,
+          price: product.price,
+          user_id: profile.sub,
+          user_nickname: profile.nickname,
+          user_image: profile.picture 
+        })
+          .then(res => console.log(res))
+          .catch(err => console.log(err));
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
   }
 
   render() {

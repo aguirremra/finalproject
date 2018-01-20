@@ -8,19 +8,22 @@ module.exports = function(sequelize, DataTypes){
     user_id: {
       type: DataTypes.STRING
     },
+    user_nickname: {
+      type: DataTypes.STRING
+    },
+    user_image: {
+      type: DataTypes.STRING
+    },
     user_comment: {
+      type: DataTypes.STRING
+    },            
+    name: {
       type: DataTypes.STRING
     },
     image: {
       type: DataTypes.STRING
     },
-    url: {
-      type: DataTypes.STRING
-    },
-    description: {
-      type: DataTypes.STRING
-    },
-    category: {
+    city: {
       type: DataTypes.STRING
     },
     address: {

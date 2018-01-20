@@ -10,8 +10,10 @@ module.exports = function(sequelize, DataTypes){
     },
     name: {
       type: DataTypes.STRING
+    },
+    nickname: {
+      type: DataTypes.STRING
     }
-
   });
 
   return User;

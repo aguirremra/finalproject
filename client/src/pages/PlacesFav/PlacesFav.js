@@ -8,14 +8,24 @@ class PlacesFav extends Component {
   constructor(props){
     super(props);
     this.state = {
-      places: [],
+      favPlaces: [],
       searchString: "",
       resultsArray: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleFormClear = this.handleFormClear.bind(this);
-    this.renderSearch = this.renderSearch.bind(this);
+    this.renderFavPlaces = this.renderFavPlaces.bind(this);
+  }
+
+  componentDidMount(){
+    this.loadFavPlaces();
+  }
+
+  loadFavPlaces() {
+    API.getFavPlaces()
+      .then(res => this.setState({favPlaces: res.data}))
+      .catch(err => console.log(err));
   }
 
   handleFormSubmit(event) {
@@ -44,17 +54,15 @@ class PlacesFav extends Component {
     this.setState(this.baseState);
   }
 
-  renderSearch() {
-    return this.state.resultsArray.map((place, i) => {
+  renderFavPlaces() {
+    return this.state.favPlaces.map((favPlaces, i) => {
       return (
         <ResultsPlaceFav 
-          name={place.name}
-          rating={place.rating}
-          address={place.formatted_address}
+          name={favPlaces.name}
+          category={favPlaces.category}
+          address={favPlaces.address}
           key={i}
-          place_id={place.place_id}
-          photo={place.photos[0].photo_reference}
-          types={place.types}
+          photo={favPlaces.image}
         />
       );        
     });
@@ -78,7 +86,7 @@ class PlacesFav extends Component {
           </div>
 
           <div className="row">
-                {this.renderSearch()}              
+                {this.renderFavPlaces()}              
           </div>
       </Container>
 

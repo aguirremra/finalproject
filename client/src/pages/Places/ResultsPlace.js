@@ -3,10 +3,10 @@ import "./Places.css";
 
 class ResultsPlace extends Component {
 
-saveToFavorites(event) {
-	event.preventDefault();
-	alert("This item will be saved to your favorites.");
-}
+// saveToFavorites(event) {
+// 	event.preventDefault();
+// 	alert("This item will be saved to your favorites.");
+// }
   
   render() {
     return (
@@ -17,7 +17,7 @@ saveToFavorites(event) {
 			    <h5 className="card-title">{this.props.name}</h5>
 			    <p className="card-text">rating: {this.props.rating}</p>
 			    <p className="card-text">{this.props.address}</p>
-			    <a href="#" id={this.props.itemId} onClick={this.saveToFavorites.bind(this)}className="btn btn-primary">add to favorites</a>
+			    <a href="#" id={this.props.itemId} onClick={() => this.props.getPlace(this.props)}className="btn btn-primary">add to favorites</a>
 			  </div>
 			</div>
     	</div>
