@@ -28,7 +28,7 @@ class Products extends Component {
       .getProducts(this.state.searchString)
       .then((res) => {
         console.log("RESPONSE - AmazonProduct: ", res.data.Item);
-        console.log("Product Brand:", res.data.Item[itemNum].ItemAttributes[0].Brand[0]);
+        // console.log("Product Brand:", res.data.Item[itemNum].ItemAttributes[0].Brand[0]);
         // console.log("Product Title:", res.data.Item[itemNum].ItemAttributes[0].Title[0]);
         // console.log("List Price:", res.data.Item[itemNum].ItemAttributes[0].ListPrice[0].FormattedPrice[0]);
         // console.log("UPC:", res.data.Item[itemNum].ItemAttributes[0].UPC[0]);
@@ -36,7 +36,7 @@ class Products extends Component {
         // console.log("Small Image:", res.data.Item[itemNum].SmallImage[0].URL[0]);
         // console.log("Medium Image:", res.data.Item[itemNum].MediumImage[0].URL[0]);
         // console.log("Large Image:", res.data.Item[itemNum].LargeImage[0].URL[0]);
-        console.log("URL: ", res.data.Item[itemNum].ItemLinks[0].ItemLink[0].URL[0]); 
+        // console.log("URL: ", res.data.Item[itemNum].ItemLinks[0].ItemLink[0].URL[0]);
         // if (!res.data.results) return; 
 
         let returns = [];
@@ -64,8 +64,8 @@ class Products extends Component {
       return this.state.resultsArray.map((product, i) => {
         return (
            <ResultsProducts
-            brand={product.ItemAttributes[0].Brand[0]}
-            title={product.ItemAttributes[0].Title[0]}
+            brand={product.ItemAttributes[0].Brand ? product.ItemAttributes[0].Brand[0] : "Brandless"}
+            title={product.ItemAttributes[0].Title ? product.ItemAttributes[0].Title[0] : "No Title"}
             price={product.ItemAttributes[0].ListPrice ? product.ItemAttributes[0].ListPrice[0].FormattedPrice[0] : "expen$ive"}
             upc={product.ItemAttributes[0].UPC ? product.ItemAttributes[0].UPC : "xoxoxoxoxo"}
             category={product.ItemAttributes[0].Binding ? product.ItemAttributes[0].Binding : "no Category"}
@@ -80,7 +80,7 @@ class Products extends Component {
 
   getSelectedProduct(product){
     const { userProfile, getProfile } = this.props.auth;
-    if (!userProfile) {
+    // if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });
         console.log("Profile ", profile);
@@ -101,9 +101,9 @@ class Products extends Component {
           .then(res => console.log(res))
           .catch(err => console.log(err));
       });
-    } else {
-      this.setState({ profile: userProfile });
-    }
+    // } else {
+    //   this.setState({ profile: userProfile });
+    // }
   }
 
   render() {
