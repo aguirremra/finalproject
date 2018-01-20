@@ -28,7 +28,7 @@ class Products extends Component {
       .getProducts(this.state.searchString)
       .then((res) => {
         console.log("RESPONSE - AmazonProduct: ", res.data.Item);
-        // console.log("Product Brand:", res.data.Item[itemNum].ItemAttributes[0].Brand[0]);
+        console.log("Product Brand:", res.data.Item[itemNum].ItemAttributes[0].Brand[0]);
         // console.log("Product Title:", res.data.Item[itemNum].ItemAttributes[0].Title[0]);
         // console.log("List Price:", res.data.Item[itemNum].ItemAttributes[0].ListPrice[0].FormattedPrice[0]);
         // console.log("UPC:", res.data.Item[itemNum].ItemAttributes[0].UPC[0]);
@@ -36,7 +36,7 @@ class Products extends Component {
         // console.log("Small Image:", res.data.Item[itemNum].SmallImage[0].URL[0]);
         // console.log("Medium Image:", res.data.Item[itemNum].MediumImage[0].URL[0]);
         // console.log("Large Image:", res.data.Item[itemNum].LargeImage[0].URL[0]);
-        // console.log("URL: ", res.data.Item[itemNum].ItemLinks[0].ItemLink[0].URL[0]); 
+        console.log("URL: ", res.data.Item[itemNum].ItemLinks[0].ItemLink[0].URL[0]); 
         // if (!res.data.results) return; 
 
         let returns = [];
@@ -69,7 +69,7 @@ class Products extends Component {
             price={product.ItemAttributes[0].ListPrice ? product.ItemAttributes[0].ListPrice[0].FormattedPrice[0] : "expen$ive"}
             upc={product.ItemAttributes[0].UPC ? product.ItemAttributes[0].UPC : "xoxoxoxoxo"}
             category={product.ItemAttributes[0].Binding ? product.ItemAttributes[0].Binding : "no Category"}
-            img={product.MediumImage ? product.MediumImage[0].URL : "http://i1.wp.com/williamlobb.com/wp-content/uploads/2017/10/amazon-frown.jpeg"}
+            img={product.LargeImage ? product.LargeImage[0].URL : "http://i1.wp.com/williamlobb.com/wp-content/uploads/2017/10/amazon-frown.jpeg"}
             purchase_link={product.ItemLinks[0].ItemLink ? product.ItemLinks[0].ItemLink[0].URL[0] : "http://www.amazon.com"}
             key={i}
             getProduct={this.getSelectedProduct}
