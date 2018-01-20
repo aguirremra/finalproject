@@ -16,8 +16,9 @@ class ResultsPlace extends Component {
 			  <div className="card-body">
 			    <h5 className="card-title">{this.props.name}</h5>
 			    <p className="card-text">rating: {this.props.rating}</p>
-			    <p className="card-text">{this.props.address}</p>
-			    <a href="#" id={this.props.itemId} onClick={() => this.props.getPlace(this.props)}className="btn btn-primary">add to favorites</a>
+			    <p className="card-text">{this.props.city}</p>
+			    <p className="card-text">{this.props.address}</p>			    
+			    <button id={this.props.itemId} onClick={() => this.props.getPlace(this.props)}className="btn btn-primary">add to favorites</button>
 			  </div>
 			</div>
     	</div>

@@ -20,6 +20,9 @@ export default {
 	getProducts: function(searchString){
 		return axios.get('/api/products?q=' + searchString);
 	},
+	getPlaceDetails: function(placeId){
+		return axios.get('/api/placedetails?q=' + placeId);
+	},
 	//Save user to database
 	saveUser: function(userData){
 		return axios.post('/api/user', userData);

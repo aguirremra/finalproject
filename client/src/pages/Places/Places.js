@@ -11,7 +11,9 @@ class Places extends Component {
       places: [],
       searchString: "",
       resultsArray: [],
-      profile: []
+      profile: [],
+      placeId: "",
+      city: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -27,10 +29,13 @@ class Places extends Component {
       .getPlaces(this.state.searchString)
       .then((res) => {
         let returns = [];
-        for (let i= 0; i < res.data.results.length; ++i)
-          returns.push(res.data.results[i]);
+        for (let i= 0; i < res.data.length; ++i)
+          returns.push(res.data[i]);
         this.setState({resultsArray: returns})
         console.log(this.state.resultsArray);
+      })
+      .catch( err => {
+        console.log('Something went wrong fetching the Places', err);
       });      
   } 
 
@@ -52,10 +57,11 @@ class Places extends Component {
         <ResultsPlace 
           name={place.name}
           rating={place.rating}
+          city={place.city}
           address={place.formatted_address}
           key={i}
           place_id={place.place_id}
-          photo={place.photos[0].photo_reference}
+          photo={place.photos ? place.photos[0].photo_reference : "CmRaAAAAWMgzV5AlVJr5UKg7MKLHvNSGL27ryBebdc2KJlkvsnxA_VYwYu26qaWutqGPuwCduOXHE7azmIAs-0LUORtuywl8VqRooPpxMTAELReZIdTx8eFV2OGQxUBHYX0lkZsUEhAr_DMXM6EHTnlR5hrNFCTxGhS8Zgrr3a3xsIysSYgUPy2qUufGBA"} 
           types={place.types}
           getPlace={this.getSelectedPlace}
         />
@@ -65,16 +71,17 @@ class Places extends Component {
 
   getSelectedPlace(place){
     const { userProfile, getProfile } = this.props.auth;
-    if (!userProfile) {
+    // if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });
-        console.log("Profile ", profile);
+        console.log("Profile ", profile);        
         // return place;
         API.savePlace({
           place_id: place.place_id, 
           name: place.name,
           image: place.photo,
           address: place.address,
+          city: place.city,
           category: place.category,
           user_id: profile.sub,
           user_nickname: profile.nickname,
@@ -83,9 +90,9 @@ class Places extends Component {
           .then(res => console.log(res))
           .catch(err => console.log(err));
       });
-    } else {
-      this.setState({ profile: userProfile });
-    }
+    // } else {
+    //   this.setState({ profile: userProfile });
+    // }
   }
 
   render() {

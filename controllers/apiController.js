@@ -70,11 +70,36 @@ const controller = function() {
 
     this.getPlaces = function(req, res) {
       let q = req.query.q;
+      let endResults;
+      let promises = [];
       let promise = googlePlaceService.fetchPlaces(q);
       promise.then(
         result => {
           console.log('RESPONSE - GooglePlaces', result.data);
-          res.json(result.data);
+          endResults = result.data.results;
+          let prom;
+          endResults.forEach((item) => {
+            prom = googlePlaceService.fetchPlaceDetails(item.place_id)
+            .then((place) => {
+              item.city = place.data.result.address_components[3].short_name;
+              console.log('ITEM, endResults', item, endResults);
+            })
+            .catch((err) => {
+              item.city = 'UNKNOWN';
+            });
+            promises.push(prom);
+          });
+          // wait for all promises to complete before responding
+          Promise.all(promises)
+            .then((all) => {
+              res.json(endResults);
+            })
+            .catch((err) => {
+              res.json({
+                results: endResults,
+                err: err
+              });
+          });
         })
       .catch(
         err => {
@@ -82,6 +107,24 @@ const controller = function() {
           res.json({
             error: err,
             message: 'The request to GooglePlaces failed'
+          });
+        })
+    };
+
+    this.getPlaceDetails = function(req, res){
+      let q = req.query.q;
+      let promise = googlePlaceService.fetchPlaceDetails(q);
+      promise.then(
+        result => {
+          console.log('RESPONSE - Google Place Details', result.data);
+          res.json(result.data);
+        })
+      .catch(
+        err => {
+          console.log('The request to GooglePlace Details failed', err);
+          res.json({
+            error: err,
+            message: 'The request to GooglePlaces Details failed'
           });
         })
     };
