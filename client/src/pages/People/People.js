@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import API from '../../providers/litlist_provider';
 import ResultsPeople from './ResultsPeople';
 import ResultsPeopleFavPlaces from './ResultsPeopleFavPlaces';
