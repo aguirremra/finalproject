@@ -17,7 +17,7 @@ saveToFavorites(event) {
 			    <h5 className="card-title">{this.props.name}</h5>
 			    <p className="card-text">category: {this.props.category}</p>
 			    <p className="card-text">{this.props.upc}</p>
-			    <a href="#" id={this.props.itemId} onClick={this.saveToFavorites.bind(this)}className="btn btn-primary">add to favorites</a>
+			    <button id={this.props.itemId} onClick={this.saveToFavorites.bind(this)}className="btn btn-primary">add to favorites</button>
 			  </div>
 			</div>
     	</div>
