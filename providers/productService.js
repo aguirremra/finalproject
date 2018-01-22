@@ -1,6 +1,5 @@
 console.log('productServices');
 require('dotenv').config();
-// let axios = require('axios');
 const { OperationHelper } = require('apac');
 let parseString = require('xml2js').parseString;
 

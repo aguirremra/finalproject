@@ -5,8 +5,8 @@ export default {
 	getUsers: function(){
 		return axios.get('/api/users');
 	},
-	getFavorites: function(){
-		return axios.get('/api/favorites');
+	getFavorites: function(selectedUser){
+		return axios.get('/api/favorites?q=' + selectedUser);
 	},
 	getFavPlaces: function(){
 		return axios.get('/api/favplaces');
