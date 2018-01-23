@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Container from '../../components/Containers/Container';
+import Search from '../ApiSearch';
+import MainJumbo from '../../components/Containers/MainJumbo';
+import NavBar from '../../components/Navbar';
 import './Profile.css';
 
 class Profile extends Component {
@@ -18,23 +21,34 @@ class Profile extends Component {
   render() {
     const { profile } = this.state;
     return (
+      <div>
+          <NavBar 
+            currentView={"profile"} 
+            {...this.props}
+          />
+          <MainJumbo {...this.props}
+            heading={`${profile.given_name}'s Lit List`}
+            lead={"Search for new products or places to add to your list. "}
+          />
 
-    	<Container width="container mt-5">
-    		<div className="row">
-		        <div className="col-4">
-		          <div className="card">
-		            <img className="card-img-top" src={profile.picture} alt={profile.name} title={profile.name}/>
-		            <div className="card-body">
-		              <h3 className="card-text text-center">{profile.name}</h3>
-		            </div>
-		          </div>
-		        </div>
-		        <div className="col-8">
-		          <h2 className="text-center">Add Favorite Item to Your LiT List</h2>
-		          <p className="text-center">[[search field here]]</p>
-		        </div>
-    		</div>
-    	</Container>
+          <Container width="container-fluid">
+
+ 
+            <Search {...this.props}/>
+
+            <hr className="mt-5 mb-5"/>
+    
+   
+            <h3 className="text-center"><small>Your Current List</small></h3>
+
+            
+
+
+
+          </Container>
+
+      </div>   
+
 
     );
   }

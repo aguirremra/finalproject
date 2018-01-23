@@ -3,40 +3,19 @@ import Container from '../Containers/Container';
 import './Navbar.css';
 
 class Navbar extends Component {
+	goTo(route) {
+    this.props.history.replace(`/${route}`)
+  }
 	render() {
 		return(
-			<nav className="navbar navbar-expand-lg navbar-light bg-light">
-			<Container width="container">
-			  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-			    <span className="navbar-toggler-icon"></span>
-			  </button>
-			  <div className="collapse navbar-collapse" id="navbarText">
-			    <ul className="navbar-nav mr-auto">
-			      <li className="nav-item">
-			        <a className="nav-link" href="/home">Home </a>
-			      </li>
-			      <li className="nav-item">
-			        <a className="nav-link" href="/people">People</a>
-			      </li>
-			      <li className="nav-item">
-			        <a className="nav-link" href="/places">Places</a>
-			      </li>
-			      <li className="nav-item">
-			        <a className="nav-link" href="/products">Products</a>
-			      </li>
-			      <li className="nav-item">
-			        <a className="nav-link" href="/placesfav">Favorite Places</a>
-			      </li>
-			      <li className="nav-item">
-			        <a className="nav-link" href="/productsfav">Favorite Products</a>
-			      </li>				      				      			      
-			    </ul>
-			    <span className="navbar-text">
-			      Search for stuff. Save your favorites
-			    </span>
+		
+			  <div id={this.props.currentView} className="container text-center mt-5 mb-5">
+			    <button onClick={this.goTo.bind(this, 'home')} className="btn home"> Home</button>
+			    <button onClick={this.goTo.bind(this, 'people')} className="btn people"> Browse People</button>
+			    <button onClick={this.goTo.bind(this, 'placesfav')} className="btn places"> Browse Places</button>
+			    <button onClick={this.goTo.bind(this, 'productsfav')} className="btn products"> Browse Products</button>
 			  </div>
-			 </Container>
-			</nav>		
+		
 			);
 	}//render
 

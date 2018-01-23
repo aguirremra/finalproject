@@ -28,7 +28,7 @@ const App = () =>
 
     <Router history={history}>
         <div>
-        <Header auth={auth}/>
+        <Header auth={auth} history={history}/>
         <Main>
           <Route exact path="/" render={(props) => <Land auth={auth} {...props} />} />
           <Route path="/test" render={(props) => <h1>You got here</h1>} />

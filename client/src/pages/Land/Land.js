@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Container from '../../components/Containers/Container';
-import './Land.css';
+import MainJumbo from '../../components/Containers/MainJumbo';
+import NavBar from '../../components/Navbar';
 
 class Land extends Component {
 
@@ -8,13 +9,13 @@ class Land extends Component {
 
     return (
 
-        <div className="jumbotron mt-5">
-          <Container width="container">
-            <h1 className="display-4">Welcome to LiT List!</h1>
-            <h2>Landing Page</h2>
-            <p className="lead">This is the landing page for those who haven't signed up or logged in yet.</p>
-          </Container>
-        </div>
+    
+        <MainJumbo
+          heading={"Welcome to Lit List!"}
+          lead={"If you're new to lit list, signing up today is easy! Find interesting places and products."}
+        />
+
+
       
     );
   }
