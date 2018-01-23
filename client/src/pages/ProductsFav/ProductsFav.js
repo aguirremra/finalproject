@@ -7,7 +7,37 @@ import NavBar from '../../components/Navbar';
 import Container from '../../components/Containers/Container';
 
 class ProductsFav extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      favProducts: [],
+      resultsArray: []
+    };
+  }
 
+  componentDidMount(){
+    this.loadFavProducts();
+  }
+
+  loadFavProducts(){
+    API.getFavProducts()
+      .then(res => this.setState({favProducts: res.data}))
+      .catch(err => console.log(err));
+  }
+
+  renderProducts() {
+    return this.state.favProducts.map((favProducts, i) => {
+      return (
+        <ResultsProductsFav
+          name={favProducts.name}
+          category={favProducts.category}
+          key={i}
+          upc={favProducts.product_id}
+          photo={favProducts.image}
+        />
+      );
+    });
+  }
 
   render() {
 
@@ -27,7 +57,7 @@ class ProductsFav extends Component {
 
             <Container width="container">
               <div id="placeholderText" className="row">
-                    Need to add Maria's code here          
+                {this.renderProducts()}
               </div> 
             </Container>
                   

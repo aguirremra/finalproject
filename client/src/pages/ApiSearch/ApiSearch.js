@@ -27,6 +27,7 @@ class ApiSearch extends Component {
   }
 
   handleFormSubmit(event) {
+    console.log("CurrentCategory: " + this.state.chooseCategory);
   let currentCategory = this.state.chooseCategory;
     event.preventDefault();
     if(currentCategory === "places") {
@@ -34,8 +35,8 @@ class ApiSearch extends Component {
         .getPlaces(this.state.searchString)
         .then((res) => {
           let returns = [];
-          for (let i= 0; i < res.data.results.length; ++i)
-            returns.push(res.data.results[i]);
+          for (let i= 0; i < res.data.length; ++i)
+            returns.push(res.data[i]);
 
           this.setState({resultsArray: returns});
           console.log(this.state.resultsArray);
@@ -103,6 +104,7 @@ getSelectedResult(result){
             name: result.name,
             image: result.photo,
             address: result.address,
+            city: result.city,
             category: result.category,
             user_id: profile.sub,
             user_nickname: profile.nickname,
@@ -146,10 +148,12 @@ getSelectedResult(result){
             name={place.name}
             rating={place.rating}
             address={place.formatted_address}
+            city={place.city}
             key={i}
             place_id={place.place_id}
-            photo={place.photos[0].photo_reference}
+            photo={place.photos ? place.photos[0].photo_reference : "CmRaAAAAWMgzV5AlVJr5UKg7MKLHvNSGL27ryBebdc2KJlkvsnxA_VYwYu26qaWutqGPuwCduOXHE7azmIAs-0LUORtuywl8VqRooPpxMTAELReZIdTx8eFV2OGQxUBHYX0lkZsUEhAr_DMXM6EHTnlR5hrNFCTxGhS8Zgrr3a3xsIysSYgUPy2qUufGBA"}
             types={place.types}
+            listType={this.state.chooseCategory}            
             getPlace={this.getSelectedResult}
           />
         );        
