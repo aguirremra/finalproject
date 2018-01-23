@@ -20,7 +20,7 @@ class LoggedIn extends Component {
         this.setState({ profile });
         console.log("Profile ", profile);
         this.setState({userPhoto: profile.picture});
-        this.setState({userName: profile.given_name});
+        this.setState({userName: profile.given_name ? profile.given_name : profile.nickname});
 
         API.saveUser({
           sub: profile.sub,

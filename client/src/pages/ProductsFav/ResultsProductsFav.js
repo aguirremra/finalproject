@@ -10,8 +10,8 @@ class ResultsProductsFav extends Component {
 			  <img className="card-img-top" src={this.props.photo} alt="Placeholder image" title="Placeholder image"/>
 			  <div className="card-body">
 			    <h5 className="card-title">{this.props.name}</h5>
-			    <p className="card-text">category: {this.props.category}</p>
-			    <p className="card-text">{this.props.upc}</p>
+			    <p className="card-text">Category: {this.props.category}</p>
+			    <p className="card-text">UPC: {this.props.upc}</p>
 			  </div>
 			</div>
     	</div>
