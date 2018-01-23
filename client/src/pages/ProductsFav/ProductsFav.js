@@ -27,7 +27,7 @@ class ProductsFav extends Component {
 
             <Container width="container">
               <div id="placeholderText" className="row">
-                    List list products cards will appear here          
+                    Need to add Maria's code here          
               </div> 
             </Container>
                   

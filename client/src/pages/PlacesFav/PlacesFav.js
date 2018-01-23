@@ -26,7 +26,7 @@ class PlacesFav extends Component {
 
             <hr className="mt-5 mt-5"/>
               <div id="placeholderText" className="row">
-                    List list places cards will appear here          
+                    Need to add Maria's code here          
               </div>
             </Container> 
 
