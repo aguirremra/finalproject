@@ -8,12 +8,26 @@ class Land extends Component {
   render() {
 
     return (
-
+    <div className="shards-app-promo-page--1">
     
-        <MainJumbo
-          heading={"Welcome to Lit List!"}
-          lead={"If you're new to lit list, signing up today is easy! Find interesting places and products."}
-        />
+      <div className="welcome d-flex justify-content-center flex-column">
+        <div className="container">
+         <div className="inner-wrapper mt-auto mb-auto container">
+          <div className="row">
+            <div className="col-lg-5 col-md-5 col-sm-12 mt-auto mb-auto mr-3">
+                <h1 className="welcome-heading display-4 text-white">Keep Your Files in Sync</h1>
+                <p className="text-muted">Keep your files in sync using the most secure and advanced solution to date.</p>
+                <button type="button" className="btn btn-success btn-lg mr-3"><i className="fas fa-sign-in-alt mr-2"></i>Get Started</button>
+            </div>
+
+            <div className="col-lg-4 col-md-5 col-sm-12 ml-auto">
+              <img className="iphone-mockup ml-auto" src="./images/welcome-cover.jpg" alt="iPhone App Mockup - Shards App Promo Demo"/>
+            </div>
+          </div>
+        </div>   
+      </div>
+     </div>
+    </div>
 
 
       

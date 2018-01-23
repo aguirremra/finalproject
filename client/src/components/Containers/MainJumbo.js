@@ -10,7 +10,7 @@ class MainJumbo extends Component {
 
     return (
 
-          <div className="container text-center mt-3 mb-3">
+          <div className="container text-center mt-5 mb-3">
             <h1 className="display-4">{this.props.heading}</h1>
             <p className="lead">{this.props.lead}</p>
           </div>
