@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../providers/litlist_provider';
-import ResultsPlace from './ApiResultsPlaces';
-import ResultsProducts from './ApiResultsProducts';
+import ApiResultsPlace from './ApiResultsPlaces';
+import ApiResultsProducts from './ApiResultsProducts';
 import Container from '../../components/Containers/Container';
 import './ApiSearch.css';
 
@@ -65,7 +65,6 @@ class ApiSearch extends Component {
   }
 
   handleFormClear(event) {
-    console.log("Clear me!");
     event.preventDefault();
     this.setState(this.baseState);
   }
@@ -74,7 +73,6 @@ class ApiSearch extends Component {
     this.setState({
       categoryValue: selectValue
     })
-
   }
 
   getResultsMsg(resultCount) {
@@ -92,52 +90,14 @@ class ApiSearch extends Component {
       })
     }
   }
-
-  renderSearch() {
-    let currentCategory = this.state.chooseCategory;
-    if(currentCategory === "places") {
-      return this.state.resultsArray.map((place, i) => {
-        return (
-          <ResultsPlace 
-            name={place.name}
-            rating={place.rating}
-            address={place.formatted_address}
-            key={i}
-            place_id={place.place_id}
-            photo={place.photos[0].photo_reference}
-            types={place.types}
-            getPlace={this.getSelectedResult}
-          />
-        );        
-    });
-    } else if(currentCategory === "products") {
-       return this.state.resultsArray.map((product, i) => {
-        return (
-           <ResultsProducts
-            brand={product.ItemAttributes[0].Brand[0]}
-            title={product.ItemAttributes[0].Title[0]}
-            price={product.ItemAttributes[0].ListPrice ? product.ItemAttributes[0].ListPrice[0].FormattedPrice[0] : "expen$ive"}
-            upc={product.ItemAttributes[0].UPC ? product.ItemAttributes[0].UPC : "xoxoxoxoxo"}
-            category={product.ItemAttributes[0].Binding ? product.ItemAttributes[0].Binding : "no Category"}
-            img={product.MediumImage ? product.MediumImage[0].URL : "http://i1.wp.com/williamlobb.com/wp-content/uploads/2017/10/amazon-frown.jpeg"}
-            purchase_link={product.ItemLinks[0].ItemLink ? product.ItemLinks[0].ItemLink[0].URL[0] : "http://www.amazon.com"}
-            key={i}
-            getProduct={this.getSelectedResult}
-          />
-        );
-      })     
-    }
-
-  }
-
 getSelectedResult(result){
   const { userProfile, getProfile } = this.props.auth;
-  if (!userProfile) {
+  // if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });
         console.log("Profile ", profile);
         // return item;
-        if (this.state.searchType === "places") {
+        if (result.listType === "places") {
           API.savePlace({
             place_id: result.place_id, 
             name: result.name,
@@ -152,15 +112,16 @@ getSelectedResult(result){
             .catch(err => console.log(err));
             //end savePlace
 
-        } else if (this.state.searchType === "products") {
+        } else if (result.listType === "products") {
+          console.log("I'm in the products");
           API.saveProduct({
-            product_id: result.product.upc.toString(), 
-            name: result.product.title,
-            image: result.product.img.toString(),
-            category: result.product.category.toString(),
-            brand: result.product.brand,
-            url: result.product.purchase_link,
-            price: result.product.price,
+            product_id: result.upc.toString(), 
+            name: result.title,
+            image: result.img.toString(),
+            category: result.category.toString(),
+            brand: result.brand,
+            url: result.purchase_link,
+            price: result.price,
             user_id: profile.sub,
             user_nickname: profile.nickname,
             user_image: profile.picture 
@@ -171,10 +132,50 @@ getSelectedResult(result){
         }//end if/else
 
       });
-    } else {
-      this.setState({ profile: userProfile });
-    }
+    // } else {
+    //   this.setState({ profile: userProfile });
+    // }
   }
+
+  renderSearch() {
+    let currentCategory = this.state.chooseCategory;
+    if(currentCategory === "places") {
+      return this.state.resultsArray.map((place, i) => {
+        return (
+          <ApiResultsPlace 
+            name={place.name}
+            rating={place.rating}
+            address={place.formatted_address}
+            key={i}
+            place_id={place.place_id}
+            photo={place.photos[0].photo_reference}
+            types={place.types}
+            getPlace={this.getSelectedResult}
+          />
+        );        
+    });
+    } else if(currentCategory === "products") {
+       return this.state.resultsArray.map((product, i) => {
+        return (
+           <ApiResultsProducts
+            brand={product.ItemAttributes[0].Brand[0]}
+            title={product.ItemAttributes[0].Title[0]}
+            price={product.ItemAttributes[0].ListPrice ? product.ItemAttributes[0].ListPrice[0].FormattedPrice[0] : "expen$ive"}
+            upc={product.ItemAttributes[0].UPC ? product.ItemAttributes[0].UPC : "xoxoxoxoxo"}
+            category={product.ItemAttributes[0].Binding ? product.ItemAttributes[0].Binding : "no Category"}
+            img={product.MediumImage ? product.MediumImage[0].URL : "http://i1.wp.com/williamlobb.com/wp-content/uploads/2017/10/amazon-frown.jpeg"}
+            purchase_link={product.ItemLinks[0].ItemLink ? product.ItemLinks[0].ItemLink[0].URL[0] : "http://www.amazon.com"}
+            key={i}
+            listType={this.state.chooseCategory}
+            getProduct={this.getSelectedResult}
+          />
+        );
+      })     
+    }
+
+  }
+
+
 
   render() {
 

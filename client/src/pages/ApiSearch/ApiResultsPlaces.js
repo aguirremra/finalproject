@@ -6,6 +6,7 @@ class ApiResultsPlaces extends Component {
     return (
 
         <div className="card">
+        THIS IS OUR STUPID TEST
           <img className="card-img-top img-fluid" src={"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyCntC7u_9XoHw_F9SqoNVzjYGZAkPOvO2k&photoreference=" + this.props.photo} alt={this.props.name} title={this.props.name}/>
           <div className="card-body">
             <div className="entry-category">
@@ -15,8 +16,10 @@ class ApiResultsPlaces extends Component {
             <p className="card-text">Address: {this.props.address}. Rating: rating: {this.props.rating}</p>
           </div>
           <div className="card-footer text-center">
-            <button id={this.props.itemId} onClick={() => this.props.getPlace(this.props)} type="button" className="btn btn-warning">
-              <i className="fas fa-heart mr-2"></i>Add to LitList</button>
+            <button type="button" 
+                    className="btn btn-warning"
+                    onClick={(e) => { this.props.getPlace(this.props); }}>
+              <i id={this.props.itemId} className="fas fa-heart"></i>Add to LitList</button>
           </div>
         </div>
 
