@@ -66,7 +66,7 @@ class Products extends Component {
            <ResultsProducts
             brand={product.ItemAttributes[0].Brand ? product.ItemAttributes[0].Brand[0] : "Brandless"}
             title={product.ItemAttributes[0].Title ? product.ItemAttributes[0].Title[0] : "No Title"}
-            price={product.ItemAttributes[0].ListPrice ? product.ItemAttributes[0].ListPrice[0].FormattedPrice[0] : "expen$ive"}
+            price={product.ItemAttributes[0].ListPrice ? product.ItemAttributes[0].ListPrice[0].FormattedPrice[0] : "see source URL"}
             upc={product.ItemAttributes[0].UPC ? product.ItemAttributes[0].UPC : "xoxoxoxoxo"}
             category={product.ItemAttributes[0].Binding ? product.ItemAttributes[0].Binding : "no Category"}
             img={product.LargeImage ? product.LargeImage[0].URL : "http://i1.wp.com/williamlobb.com/wp-content/uploads/2017/10/amazon-frown.jpeg"}

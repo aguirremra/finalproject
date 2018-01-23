@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./Products.css";
+import "../../components/commentModal/commentModal.js"
 
 class ResultsProducts extends Component {
 
@@ -18,7 +19,7 @@ class ResultsProducts extends Component {
 			    <p className="card-text">{this.props.title}</p>
 			    <p className="card-text">category: {this.props.category} price: {this.props.price}</p>
 			    <p className="card-text">UPC: {this.props.upc}</p>
-			    <a href={this.props.purchase_link} className="btn btn-primary" target="_blank">buy now!</a>
+			    <a href={this.props.purchase_link} className="btn btn-primary" target="_blank">More Info</a>
 			    <button id={this.props.itemId} onClick={() => this.props.getProduct(this.props)} className="btn btn-primary">add to favorites</button>
 			  </div>
 			</div>
