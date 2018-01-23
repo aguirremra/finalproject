@@ -1,59 +1,56 @@
 import React, { Component } from 'react';
 import Container from '../Containers/Container';
-import Navbar from '../Navbar/Navbar';
+import NotLoggedIn from './NotLoggedIn';
+import LoggedIn from './LoggedIn';
+import NavBar from '../Navbar';
 import './Header.css';
 
 
 class Header extends Component {
-  goTo(route) {
-    this.props.history.replace(`/${route}`)
-  }
 
-  login() {
-    this.props.auth.login();
-  }
-
-  logout() {
-    this.props.auth.logout();
-  }	
 	render() {
 		const { isAuthenticated } = this.props.auth;
 		return(
-				<header>
+			<header>
+
+				<Container width="container-fluid bg-dark">
+
 					<Container width="container">
-						<div className="row">					
-							<div className="col-6">
-								<h1>LiTList</h1>
-							</div>
-							<div className="col-6 text-right">
-							{	
-								!isAuthenticated() && (
-								<button onClick={this.login.bind(this)} type="button" className="btn btn-link">log in</button>
-								)
-							}
-							{
-								isAuthenticated() && (
-								<span>
-								<a href="/profile" className="btn btn-link">profile</a>	
-								<button onClick={this.logout.bind(this)} type="button" className="btn btn-link">log out</button>
-								</span>
-								)
-							}						
-							</div>					
-						</div>
+						<nav className="navbar navbar-expand-lg navbar-dark px-0">
+					        <a className="navbar-brand" href="#">
+					          <img src="images/fire.svg" className="logo-icon" alt="LitList"/> Lit<span className="text-weight-bold">List</span><sup className="dos">2</sup>
+					        </a>
+					        <div className="collapse navbar-collapse" id="navbarNavDropdown">
+		         							
+								{	
+									!isAuthenticated() && (
+
+									<NotLoggedIn {...this.props} />
+									
+									)
+								}
+
+								{	
+									isAuthenticated() && (
+
+									<LoggedIn {...this.props} />
+
+									)
+								}
+								
+							</div>				
+						</nav>
 					</Container>
-						{
-							isAuthenticated() && (
-							<Navbar/>
-							)
-						}
-				</header>		
+
+				</Container>
+
+			</header>		
 			);
-	}//render
+	}
 
 
 
-}//Header
+}
 
 export default Header;
 

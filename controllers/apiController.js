@@ -16,7 +16,7 @@ const controller = function() {
     };
   // Load all products and places for user that is clicked on
     this.getFavorites = function(req, res){
-      const userID = req.query.user_id;
+      const userID = req.query.q;
       let result = {};
       let p1 = db.Place.findAll({ 
           where: { 

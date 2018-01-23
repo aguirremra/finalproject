@@ -1,8 +1,9 @@
 console.log('googlePlaceServices');
+require('dotenv').config();
 let axios = require('axios');
 const baseURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query="
 const baseDetailsURL = "https://maps.googleapis.com/maps/api/place/details/json?placeid="
-const APIKey = "&key=AIzaSyCntC7u_9XoHw_F9SqoNVzjYGZAkPOvO2k"
+const APIKey = "&key=" + process.env.googleKey;
 
 const googleProvider = function(){
 	this.fetchPlaces = function(searchString){

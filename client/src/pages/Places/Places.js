@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';f
 import API from '../../providers/litlist_provider';
 import ResultsPlace from './ResultsPlace';
 import Container from '../../components/Containers/Container';
@@ -70,7 +70,8 @@ class Places extends Component {
   }
 
   getSelectedPlace(place){
-    const { userProfile, getProfile } = this.props.auth;
+    const { getProfile } = this.props.auth;
+    // const { userProfile, getProfile } = this.props.auth;
     // if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });

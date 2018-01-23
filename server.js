@@ -1,3 +1,4 @@
+const sslRedirect = require('heroku-ssl-redirect');
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
@@ -7,6 +8,9 @@ const cors = require('cors');
 
 // ENABLE CROSS ORIGIN REQUESTS
 app.use(cors());
+
+// enable ssl redirect
+app.use(sslRedirect());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

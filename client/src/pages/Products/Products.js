@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import API from '../../providers/litlist_provider';
 import Container from '../../components/Containers/Container';
 import ResultsProducts from './ResultsProducts';
@@ -23,7 +23,7 @@ class Products extends Component {
    handleFormSubmit(event){
     console.log("Product Specified:", this.state.searchString);
     event.preventDefault();
-    const itemNum = 0;
+    // const itemNum = 0;
     API
       .getProducts(this.state.searchString)
       .then((res) => {
@@ -79,7 +79,8 @@ class Products extends Component {
   }
 
   getSelectedProduct(product){
-    const { userProfile, getProfile } = this.props.auth;
+    const { getProfile } = this.props.auth;
+    // const { userProfile, getProfile } = this.props.auth;
     // if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });
