@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-imports
 
-class Navbar extends Component {
+class commentModal extends Component {
+  
+saveToFavorites(event) {
+  event.preventDefault();
+  alert("This item will be saved to your favorites.");
+};
+
   render() {
     return(
       <div class="modal" tabindex="-1" role="dialog">
@@ -14,7 +19,16 @@ class Navbar extends Component {
               </button>
             </div>
             <div class="modal-body">
-              <p>Modal body text goes here.</p>
+              <div className="col-4">
+              <div className="card mb-5">
+              <img className="card-img-top" src={"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyCntC7u_9XoHw_F9SqoNVzjYGZAkPOvO2k&photoreference=" + this.props.photo} alt="Placeholder image" title="Placeholder image"/>
+              <div className="card-body">
+                <h5 className="card-title">{this.props.name}</h5>
+                <p className="card-text">rating: {this.props.rating}</p>
+                <p className="card-text">{this.props.address}</p>
+              </div>
+              </div>  
+              </div>
             </div>
             <div class="input-group">
             <div class="input-group-prepend">
@@ -23,14 +37,16 @@ class Navbar extends Component {
             <textarea class="form-control" aria-label="With textarea"></textarea>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <a href="#" id={this.props.itemId} onClick={this.saveToFavorites.bind(this)}className="btn btn-primary">add to favorites</a>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
       </div>
-  }//render
+  )};
+  //render
 
-}//commentModal
+};
+//commentModal
 
 export default commentModal;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../providers/litlist_provider';
+import commentModal from '../../components/commentModal';
 import ResultsPlace from './ApiResultsPlaces';
 import ResultsProducts from './ApiResultsProducts';
 import Container from '../../components/Containers/Container';
@@ -130,6 +131,19 @@ class ApiSearch extends Component {
 
   }
 
+getCommentModal() {
+  return (
+    <commentModal
+      name={user.name}
+      key={i}
+      user_id={user.sub}
+      photo={user.image}
+      nickname={user.nickname}
+      getFavorites={this.getSelectedFavorites}
+    />
+  );        
+}
+
 getSelectedResult(result){
   const { userProfile, getProfile } = this.props.auth;
   if (!userProfile) {
@@ -153,6 +167,9 @@ getSelectedResult(result){
             //end savePlace
 
         } else if (this.state.searchType === "products") {
+          
+          this.getCommentModal();
+
           API.saveProduct({
             product_id: result.product.upc.toString(), 
             name: result.product.title,
@@ -163,7 +180,8 @@ getSelectedResult(result){
             price: result.product.price,
             user_id: profile.sub,
             user_nickname: profile.nickname,
-            user_image: profile.picture 
+            user_image: profile.picture,
+            comment: 
           })
             .then(res => console.log(res))
             .catch(err => console.log(err));
