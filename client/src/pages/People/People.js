@@ -11,16 +11,20 @@ class People extends Component {
     super(props);
     this.state = {
       users: [],
-      selectedUser: ""
+      selectedUser: "",
+      resultsArray: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.renderUsers = this.renderUsers.bind(this);
+    this.getSelectedFavorites = this.getSelectedFavorites.bind(this);
   }
-  componentDidMount(){
+  componentWillMount(){
+    console.log("1: component will mount");
     this.loadUsers();
   }
 
   loadUsers(){
+    console.log("3: load users function");
     API.getUsers()
       .then(res => this.setState({users: res.data}))
       .catch(err => console.log(err));
@@ -33,7 +37,10 @@ class People extends Component {
   }
 
   renderUsers() {
+    console.log("4");
+    console.log(this.state.users);
     return this.state.users.map((user, i) => {
+      console.log("5: map user");
       return (
         <ResultsPeople 
           name={user.name}
@@ -45,6 +52,16 @@ class People extends Component {
         />
       );        
     });
+  }
+
+  getSelectedFavorites(selectedUser){
+  console.log("User Id " + selectedUser.user_id);
+  API.getFavorites(selectedUser.user_id)
+    .then(res => this.setState({
+      places: res.data.places,
+      products: res.data.products
+    }))
+    .catch(err => console.log(err));
   }
 
   render() {
@@ -65,7 +82,7 @@ class People extends Component {
 
             <hr className="mt-5 mt-5"/>
              
-                    {this.renderUsers()}         
+                    {this.renderUsers()}       
              
 
             </Container>      

@@ -27,7 +27,7 @@ class Profile extends Component {
             {...this.props}
           />
           <MainJumbo {...this.props}
-            heading={`${profile.given_name}'s Lit List`}
+            heading={`${profile.given_name ? profile.given_name : profile.nickname}'s Lit List`}
             lead={"Search for new products or places to add to your list. "}
           />
 

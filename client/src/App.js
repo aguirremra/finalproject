@@ -10,9 +10,7 @@ import Footer from './components/Footer';
 import Land from './pages/Land';
 import Main from './components/Containers/Main';
 import People from './pages/People';
-import Places from './pages/Places';
 import PlacesFav from './pages/PlacesFav';
-import Products from './pages/Products';
 import ProductsFav from './pages/ProductsFav';
 import Profile from './pages/Profile';
 
@@ -45,20 +43,6 @@ const App = () =>
               <Redirect to="/"/>
             ) : (
               <People auth={auth} {...props} />
-            )
-          )} />
-          <Route path="/products" render={(props) => (
-            !auth.isAuthenticated() ? (
-              <Redirect to="/"/>
-            ) : (
-              <Products auth={auth} {...props} />
-            )
-          )} />
-          <Route path="/places" render={(props) => (
-            !auth.isAuthenticated() ? (
-              <Redirect to="/"/>
-            ) : (
-              <Places auth={auth} {...props} />
             )
           )} />
           <Route path="/placesfav" render={(props) => (
