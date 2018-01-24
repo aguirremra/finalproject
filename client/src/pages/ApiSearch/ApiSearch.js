@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../providers/litlist_provider';
+import commentModal from '../../components/commentModal';
 import ApiResultsPlace from './ApiResultsPlaces';
 import ApiResultsProducts from './ApiResultsProducts';
 import Container from '../../components/Containers/Container';
@@ -91,6 +92,24 @@ class ApiSearch extends Component {
       })
     }
   }
+
+  getCommentModal() {
+    return (
+      <commentModal
+        product_id = {result.product.upc.toString()} 
+        name = {result.product.title}
+        image = {result.product.img.toString()}
+        category = {result.product.category.toString()}
+        brand = {result.product.brand}
+        url = {result.product.purchase_link}
+        price = {result.product.price}
+        user_id = {profile.sub}
+        user_nickname = {profile.nickname}
+        user_image = {profile.picture}
+      />
+    );        
+  }
+
 getSelectedResult(result){
   const { userProfile, getProfile } = this.props.auth;
   // if (!userProfile) {
@@ -116,6 +135,9 @@ getSelectedResult(result){
 
         } else if (result.listType === "products") {
           console.log("I'm in the products");
+         
+          this.getCommentModal();
+
           API.saveProduct({
             product_id: result.upc.toString(), 
             name: result.title,
@@ -178,8 +200,6 @@ getSelectedResult(result){
     }
 
   }
-
-
 
   render() {
 
