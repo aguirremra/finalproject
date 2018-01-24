@@ -17,7 +17,7 @@ class Header extends Component {
 
 					<Container width="container">
 						<nav className="navbar navbar-expand-lg navbar-dark px-0">
-					        <a className="navbar-brand" href="#">
+					        <a className="navbar-brand" href="/home" title="Return to home page">
 					          <img src="images/fire.svg" className="logo-icon" alt="LitList"/> Lit<span className="text-weight-bold">List</span><sup className="dos">2</sup>
 					        </a>
 					        <div className="collapse navbar-collapse" id="navbarNavDropdown">
