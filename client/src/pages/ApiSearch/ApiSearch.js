@@ -55,6 +55,9 @@ class ApiSearch extends Component {
           this.setState({resultsArray: returns})
           console.log("ResultsArray:", this.state.resultsArray);
         });
+    } else {
+      // TODO: Present Msg
+      console.log("Please choose a category");
     }
  
   }//end handsubmit
@@ -176,7 +179,6 @@ getSelectedResult(result){
         );
       })     
     }
-
   }
 
 
