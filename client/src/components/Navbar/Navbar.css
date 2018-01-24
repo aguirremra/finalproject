@@ -17,3 +17,8 @@
   background-color: #ffb400;
   color: #000;
 }
+
+.btn:hover {
+	background-color: #666;
+	color: #fff;
+}
