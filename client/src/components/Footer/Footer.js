@@ -12,7 +12,7 @@ class Footer extends Component {
       <footer>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <Container width="container">
-            <a className="navbar-brand mr-5" href="#">
+            <a className="navbar-brand mr-5">
               <img src="https://designrevision.com/demo/shards/extra/images/app-promo/shards-logo-green.svg" className="mr-2" alt="LitList"/> Lit<strong>List</strong>
             </a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
