@@ -9,16 +9,16 @@ saveToFavorites(event) {
 
   render() {
     return(
-      <div class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Add to LiTLiST</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div className="modal" tabindex="-1" role="dialog">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Add to LiTLiST</h5>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <div className="col-4">
               <div className="card mb-5">
               <img className="card-img-top" src={this.props.image} alt="product image" title="product image"/>
@@ -30,15 +30,15 @@ saveToFavorites(event) {
               </div>  
               </div>
             </div>
-            <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">With textarea</span>
+            <div className="input-group">
+            <div className="input-group-prepend">
+              <span className="input-group-text">With textarea</span>
             </div>
-            <textarea class="form-control" aria-label="With textarea"></textarea>
+            <textarea className="form-control" aria-label="With textarea"></textarea>
             </div>
-            <div class="modal-footer">
-              <a href="#" id={this.props.itemId} onClick={this.saveToFavorites.bind(this)}className="btn btn-primary">add to favorites</a>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div className="modal-footer">
+              <button type="button" id={this.props.itemId} onClick={this.saveToFavorites.bind(this)} className="btn btn-primary">add to favorites</button>
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
