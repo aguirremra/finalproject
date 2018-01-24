@@ -134,12 +134,16 @@ class ApiSearch extends Component {
 getCommentModal() {
   return (
     <commentModal
-      name={user.name}
-      key={i}
-      user_id={user.sub}
-      photo={user.image}
-      nickname={user.nickname}
-      getFavorites={this.getSelectedFavorites}
+      product_id = {result.product.upc.toString()} 
+      name = {result.product.title}
+      image = {result.product.img.toString()}
+      category = {result.product.category.toString()}
+      brand = {result.product.brand}
+      url = {result.product.purchase_link}
+      price = {result.product.price}
+      user_id = {profile.sub}
+      user_nickname = {profile.nickname}
+      user_image = {profile.picture}
     />
   );        
 }
@@ -181,7 +185,7 @@ getSelectedResult(result){
             user_id: profile.sub,
             user_nickname: profile.nickname,
             user_image: profile.picture,
-            comment: 
+            // comment: 
           })
             .then(res => console.log(res))
             .catch(err => console.log(err));
