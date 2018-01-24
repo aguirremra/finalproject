@@ -97,18 +97,19 @@ class ApiSearch extends Component {
   }
 
   getCommentModal() {
+    console.log("Modal: ", this);
     return (
       <commentModal
-        product_id = {result.product.upc.toString()} 
-        name = {result.product.title}
-        image = {result.product.img.toString()}
-        category = {result.product.category.toString()}
-        brand = {result.product.brand}
-        url = {result.product.purchase_link}
-        price = {result.product.price}
-        user_id = {profile.sub}
-        user_nickname = {profile.nickname}
-        user_image = {profile.picture}
+        product_id = {this.state.resultsArray[0].ItemAttributes[0].UPC.toString()} 
+        name = {this.state.resultsArray[0].ItemAttributes[0].Title[0].toString()}
+        image = {this.state.resultsArray[0].LargeImage[0].URL[0]}
+        category = {this.state.resultsArray[0].ItemAttributes[0].ProductGroup.toString()}
+        brand = {this.state.resultsArray[0].ItemAttributes[0].Brand}
+        url = {this.state.resultsArray[0].ItemAttributes[0].purchase_link}
+        price = {this.state.resultsArray[0].ItemAttributes[0].ListPrice[0].FormattedPrice[0]}
+        user_id = {this.state.sub}
+        user_nickname = {this.state.nickname}
+        user_image = {this.state.picture}
       />
     );        
   }
