@@ -79,7 +79,7 @@ class Profile extends Component {
   }
 
   getUserId(){
-    
+
   }
 
 
@@ -119,34 +119,24 @@ class Profile extends Component {
           <Container width="container-fluid">
           
               <Container width="container mb-5">
-                <div className="row d-flex justify-content-center">
-                  <div className="col-sm-12 col-md-5 my-auto">
-                  <h4>browse community favorites</h4>
-                  </div>
-                  <div className="col-sm-12 col-md-7">
+
+                  <h4 className="text-center">browse community favorites</h4>               
+ 
                     <NavBar 
                       currentView={"profile"} 
                       {...this.props}
                     />  
-                  </div>             
-                </div>
+
               </Container>
 
             <Container width="container mb-5">
-              <div className="row d-flex justify-content-center">
-                <div className="col-sm-12 col-md-5 my-auto">
-                <h4>search new items</h4>
-                </div>
-                <div className="col-sm-12 col-md-7">
-                    <ApiSearch {...this.props}/>
-                </div>             
-              </div>
-            </Container>
 
-          
-
-            <hr className="mt-5 mb-5"/>
+                <h4 className="text-center">search for new products and places</h4>
+                <ApiSearch {...this.props}/>
     
+            </Container>          
+
+            <hr className="mt-5 mb-5"/>    
    
             <h3 className="text-center"><small>Your Current List</small></h3>
 
