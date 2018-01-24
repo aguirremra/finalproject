@@ -19,7 +19,7 @@ class ApiResultsPlaces extends Component {
           <button type="button" 
                   className="btn btn-warning"
                   onClick={(e) => { this.props.getPlace(this.props); }}>
-          <i id={this.props.itemId} className="fas fa-heart"></i>Add to LitList</button>
+          <i id={this.props.itemId} className="fas fa-heart"></i> Lite it Up</button>
         </div>
       </div>
     );
