@@ -43,6 +43,6 @@ class CommentModal extends Component {
   //render
 
 };
-//commentModal
+//CommentModal
 
 export default CommentModal;
