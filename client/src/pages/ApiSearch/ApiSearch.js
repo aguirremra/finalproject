@@ -20,7 +20,9 @@ class ApiSearch extends Component {
       profile: [],
       listItems: null,
       showModal: -1,
-      comment: ""
+      comment: "",
+      chooseCategory: null,
+      errorMsg: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -65,8 +67,7 @@ class ApiSearch extends Component {
               this.renderSearch();
             });
         } else {
-          // TODO: Present Msg
-          console.log("Please choose a category");
+          this.setState({ errorMsg: "Please choose a Category" });
         }
     }
   }//end handsubmit
@@ -194,8 +195,8 @@ class ApiSearch extends Component {
         listItems: this.state.resultsArray.map((product, i) => {
           return (
             <ApiResultsProducts
-              brand={product.ItemAttributes[0].Brand[0]}
-              title={product.ItemAttributes[0].Title[0]}
+              brand={product.ItemAttributes[0].Brand ? product.ItemAttributes[0].Brand[0] : product.ItemAttributes[0].ProductGroup[0]}
+              title={product.ItemAttributes[0].Title ? product.ItemAttributes[0].Title[0] : "Titleless"}
               price={product.ItemAttributes[0].ListPrice ? product.ItemAttributes[0].ListPrice[0].FormattedPrice[0] : "expen$ive"}
               upc={product.ItemAttributes[0].UPC ? product.ItemAttributes[0].UPC : "xoxoxoxoxo"}
               category={product.ItemAttributes[0].Binding ? product.ItemAttributes[0].Binding : "no Category"}
@@ -254,11 +255,11 @@ class ApiSearch extends Component {
            <input type="text" id="searchString" onChange={this.handleChange} className="form-control" placeholder="Search term" value={this.state.searchString} />
           <div>
             <button type="submit" className="btn btn-warning">Search</button> 
-            <button onClick={this.handleFormClear.bind(this)} type="reset" className="btn">Reset</button>            
+            {/*<button onClick={this.handleFormClear.bind(this)} type="reset" className="btn">Reset</button>         */}
            </div>
            </form>
           </div>
-
+          {(this.state.errorMsg) ? <div className="alert alert-warning">{this.state.errorMsg}</div> : ''}
           <div className="card-columns mt-5"id="apiResultsDisplay">
             {this.state.listItems}              
           </div>
