@@ -117,13 +117,10 @@ class Profile extends Component {
             </Container>          
             <hr className="mt-5 mb-5"/>    
             <h3 className="text-center"><small>Your Current List</small></h3>
-<<<<<<< HEAD
-=======
 
               {this.renderUserFavPlaces()}
               {this.renderUserFavProducts()}
 
->>>>>>> d7c3934cedb12b98a656ae2956926f3c2835f339
           </Container>
       </div>   
     );

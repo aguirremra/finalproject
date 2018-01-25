@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../providers/litlist_provider';
-import CommentModal from '../../components/CommentModal';
+import CommentModal from '../../components/commentModal';
 import ApiResultsPlace from './ApiResultsPlaces';
 import ApiResultsProducts from './ApiResultsProducts';
 import Container from '../../components/Containers/Container';
