@@ -213,20 +213,43 @@ class ApiSearch extends Component {
   }
 
   getModalItemName(i) {
-    return (
-      this.state.resultsArray.length >= i
-        && this.state.resultsArray[i].ItemAttributes.length > 0
-        && this.state.resultsArray[i].ItemAttributes[0].Title.length > 0)
-      ? this.state.resultsArray[i].ItemAttributes[0].Title[0].toString()
-      : null;
+    if (this.state.chooseCategory === "products") {
+      return (
+        this.state.resultsArray.length >= i
+          && this.state.resultsArray[i].ItemAttributes.length > 0
+          && this.state.resultsArray[i].ItemAttributes[0].Title.length > 0)
+        ? this.state.resultsArray[i].ItemAttributes[0].Title[0].toString()
+        : null;
+    }
+    else if (this.state.chooseCategory === "places") {
+      return (
+        this.state.resultsArray.length >= i
+          && this.state.resultsArray[i].length > 0
+          && this.state.resultsArray[i].name.length > 0)
+        ? this.state.resultsArray[i].name
+        : null;
+    }
+
   }
   getModalItemImage(i) {
-    return (
-      this.state.resultsArray.length >= i
-        && this.state.resultsArray[i].LargeImage.length > 0
-        && this.state.resultsArray[i].LargeImage[0].URL.length > 0)
-      ? this.state.resultsArray[i].LargeImage[0].URL[0]
-      : null;
+    if (this.state.chooseCategory === "products") {
+      return (
+        this.state.resultsArray.length >= i
+          && this.state.resultsArray[i].LargeImage.length > 0
+          && this.state.resultsArray[i].LargeImage[0].URL.length > 0)
+        ? this.state.resultsArray[i].LargeImage[0].URL[0]
+        : null;
+    }
+    else if (this.state.chooseCategory === "places") {
+      return (
+        this.state.resultsArray.length >= i
+          && this.state.resultsArray[i].photos.length > 0
+          && this.state.resultsArray[i].photos[0].photo_reference.length > 0)
+        ? this.state.resultsArray[i].photos[0].photo_reference
+        : null;
+    }
+
+
   }
 
   render() {
