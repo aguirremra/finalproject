@@ -215,15 +215,15 @@ getSelectedResult(result){
       <Container width="container">
          <div className="row">
            <form id="apiSearchForm" className="form-inline mt-5" onSubmit={this.handleFormSubmit}>
-            <select className="form-control" id="chooseCategory" onChange={this.handleChange} onClick={this.getCategory} defaultValue={this.state.selectValue}>
+            <select className="custom-select" id="chooseCategory" onChange={this.handleChange} onClick={this.getCategory} defaultValue={this.state.selectValue}>
               <option value="Choose category">Choose category</option>
               <option value="products">Products</option>
               <option value="places">Places</option>
            </select>
            <input type="text" id="searchString" onChange={this.handleChange} className="form-control" placeholder="Search term" value={this.state.searchString} />
-           <div className="btn-group" role="group">
-              <button onClick={this.handleFormClear.bind(this)} type="reset" className="btn btn-secondary">reset</button>
-              <button type="submit" className="btn btn-secondary">search</button>           
+          <div>
+            <button type="submit" className="btn btn-warning">Search</button> 
+            <button onClick={this.handleFormClear.bind(this)} type="reset" className="btn">Reset</button>            
            </div>
            </form>
           </div>
