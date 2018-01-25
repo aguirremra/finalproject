@@ -15,17 +15,16 @@ sup.dos {
   font-size: 1.1rem;
   font-weight: bold;
 }
-/* Style the buttons */
-#myBtnContainer .btn:hover {
-  background-color: #666;
-  color: #fff;
-}
 .btn.active {
   background-color: #ffb400;
   color: #000;
 }
 img.logo-icon {
   height: 2rem;
+  vertical-align: top;
+}
+img.avatar-icon {
+  height: 11rem;
   vertical-align: top;
 }
 .bg-light {
@@ -53,6 +52,11 @@ button.btn.btn-outline-success.btn-sm {
   margin-bottom: 1rem;
   font-size: .9rem;
 }
+.score {
+  font-size: 7vw;
+  display: inline-block;
+  color: #ffb400;
+}
 .card-footer {
   padding: .5rem 1rem;
 }
@@ -71,10 +75,10 @@ li.nav-item {
 	line-height: 0;		/* remove line-height */ 
 	display: inline-block;	/* circle wraps image */
 	margin: 5px;
-  border: 2px solid rgba(255,255,255,0.4);
+  border: 5px solid rgba(255,255,255,0.4);
 	border-radius: 50%;	/* relative value */
-	/*box-shadow: 0px 0px 5px rgba(0,0,0,0.4);*/
-	transition: linear 0.25s;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.4);
+  transition: linear 0.25s;
 }
 .circle img {
   border-radius: 50%;	/* relative value for adjustable image size */
@@ -91,6 +95,11 @@ li.nav-item {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #d0d0d0;
+}
+/* Style the buttons */
+#myBtnContainer .btn:hover {
+  background-color: #666;
+  color: #fff;
 }
 .card {
   -webkit-animation: fadein .5s; /* Safari, Chrome and Opera > 12.1 */
@@ -123,6 +132,9 @@ li.nav-item {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+.border-left {
+  border-left: 1px solid #eee;
+}
 
 /* Small devices (tablets, 767px and up) The navbar toggle appears at this breakpoint */
 @media (max-width: 767px) {  
@@ -139,6 +151,12 @@ li.nav-item {
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {  
   .card-columns {column-count: 2;}
+}
+
+@media (max-width: 992px) {
+  a.circle.mr-3 {
+    display: none !important;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
