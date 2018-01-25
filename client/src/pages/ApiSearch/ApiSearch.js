@@ -28,42 +28,46 @@ class ApiSearch extends Component {
   }
 
   handleFormSubmit(event) {
-    console.log("CurrentCategory: " + this.state.chooseCategory);
-  let currentCategory = this.state.chooseCategory;
     event.preventDefault();
-    if(currentCategory === "places") {
-      API
-        .getPlaces(this.state.searchString)
-        .then((res) => {
-          let returns = [];
-          for (let i= 0; i < res.data.length; ++i)
-            returns.push(res.data[i]);
+    console.log("CurrentCategory: " + this.state.chooseCategory);
+    console.log("searchString: ", this.state);
+    if (this.state.searchString !== "") { //prevents call to API if search string is empty
+    // debugger 
+      let currentCategory = this.state.chooseCategory;
+        if(currentCategory === "places") {
+          API
+            .getPlaces(this.state.searchString)
+            .then((res) => {
+              let returns = [];
+              for (let i= 0; i < res.data.length; ++i)
+                returns.push(res.data[i]);
 
-          this.setState({resultsArray: returns});
-          console.log(this.state.resultsArray);
-          this.renderSearch();
-        });
-    } else if(currentCategory === "products") {
-      const itemNum = 0;
-      API
-        .getProducts(this.state.searchString)
-        .then((res) => {
-          console.log("RESPONSE - AmazonProduct: ", res.data.Item);
-           let returns = [];
+              this.setState({resultsArray: returns});
+              console.log(this.state.resultsArray);
+              this.renderSearch();
+            });
+        } else if(currentCategory === "products") {
+          const itemNum = 0;
+          API
+            .getProducts(this.state.searchString)
+            .then((res) => {
+              console.log("RESPONSE - AmazonProduct: ", res.data.Item);
+               let returns = [];
 
-          for (let i= 0; i < res.data.Item.length; ++i)
-            returns.push(res.data.Item[i]);
-          this.setState({resultsArray: returns})
-          console.log("ResultsArray:", this.state.resultsArray);
-        });
-    } else {
-      // TODO: Present Msg
-      console.log("Please choose a category");
+              for (let i= 0; i < res.data.Item.length; ++i)
+                returns.push(res.data.Item[i]);
+              this.setState({resultsArray: returns})
+              console.log("ResultsArray:", this.state.resultsArray);
+            });
+        } else {
+          // TODO: Present Msg
+          console.log("Please choose a category");
+        }
     }
- 
   }//end handsubmit
 
   handleChange(event) {
+    console.log("Search String: ", event.target.value);
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -212,9 +216,9 @@ getSelectedResult(result){
          <div className="row">
            <form id="apiSearchForm" className="form-inline mt-5" onSubmit={this.handleFormSubmit}>
             <select className="form-control" id="chooseCategory" onChange={this.handleChange} onClick={this.getCategory} defaultValue={this.state.selectValue}>
-            <option value="Choose category">Choose category</option>
-            <option value="products">Products</option>
-            <option value="places">Places</option>
+              <option value="Choose category">Choose category</option>
+              <option value="products">Products</option>
+              <option value="places">Places</option>
            </select>
            <input type="text" id="searchString" onChange={this.handleChange} className="form-control" placeholder="Search term" value={this.state.searchString} />
            <div className="btn-group" role="group">
