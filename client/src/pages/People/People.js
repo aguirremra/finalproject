@@ -78,12 +78,10 @@ class People extends Component {
               {...this.props}
             />
 
-            <Container width="container">
-
-            <hr className="mt-5 mt-5"/>
-             
-                    {this.renderUsers()}       
-             
+            <Container width="container"> 
+              <div className="card-columns mt-5">
+                {this.renderUsers()}              
+              </div>                     
 
             </Container>      
         </div>

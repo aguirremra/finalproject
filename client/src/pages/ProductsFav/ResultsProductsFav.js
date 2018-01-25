@@ -5,7 +5,6 @@ class ResultsProductsFav extends Component {
   
   render() {
     return (
-    	<div className="col-4">
 	    	<div className="card mb-5">
 			  <img className="card-img-top" src={this.props.photo} alt="Placeholder image" title="Placeholder image"/>
 			  <div className="card-body">
@@ -14,7 +13,6 @@ class ResultsProductsFav extends Component {
 			    <p className="card-text">UPC: {this.props.upc}</p>
 			  </div>
 			</div>
-    	</div>
     );
   }
 

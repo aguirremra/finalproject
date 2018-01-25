@@ -93,11 +93,11 @@ class Profile extends Component {
                   <p className="card-text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
                 <div className="col-sm border-left text-center my-auto">
-                    <h2 className="card-title score mt-3 counter-count">{this.state.places.length || '0'}</h2>
+                    <h2 className="card-title score mt-3 counter-count">{this.state.products.length || '0'}</h2>
                     <p className="card-title">Lit Products</p>
                 </div>
                 <div className="col-sm mr-3 border-left text-center my-auto">
-                  <h2 className="card-title mt-3 score counter-count">{this.state.products.length || '0'}</h2>
+                  <h2 className="card-title mt-3 score counter-count">{this.state.places.length || '0'}</h2>
                   <p className="card-title">Lit Places</p>
               </div>
               </div>
@@ -117,10 +117,16 @@ class Profile extends Component {
             </Container>          
             <hr className="mt-5 mb-5"/>    
             <h3 className="text-center"><small>Your Current List</small></h3>
-
-              {this.renderUserFavPlaces()}
-              {this.renderUserFavProducts()}
-
+            <Container width="container">
+              <div className="card-columns mt-5">
+                LiT Places
+                {this.renderUserFavPlaces()}             
+              </div>  
+              <div className="card-columns mt-5">
+                LiT Products
+              {this.renderUserFavProducts()}             
+              </div>
+            </Container> 
           </Container>
       </div>   
     );

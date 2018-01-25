@@ -56,7 +56,7 @@ class ProductsFav extends Component {
             <hr className="mt-5 mt-5"/>
 
             <Container width="container">
-              <div id="placeholderText" className="row">
+              <div className="card-columns mt-5">
                 {this.renderProducts()}
               </div> 
             </Container>
