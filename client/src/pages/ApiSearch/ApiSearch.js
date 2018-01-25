@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../providers/litlist_provider';
-import CommentModal from '../../components/CommentModal';
+import CommentModal from '../../components/commentModal';
 import ApiResultsPlace from './ApiResultsPlaces';
 import ApiResultsProducts from './ApiResultsProducts';
 import Container from '../../components/Containers/Container';
@@ -117,55 +117,53 @@ class ApiSearch extends Component {
 
   submitCommentModalForm(e) {
     e.preventDefault();
-    // const { userProfile, getProfile } = this.props.auth;
+    const { userProfile, getProfile } = this.props.auth;
     console.log(this.state.comment); // e.comment?
     console.log('Submit Comment Modal Form - This is where you want to call your API to save data to your database... smiley face');
   // @TODO: This needs to happen after the modal.
-  // if (!userProfile) {
-      // getProfile((err, profile) => {
-      //   this.setState({ profile });
-      //   console.log("Profile ", profile);
-      //   // return item;
-      //   if (result.listType === "places") {
-      //     API.savePlace({
-      //       place_id: result.place_id, 
-      //       name: result.name,
-      //       image: result.photo,
-      //       address: result.address,
-      //       city: result.city,
-      //       category: result.category,
-      //       user_id: profile.sub,
-      //       user_nickname: profile.nickname,
-      //       user_image: profile.picture 
-      //     })
-      //       .then(res => console.log(res))
-      //       .catch(err => console.log(err));
-      //       //end savePlace
+      getProfile((err, profile) => {
+        this.setState({ profile });
+        console.log("Profile ", profile);
+        // return item;
+        if (this.state.listType === "places") {
+          API.savePlace({
+            place_id: this.state.place_id, 
+            name: this.state.name,
+            image: this.state.photo,
+            address: this.state.address,
+            city: this.state.city,
+            category: this.state.category,
+            user_id: profile.sub,
+            user_nickname: profile.nickname,
+            user_image: profile.picture,
+            comment: this.state.comment
+          })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+            //end savePlace
 
-      //   } else if (result.listType === "products") {
-      //     console.log("I'm in the products");
+        } else if (this.state.listType === "products") {
+          console.log("I'm in the products");
 
-      //     API.saveProduct({
-      //       product_id: result.upc.toString(), 
-      //       name: result.title,
-      //       image: result.img.toString(),
-      //       category: result.category.toString(),
-      //       brand: result.brand,
-      //       url: result.purchase_link,
-      //       price: result.price,
-      //       user_id: profile.sub,
-      //       user_nickname: profile.nickname,
-      //       user_image: profile.picture 
-      //     })
-      //       .then(res => console.log(res))
-      //       .catch(err => console.log(err));
-      //       //end saveProduct
-      //   }//end if/else
+          API.saveProduct({
+            product_id: this.state.upc.toString(), 
+            name: this.state.title,
+            image: this.state.img.toString(),
+            category: this.state.category.toString(),
+            brand: this.state.brand,
+            url: this.state.purchase_link,
+            price: this.state.price,
+            user_id: profile.sub,
+            user_nickname: profile.nickname,
+            user_image: profile.picture,
+            comment: this.state.comment
+          })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+            //end saveProduct
+        }//end if/else
 
-      // });
-    // } else {
-    //   this.setState({ profile: userProfile });
-    // }
+      });
   }
 
   renderSearch() {
@@ -184,7 +182,7 @@ class ApiSearch extends Component {
               photo={place.photos ? place.photos[0].photo_reference : "CmRaAAAAWMgzV5AlVJr5UKg7MKLHvNSGL27ryBebdc2KJlkvsnxA_VYwYu26qaWutqGPuwCduOXHE7azmIAs-0LUORtuywl8VqRooPpxMTAELReZIdTx8eFV2OGQxUBHYX0lkZsUEhAr_DMXM6EHTnlR5hrNFCTxGhS8Zgrr3a3xsIysSYgUPy2qUufGBA"}
               types={place.types}
               listType={this.state.chooseCategory}            
-              getPlace={this.getSelectedResult}
+              getPlace={() => this.getCommentModal(i)}
             />
           );        
         })
