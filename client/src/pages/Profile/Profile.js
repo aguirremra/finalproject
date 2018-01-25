@@ -4,86 +4,73 @@ import ApiSearch from '../ApiSearch';
 import API from '../../providers/litlist_provider';
 import MainJumbo from '../../components/Containers/MainJumbo';
 import NavBar from '../../components/Navbar';
+import ResultsProfileFavPlaces from './ResultsProfileFavPlaces';
+import ResultsProfileFavProducts from './ResultsProfileFavProducts';
 import './Profile.css';
 
 class Profile extends Component {
   constructor(props){
     super(props);
     this.state = {
-      userId: "",//pulled from db somehow
-      userPhoto: "",//pulled from db somehow
-      userName: "",//pulled from db someho
-      userPlaces: [],
-      placesCount: 0,
-      userProducts: [],
-      productsCount: 0,
+      places: [],
+      products: []
     }
   }
 
-  /* 
-  TODO
-  componentWillMount needs to instead get user data
-  from db and 
-  */
+
   componentWillMount() {
     this.setState({ profile: {} });
     const { userProfile, getProfile } = this.props.auth;
-    if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });
+        console.log("Profile " + profile.sub);
+        this.getSelectedFavorites(profile.sub);      
       });
-    } else {
-      this.setState({ profile: userProfile });
+  }
+
+  getSelectedFavorites(selectedUser){
+    console.log("User Id " + selectedUser);
+    API.getFavorites(selectedUser)
+      .then(res => this.setState({
+        places: res.data.places,
+        products: res.data.products
+      }))
+      .catch(err => console.log(err));
+  }
+
+
+  renderUserFavPlaces() { 
+    if(this.state.places.length){
+      return this.state.places.map((places, i) => {
+        return (
+          <ResultsProfileFavPlaces 
+            name={places.name}
+            photo={places.image} 
+            key={i}
+            city={places.city}
+            address={places.address}
+          />
+        );        
+      });
     }
   }
 
-  componentDidMount(){
-    this.loadUserPlaces();
-    this.loadUserProducts();
-  }
-
-  /*
-  TODO
-  loadUserPlaces and loadUserProducts are for getting a particular users place/products
-  not finished. 
-  not sure how to call up info of specific user (current user or otherwise) from DB
-  */
-  loadUserPlaces(){
-      API
-        .getFavorites(this.state.userId)
-        .then((res) => {
-          let returns = [];
-          for (let i= 0; i < res.data.length; ++i)
-            returns.push(res.data[i]);
-
-          this.setState({placesCount: returns.length});
-          this.setState({userPlaces: returns});
-          console.log(this.state.userPlaces);
-
-        });
-  }
-
-  loadUserProducts(){
-      API
-        .getFavorites(this.state.userId)
-        .then((res) => {
-          let returns = [];
-          for (let i= 0; i < res.data.length; ++i)
-            returns.push(res.data[i]);
-
-          this.setState({productsCount: returns.length});
-          this.setState({userProducts: returns});
-          console.log(this.state.userProducts);
-
-        });
-  }
-
-  getUserId(){
-
-  }
-
-
-
+  renderUserFavProducts() {
+  console.log("count: " + this.state.productsCount); 
+    if(this.state.products.length){
+      return this.state.products.map((products, i) => {
+        return (
+          <ResultsProfileFavProducts 
+          name={products.name}
+          category={products.category}
+          key={i}
+          upc={products.product_id}
+          photo={products.image}
+          />
+        );        
+      });
+    }
+  }  
 
   render() {
     const { profile } = this.state;
@@ -106,11 +93,11 @@ class Profile extends Component {
                   <p className="card-text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
                 <div className="col-sm border-left text-center my-auto">
-                    <h2 className="card-title score mt-3 counter-count">{this.state.placesCount}</h2>
+                    <h2 className="card-title score mt-3 counter-count">{this.state.places.length || '0'}</h2>
                     <p className="card-title">Lit Products</p>
                 </div>
                 <div className="col-sm mr-3 border-left text-center my-auto">
-                  <h2 className="card-title mt-3 score counter-count">{this.state.productsCount}</h2>
+                  <h2 className="card-title mt-3 score counter-count">{this.state.products.length || '0'}</h2>
                   <p className="card-title">Lit Places</p>
               </div>
               </div>
@@ -130,6 +117,13 @@ class Profile extends Component {
             </Container>          
             <hr className="mt-5 mb-5"/>    
             <h3 className="text-center"><small>Your Current List</small></h3>
+<<<<<<< HEAD
+=======
+
+              {this.renderUserFavPlaces()}
+              {this.renderUserFavProducts()}
+
+>>>>>>> d7c3934cedb12b98a656ae2956926f3c2835f339
           </Container>
       </div>   
     );

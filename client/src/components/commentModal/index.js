@@ -1,1 +1,1 @@
-export { default } from "./commentModal";
+export { default } from "./CommentModal";
