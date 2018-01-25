@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../providers/litlist_provider';
-import commentModal from '../../components/commentModal';
+import CommentModal from '../../components/CommentModal';
 import ApiResultsPlace from './ApiResultsPlaces';
 import ApiResultsProducts from './ApiResultsProducts';
 import Container from '../../components/Containers/Container';
@@ -17,14 +17,18 @@ class ApiSearch extends Component {
       searchString: "",
       resultsArray: [],
       resultsMsg: "",
-      profile: []
+      profile: [],
+      listItems: null,
+      showModal: -1,
+      comment: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleFormClear = this.handleFormClear.bind(this);
     this.renderSearch = this.renderSearch.bind(this);
-    this.getSelectedResult = this.getSelectedResult.bind(this);
+    this.getCommentModal = this.getCommentModal.bind(this);
     this.getCategory = this.getCategory.bind(this);
+    this.submitCommentModalForm = this.submitCommentModalForm.bind(this);
   }
 
   handleFormSubmit(event) {
@@ -58,6 +62,7 @@ class ApiSearch extends Component {
                 returns.push(res.data.Item[i]);
               this.setState({resultsArray: returns})
               console.log("ResultsArray:", this.state.resultsArray);
+              this.renderSearch();
             });
         } else {
           // TODO: Present Msg
@@ -71,6 +76,9 @@ class ApiSearch extends Component {
     this.setState({
       [event.target.id]: event.target.value
     });
+    if (event.keyCode === 13) {
+      this.handleFormSubmit();
+    }
   }
 
   handleFormClear(event) {
@@ -100,70 +108,61 @@ class ApiSearch extends Component {
     }
   }
 
-  getCommentModal() {
-    console.log("Modal: ", this);
-    return (
-      <commentModal
-        product_id = {this.state.resultsArray[0].ItemAttributes[0].UPC.toString()} 
-        name = {this.state.resultsArray[0].ItemAttributes[0].Title[0].toString()}
-        image = {this.state.resultsArray[0].LargeImage[0].URL[0]}
-        category = {this.state.resultsArray[0].ItemAttributes[0].ProductGroup.toString()}
-        brand = {this.state.resultsArray[0].ItemAttributes[0].Brand}
-        url = {this.state.resultsArray[0].ItemAttributes[0].purchase_link}
-        price = {this.state.resultsArray[0].ItemAttributes[0].ListPrice[0].FormattedPrice[0]}
-        user_id = {this.state.sub}
-        user_nickname = {this.state.nickname}
-        user_image = {this.state.picture}
-      />
-    );        
+  getCommentModal(key) {
+    console.log("Modal: ", key, this);
+    this.setState({
+      showModal: key
+    });
   }
 
-getSelectedResult(result){
-  const { userProfile, getProfile } = this.props.auth;
+  submitCommentModalForm(e) {
+    e.preventDefault();
+    // const { userProfile, getProfile } = this.props.auth;
+    console.log(this.state.comment); // e.comment?
+    console.log('Submit Comment Modal Form - This is where you want to call your API to save data to your database... smiley face');
+  // @TODO: This needs to happen after the modal.
   // if (!userProfile) {
-      getProfile((err, profile) => {
-        this.setState({ profile });
-        console.log("Profile ", profile);
-        // return item;
-        if (result.listType === "places") {
-          API.savePlace({
-            place_id: result.place_id, 
-            name: result.name,
-            image: result.photo,
-            address: result.address,
-            city: result.city,
-            category: result.category,
-            user_id: profile.sub,
-            user_nickname: profile.nickname,
-            user_image: profile.picture 
-          })
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
-            //end savePlace
+      // getProfile((err, profile) => {
+      //   this.setState({ profile });
+      //   console.log("Profile ", profile);
+      //   // return item;
+      //   if (result.listType === "places") {
+      //     API.savePlace({
+      //       place_id: result.place_id, 
+      //       name: result.name,
+      //       image: result.photo,
+      //       address: result.address,
+      //       city: result.city,
+      //       category: result.category,
+      //       user_id: profile.sub,
+      //       user_nickname: profile.nickname,
+      //       user_image: profile.picture 
+      //     })
+      //       .then(res => console.log(res))
+      //       .catch(err => console.log(err));
+      //       //end savePlace
 
-        } else if (result.listType === "products") {
-          console.log("I'm in the products");
-         
-          this.getCommentModal();
+      //   } else if (result.listType === "products") {
+      //     console.log("I'm in the products");
 
-          API.saveProduct({
-            product_id: result.upc.toString(), 
-            name: result.title,
-            image: result.img.toString(),
-            category: result.category.toString(),
-            brand: result.brand,
-            url: result.purchase_link,
-            price: result.price,
-            user_id: profile.sub,
-            user_nickname: profile.nickname,
-            user_image: profile.picture 
-          })
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
-            //end saveProduct
-        }//end if/else
+      //     API.saveProduct({
+      //       product_id: result.upc.toString(), 
+      //       name: result.title,
+      //       image: result.img.toString(),
+      //       category: result.category.toString(),
+      //       brand: result.brand,
+      //       url: result.purchase_link,
+      //       price: result.price,
+      //       user_id: profile.sub,
+      //       user_nickname: profile.nickname,
+      //       user_image: profile.picture 
+      //     })
+      //       .then(res => console.log(res))
+      //       .catch(err => console.log(err));
+      //       //end saveProduct
+      //   }//end if/else
 
-      });
+      // });
     // } else {
     //   this.setState({ profile: userProfile });
     // }
@@ -172,46 +171,78 @@ getSelectedResult(result){
   renderSearch() {
     let currentCategory = this.state.chooseCategory;
     if(currentCategory === "places") {
-      return this.state.resultsArray.map((place, i) => {
-        return (
-          <ApiResultsPlace 
-            name={place.name}
-            rating={place.rating}
-            address={place.formatted_address}
-            city={place.city}
-            key={i}
-            place_id={place.place_id}
-            photo={place.photos ? place.photos[0].photo_reference : "CmRaAAAAWMgzV5AlVJr5UKg7MKLHvNSGL27ryBebdc2KJlkvsnxA_VYwYu26qaWutqGPuwCduOXHE7azmIAs-0LUORtuywl8VqRooPpxMTAELReZIdTx8eFV2OGQxUBHYX0lkZsUEhAr_DMXM6EHTnlR5hrNFCTxGhS8Zgrr3a3xsIysSYgUPy2qUufGBA"}
-            types={place.types}
-            listType={this.state.chooseCategory}            
-            getPlace={this.getSelectedResult}
-          />
-        );        
-    });
+      this.setState({
+        listItems: this.state.resultsArray.map((place, i) => {
+          return (
+            <ApiResultsPlace 
+              name={place.name}
+              rating={place.rating}
+              address={place.formatted_address}
+              city={place.city}
+              key={i}
+              place_id={place.place_id}
+              photo={place.photos ? place.photos[0].photo_reference : "CmRaAAAAWMgzV5AlVJr5UKg7MKLHvNSGL27ryBebdc2KJlkvsnxA_VYwYu26qaWutqGPuwCduOXHE7azmIAs-0LUORtuywl8VqRooPpxMTAELReZIdTx8eFV2OGQxUBHYX0lkZsUEhAr_DMXM6EHTnlR5hrNFCTxGhS8Zgrr3a3xsIysSYgUPy2qUufGBA"}
+              types={place.types}
+              listType={this.state.chooseCategory}            
+              getPlace={this.getSelectedResult}
+            />
+          );        
+        })
+      });
     } else if(currentCategory === "products") {
-       return this.state.resultsArray.map((product, i) => {
-        return (
-           <ApiResultsProducts
-            brand={product.ItemAttributes[0].Brand[0]}
-            title={product.ItemAttributes[0].Title[0]}
-            price={product.ItemAttributes[0].ListPrice ? product.ItemAttributes[0].ListPrice[0].FormattedPrice[0] : "expen$ive"}
-            upc={product.ItemAttributes[0].UPC ? product.ItemAttributes[0].UPC : "xoxoxoxoxo"}
-            category={product.ItemAttributes[0].Binding ? product.ItemAttributes[0].Binding : "no Category"}
-            img={product.LargeImage ? product.LargeImage[0].URL : "http://i1.wp.com/williamlobb.com/wp-content/uploads/2017/10/amazon-frown.jpeg"}
-            purchase_link={product.ItemLinks[0].ItemLink ? product.ItemLinks[0].ItemLink[0].URL[0] : "http://www.amazon.com"}
-            key={i}
-            listType={this.state.chooseCategory}
-            getProduct={this.getSelectedResult}
-          />
-        );
-      })     
+      this.setState({
+        listItems: this.state.resultsArray.map((product, i) => {
+          return (
+            <ApiResultsProducts
+              brand={product.ItemAttributes[0].Brand[0]}
+              title={product.ItemAttributes[0].Title[0]}
+              price={product.ItemAttributes[0].ListPrice ? product.ItemAttributes[0].ListPrice[0].FormattedPrice[0] : "expen$ive"}
+              upc={product.ItemAttributes[0].UPC ? product.ItemAttributes[0].UPC : "xoxoxoxoxo"}
+              category={product.ItemAttributes[0].Binding ? product.ItemAttributes[0].Binding : "no Category"}
+              img={product.LargeImage ? product.LargeImage[0].URL : "http://i1.wp.com/williamlobb.com/wp-content/uploads/2017/10/amazon-frown.jpeg"}
+              purchase_link={product.ItemLinks[0].ItemLink ? product.ItemLinks[0].ItemLink[0].URL[0] : "http://www.amazon.com"}
+              key={i}
+              listType={this.state.chooseCategory}
+              getProduct={() => this.getCommentModal(i)}
+            />
+          );
+        })
+       });    
+    } else {
+      this.setState({listItems:null});
     }
   }
 
-  render() {
-
+  getModalItemName(i) {
     return (
+      this.state.resultsArray.length >= i
+        && this.state.resultsArray[i].ItemAttributes.length > 0
+        && this.state.resultsArray[i].ItemAttributes[0].Title.length > 0)
+      ? this.state.resultsArray[i].ItemAttributes[0].Title[0].toString()
+      : null;
+  }
+  getModalItemImage(i) {
+    return (
+      this.state.resultsArray.length >= i
+        && this.state.resultsArray[i].LargeImage.length > 0
+        && this.state.resultsArray[i].LargeImage[0].URL.length > 0)
+      ? this.state.resultsArray[i].LargeImage[0].URL[0]
+      : null;
+  }
 
+  render() {
+    let renderModal = null;
+    if (this.state.showModal > -1) {
+      renderModal = <CommentModal
+          name = {this.getModalItemName(this.state.showModal)}
+          image = {this.getModalItemImage(this.state.showModal)}
+          handleSubmit = {this.submitCommentModalForm}
+          comment = {this.state.comment}
+          updateComment = {(e) => this.setState({comment: e.target.value})}
+        />;
+    }
+    
+    return (
       <Container width="container">
          <div className="row">
            <form id="apiSearchForm" className="form-inline mt-5" onSubmit={this.handleFormSubmit}>
@@ -229,8 +260,9 @@ getSelectedResult(result){
           </div>
 
           <div className="card-columns mt-5"id="apiResultsDisplay">
-                {this.renderSearch()}              
+            {this.state.listItems}              
           </div>
+          {renderModal}
       </Container>
 
     );
