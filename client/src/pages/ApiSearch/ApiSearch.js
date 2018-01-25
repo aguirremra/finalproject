@@ -35,10 +35,8 @@ class ApiSearch extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    console.log("CurrentCategory: " + this.state.chooseCategory);
-    console.log("searchString: ", this.state);
+    this.setState({ errorMsg: null });
     if (this.state.searchString !== "") { //prevents call to API if search string is empty
-    // debugger 
       let currentCategory = this.state.chooseCategory;
         if(currentCategory === "places") {
           API
@@ -49,7 +47,7 @@ class ApiSearch extends Component {
                 returns.push(res.data[i]);
 
               this.setState({resultsArray: returns});
-              console.log(this.state.resultsArray);
+              console.log("RESPONSE - GooglePlaces: ", this.state.resultsArray);
               this.renderSearch();
             });
         } else if(currentCategory === "products") {
@@ -57,13 +55,13 @@ class ApiSearch extends Component {
           API
             .getProducts(this.state.searchString)
             .then((res) => {
-              console.log("RESPONSE - AmazonProduct: ", res.data.Item);
+              // console.log("RESPONSE - AmazonProduct: ", res.data.Item);
                let returns = [];
 
               for (let i= 0; i < res.data.Item.length; ++i)
                 returns.push(res.data.Item[i]);
               this.setState({resultsArray: returns})
-              console.log("ResultsArray:", this.state.resultsArray);
+              console.log("RESPONSE - AmazonProduct: ", this.state.resultsArray);
               this.renderSearch();
             });
         } else {
@@ -73,7 +71,6 @@ class ApiSearch extends Component {
   }//end handsubmit
 
   handleChange(event) {
-    console.log("Search String: ", event.target.value);
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -245,21 +242,21 @@ class ApiSearch extends Component {
     
     return (
       <Container width="container">
+         {(this.state.errorMsg) ? <div className="alert alert-warning">{this.state.errorMsg}</div> : ''}
          <div className="row">
            <form id="apiSearchForm" className="form-inline mt-5" onSubmit={this.handleFormSubmit}>
             <select className="custom-select" id="chooseCategory" onChange={this.handleChange} onClick={this.getCategory} defaultValue={this.state.selectValue}>
-              <option value="Choose category">Choose category</option>
+              <option value="">Choose category</option>
               <option value="products">Products</option>
               <option value="places">Places</option>
            </select>
            <input type="text" id="searchString" onChange={this.handleChange} className="form-control" placeholder="Search term" value={this.state.searchString} />
           <div>
             <button type="submit" className="btn btn-warning">Search</button> 
-            {/*<button onClick={this.handleFormClear.bind(this)} type="reset" className="btn">Reset</button>         */}
+            <button onClick={this.handleFormClear.bind(this)} type="reset" className="btn">Reset</button>
            </div>
            </form>
           </div>
-          {(this.state.errorMsg) ? <div className="alert alert-warning">{this.state.errorMsg}</div> : ''}
           <div className="card-columns mt-5"id="apiResultsDisplay">
             {this.state.listItems}              
           </div>
