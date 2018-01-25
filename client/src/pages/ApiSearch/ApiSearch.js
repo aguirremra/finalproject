@@ -35,10 +35,8 @@ class ApiSearch extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    console.log("CurrentCategory: " + this.state.chooseCategory);
-    console.log("searchString: ", this.state);
+    this.setState({ errorMsg: null });
     if (this.state.searchString !== "") { //prevents call to API if search string is empty
-    // debugger 
       let currentCategory = this.state.chooseCategory;
         if(currentCategory === "places") {
           API
@@ -49,7 +47,7 @@ class ApiSearch extends Component {
                 returns.push(res.data[i]);
 
               this.setState({resultsArray: returns});
-              console.log(this.state.resultsArray);
+              console.log("RESPONSE - GooglePlaces: ", this.state.resultsArray);
               this.renderSearch();
             });
         } else if(currentCategory === "products") {
@@ -57,13 +55,13 @@ class ApiSearch extends Component {
           API
             .getProducts(this.state.searchString)
             .then((res) => {
-              console.log("RESPONSE - AmazonProduct: ", res.data.Item);
+              // console.log("RESPONSE - AmazonProduct: ", res.data.Item);
                let returns = [];
 
               for (let i= 0; i < res.data.Item.length; ++i)
                 returns.push(res.data.Item[i]);
               this.setState({resultsArray: returns})
-              console.log("ResultsArray:", this.state.resultsArray);
+              console.log("RESPONSE - AmazonProduct: ", this.state.resultsArray);
               this.renderSearch();
             });
         } else {
@@ -73,7 +71,6 @@ class ApiSearch extends Component {
   }//end handsubmit
 
   handleChange(event) {
-    console.log("Search String: ", event.target.value);
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -118,55 +115,53 @@ class ApiSearch extends Component {
 
   submitCommentModalForm(e) {
     e.preventDefault();
-    // const { userProfile, getProfile } = this.props.auth;
+    const { userProfile, getProfile } = this.props.auth;
     console.log(this.state.comment); // e.comment?
     console.log('Submit Comment Modal Form - This is where you want to call your API to save data to your database... smiley face');
   // @TODO: This needs to happen after the modal.
-  // if (!userProfile) {
-      // getProfile((err, profile) => {
-      //   this.setState({ profile });
-      //   console.log("Profile ", profile);
-      //   // return item;
-      //   if (result.listType === "places") {
-      //     API.savePlace({
-      //       place_id: result.place_id, 
-      //       name: result.name,
-      //       image: result.photo,
-      //       address: result.address,
-      //       city: result.city,
-      //       category: result.category,
-      //       user_id: profile.sub,
-      //       user_nickname: profile.nickname,
-      //       user_image: profile.picture 
-      //     })
-      //       .then(res => console.log(res))
-      //       .catch(err => console.log(err));
-      //       //end savePlace
+      getProfile((err, profile) => {
+        this.setState({ profile });
+        console.log("Profile ", profile);
+        // return item;
+        if (this.state.listType === "places") {
+          API.savePlace({
+            place_id: this.state.place_id, 
+            name: this.state.name,
+            image: this.state.photo,
+            address: this.state.address,
+            city: this.state.city,
+            category: this.state.category,
+            user_id: profile.sub,
+            user_nickname: profile.nickname,
+            user_image: profile.picture,
+            comment: this.state.comment
+          })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+            //end savePlace
 
-      //   } else if (result.listType === "products") {
-      //     console.log("I'm in the products");
+        } else if (this.state.listType === "products") {
+          console.log("I'm in the products");
 
-      //     API.saveProduct({
-      //       product_id: result.upc.toString(), 
-      //       name: result.title,
-      //       image: result.img.toString(),
-      //       category: result.category.toString(),
-      //       brand: result.brand,
-      //       url: result.purchase_link,
-      //       price: result.price,
-      //       user_id: profile.sub,
-      //       user_nickname: profile.nickname,
-      //       user_image: profile.picture 
-      //     })
-      //       .then(res => console.log(res))
-      //       .catch(err => console.log(err));
-      //       //end saveProduct
-      //   }//end if/else
+          API.saveProduct({
+            product_id: this.state.upc.toString(), 
+            name: this.state.title,
+            image: this.state.img.toString(),
+            category: this.state.category.toString(),
+            brand: this.state.brand,
+            url: this.state.purchase_link,
+            price: this.state.price,
+            user_id: profile.sub,
+            user_nickname: profile.nickname,
+            user_image: profile.picture,
+            comment: this.state.comment
+          })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+            //end saveProduct
+        }//end if/else
 
-      // });
-    // } else {
-    //   this.setState({ profile: userProfile });
-    // }
+      });
   }
 
   renderSearch() {
@@ -185,7 +180,7 @@ class ApiSearch extends Component {
               photo={place.photos ? place.photos[0].photo_reference : "CmRaAAAAWMgzV5AlVJr5UKg7MKLHvNSGL27ryBebdc2KJlkvsnxA_VYwYu26qaWutqGPuwCduOXHE7azmIAs-0LUORtuywl8VqRooPpxMTAELReZIdTx8eFV2OGQxUBHYX0lkZsUEhAr_DMXM6EHTnlR5hrNFCTxGhS8Zgrr3a3xsIysSYgUPy2qUufGBA"}
               types={place.types}
               listType={this.state.chooseCategory}            
-              getPlace={this.getSelectedResult}
+              getPlace={() => this.getCommentModal(i)}
             />
           );        
         })
@@ -215,20 +210,43 @@ class ApiSearch extends Component {
   }
 
   getModalItemName(i) {
-    return (
-      this.state.resultsArray.length >= i
-        && this.state.resultsArray[i].ItemAttributes.length > 0
-        && this.state.resultsArray[i].ItemAttributes[0].Title.length > 0)
-      ? this.state.resultsArray[i].ItemAttributes[0].Title[0].toString()
-      : null;
+    if (this.state.chooseCategory === "products") {
+      return (
+        this.state.resultsArray.length >= i
+          && this.state.resultsArray[i].ItemAttributes.length > 0
+          && this.state.resultsArray[i].ItemAttributes[0].Title.length > 0)
+        ? this.state.resultsArray[i].ItemAttributes[0].Title[0].toString()
+        : null;
+    }
+    else if (this.state.chooseCategory === "places") {
+      return (
+        this.state.resultsArray.length >= i
+          && this.state.resultsArray[i].length > 0
+          && this.state.resultsArray[i].name.length > 0)
+        ? this.state.resultsArray[i].name
+        : null;
+    }
+
   }
   getModalItemImage(i) {
-    return (
-      this.state.resultsArray.length >= i
-        && this.state.resultsArray[i].LargeImage.length > 0
-        && this.state.resultsArray[i].LargeImage[0].URL.length > 0)
-      ? this.state.resultsArray[i].LargeImage[0].URL[0]
-      : null;
+    if (this.state.chooseCategory === "products") {
+      return (
+        this.state.resultsArray.length >= i
+          && this.state.resultsArray[i].LargeImage.length > 0
+          && this.state.resultsArray[i].LargeImage[0].URL.length > 0)
+        ? this.state.resultsArray[i].LargeImage[0].URL[0]
+        : null;
+    }
+    else if (this.state.chooseCategory === "places") {
+      return (
+        this.state.resultsArray.length >= i
+          && this.state.resultsArray[i].photos.length > 0
+          && this.state.resultsArray[i].photos[0].photo_reference.length > 0)
+        ? this.state.resultsArray[i].photos[0].photo_reference
+        : null;
+    }
+
+
   }
 
   render() {
@@ -245,21 +263,21 @@ class ApiSearch extends Component {
     
     return (
       <Container width="container">
+         {(this.state.errorMsg) ? <div className="alert alert-warning">{this.state.errorMsg}</div> : ''}
          <div className="row">
            <form id="apiSearchForm" className="form-inline mt-5" onSubmit={this.handleFormSubmit}>
             <select className="custom-select" id="chooseCategory" onChange={this.handleChange} onClick={this.getCategory} defaultValue={this.state.selectValue}>
-              <option value="Choose category">Choose category</option>
+              <option value="">Choose category</option>
               <option value="products">Products</option>
               <option value="places">Places</option>
            </select>
            <input type="text" id="searchString" onChange={this.handleChange} className="form-control" placeholder="Search term" value={this.state.searchString} />
           <div>
             <button type="submit" className="btn btn-warning">Search</button> 
-            {/*<button onClick={this.handleFormClear.bind(this)} type="reset" className="btn">Reset</button>         */}
+            <button onClick={this.handleFormClear.bind(this)} type="reset" className="btn">Reset</button>
            </div>
            </form>
           </div>
-          {(this.state.errorMsg) ? <div className="alert alert-warning">{this.state.errorMsg}</div> : ''}
           <div className="card-columns mt-5"id="apiResultsDisplay">
             {this.state.listItems}              
           </div>
