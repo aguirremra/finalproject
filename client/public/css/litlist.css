@@ -24,7 +24,7 @@ img.logo-icon {
   vertical-align: top;
 }
 img.avatar-icon {
-  height: 11rem;
+  height: auto;
   vertical-align: top;
 }
 .bg-light {
