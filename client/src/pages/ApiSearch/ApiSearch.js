@@ -128,28 +128,30 @@ class ApiSearch extends Component {
         console.log("Profile ", profile);
         // return item;
         let i = this.state.showModal
-        console.log("key: " + i)
+        console.log("key: " + i);
+        console.log("OBJECT INFO: ", this);
 
-        {this.state.listType === "places"
+        if (this.state.chooseCategory === "places") {
+          console.log("This is going to places db");
 
-        ? API.savePlace({
-            // place_id: this.state.place_id, 
-            // name: this.state.resultsArray[i].name
-            // image: this.state.photo,
-            // address: this.state.address,
-            // city: this.state.city,
-            // category: this.state.category,
-            // user_id: profile.sub,
-            // user_nickname: profile.nickname,
-            // user_image: profile.picture,
-            // comment: this.state.comment
+          API.savePlace({
+            place_id: this.state.listItems[i].props.place_id, 
+            name: this.state.listItems[i].props.name,
+            image: this.state.listItems[i].props.photo,
+            address: this.state.listItems[i].props.address,
+            city: this.state.listItems[i].props.city,
+            category: this.state.listItems[i].props.category,
+            user_id: profile.sub,
+            user_nickname: profile.nickname,
+            user_image: profile.picture,
+            comment: this.state.comment
           })
             .then(res => console.log(res))
             .catch(err => console.log(err))
             //end savePlace
+        }
 
-        : console.log("I'm in the products", this.state.listItems[i].props);
-
+        else if (this.state.chooseCategory === "products") {
           API.saveProduct({
             product_id: this.state.listItems[i].props.upc[0],
             name: this.state.listItems[i].props.title,
@@ -219,41 +221,38 @@ class ApiSearch extends Component {
   getModalItemName(i) {
     if (this.state.chooseCategory === "products") {
       return (
-        this.state.resultsArray.length >= i
-          && this.state.resultsArray[i].ItemAttributes.length > 0
-          && this.state.resultsArray[i].ItemAttributes[0].Title.length > 0)
-        ? this.state.resultsArray[i].ItemAttributes[0].Title[0].toString()
+        this.state.listItems.length >= i
+          && this.state.listItems[i].props.title.length > 0)
+        ? this.state.listItems[i].props.title
         : null;
     }
     else if (this.state.chooseCategory === "places") {
       return (
-        this.state.resultsArray.length >= i
-          && this.state.resultsArray[i].length > 0
-          && this.state.resultsArray[i].name.length > 0)
-        ? this.state.resultsArray[i].name
+        this.state.listItems.length >= i
+          && this.state.listItems[i].props.name.length > 0)
+        ? this.state.listItems[i].props.name
         : null;
     }
-
   }
+
   getModalItemImage(i) {
     if (this.state.chooseCategory === "products") {
       return (
-        this.state.resultsArray.length >= i
-          && this.state.resultsArray[i].LargeImage.length > 0
-          && this.state.resultsArray[i].LargeImage[0].URL.length > 0)
-        ? this.state.resultsArray[i].LargeImage[0].URL[0]
+        this.state.listItems.length >= i
+          && this.state.listItems[i].props.img.length > 0
+          && this.state.listItems[i].props.img[0].length > 0)
+        ? this.state.listItems[i].props.img[0]
         : null;
     }
     else if (this.state.chooseCategory === "places") {
+      console.log("HELLO WORLD: ", this.state);
+
       return (
-        this.state.resultsArray.length >= i
-          && this.state.resultsArray[i].photos.length > 0
-          && this.state.resultsArray[i].photos[0].photo_reference.length > 0)
-        ? this.state.resultsArray[i].photos[0].photo_reference
+        this.state.listItems.length >= i
+          && this.state.listItems[i].props.photo.length > 0)
+        ? "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyCntC7u_9XoHw_F9SqoNVzjYGZAkPOvO2k&photoreference=" + this.state.listItems[i].props.photo
         : null;
     }
-
-
   }
 
   render() {
