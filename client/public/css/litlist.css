@@ -75,19 +75,13 @@ li.nav-item {
 	line-height: 0;		/* remove line-height */ 
 	display: inline-block;	/* circle wraps image */
 	margin: 5px;
-  border: 5px solid rgba(255,255,255,0.4);
+  border: 2px solid rgb(255, 255, 255);
 	border-radius: 50%;	/* relative value */
 	box-shadow: 0px 0px 5px rgba(0,0,0,0.4);
-  transition: linear 0.25s;
 }
-.circle img {
-  border-radius: 50%;	/* relative value for adjustable image size */
-  height: 4vh;
-}
-.circle:hover {
-	transition: ease-out 0.2s;
-  border: 2px solid rgba(255,255,255,0.8);
-  -webkit-transition: ease-out 0.2s;
+.navbar img.circle {
+  width: 2.5rem;
+  height: 2.5rem;
 }
 #myBtnContainer {
   width: fit-content;

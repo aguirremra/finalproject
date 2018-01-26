@@ -47,18 +47,16 @@ class LoggedIn extends Component {
 	render() {
 
 		return(
-				<ul className="navbar-nav ml-auto">
-		           <a href="https://#" className="circle mr-3">
-		              <img src={this.state.userPhoto} alt={this.state.userName} title={this.state.userName}/>
-		            </a>
-		            <li className="nav-item">
-		              <button onClick={this.goTo.bind(this, 'profile')} type="button" className="btn btn-warning mr-3 btn-sm">
-		                <i className="fas fa-list-alt mr-2"></i>{this.state.userName}'s LitList</button>
-		            </li>
-		            <li className="nav-item">
-		              <button onClick={this.logout.bind(this)} type="button" className="btn btn-outline-success btn-sm">
-		                <i className="fas fa-unlock-alt mr-2"></i>Logout</button>
-		            </li>
+				<ul className="nav ml-auto">
+          <img className="circle mr-3" src={this.state.userPhoto} alt={this.state.userName} title={this.state.userName}/>
+          <li className="nav-item">
+            <button onClick={this.goTo.bind(this, 'profile')} type="button" className="btn btn-warning mr-3 btn-sm">
+              <i className="fas fa-list-alt mr-2"></i>{this.state.userName}'s LitList</button>
+          </li>
+          <li className="nav-item">
+            <button onClick={this.logout.bind(this)} type="button" className="btn btn-outline-success btn-sm">
+              <i className="fas fa-unlock-alt mr-2"></i>Logout</button>
+          </li>
 				</ul>
 
 			);
