@@ -119,7 +119,6 @@ class ApiSearch extends Component {
     console.log("comment:" + this.state.comment); // e.comment?
     console.log("key")
     console.log('Submit Comment Modal Form - This is where you want to call your API to save data to your database... smiley face');
-  // @TODO: This needs to happen after the modal.
       getProfile((err, profile) => {
         this.setState({ profile });
         console.log("Profile ", profile);
@@ -234,16 +233,15 @@ class ApiSearch extends Component {
 
   getModalItemImage(i) {
     if (this.state.chooseCategory === "products") {
+        console.log("HELLO WORLD: ", this.state.listItems[i].props.img[0]);
       return (
         this.state.listItems.length >= i
           && this.state.listItems[i].props.img.length > 0
-          && this.state.listItems[i].props.img[0].length > 0)
+          && this.state.listItems[i].props.img[0].length > 1)
         ? this.state.listItems[i].props.img[0]
-        : null;
+        : "http://i1.wp.com/williamlobb.com/wp-content/uploads/2017/10/amazon-frown.jpeg";
     }
     else if (this.state.chooseCategory === "places") {
-      console.log("HELLO WORLD: ", this.state);
-
       return (
         this.state.listItems.length >= i
           && this.state.listItems[i].props.photo.length > 0)

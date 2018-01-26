@@ -27,13 +27,13 @@ class CommentModal extends Component {
               </div>
               <div className="input-group">
                 <div className="input-group-prepend">
-                  <span className="input-group-text">With textarea</span>
+                  <span className="input-group-text">Enter Comments: </span>
                 </div>
-                <textarea name="comment" className="form-control" aria-label="With textarea" onChange={this.props.updateComment} value={this.props.comment}></textarea>
+                <textarea name="comment" className="form-control" aria-label="Enter Comments" onChange={this.props.updateComment} value={this.props.comment}></textarea>
               </div>
               <div className="modal-footer">
-                <button type="submit" className="btn btn-primary">add to favorites</button>
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" className="btn btn-primary"><i className="fas fa-heart"></i> Lite it up</button>
+                <button type="button" className="btn btn-secondary" data-dismiss="modal"><i className="fas fa-ban"></i> Close</button>
               </div>
             </form>
           </div>
