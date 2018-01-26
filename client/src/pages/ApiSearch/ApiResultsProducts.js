@@ -17,9 +17,8 @@ class ApiResultsProducts extends Component {
         <div className="card-footer text-center">
           <a href={this.props.purchase_link} target="_blank" className="btn btn-primary">
           <i className="fas fa-info-circle"></i> More Info</a>
-          <button type="button" 
-                  className="btn btn-warning"
-                  onClick={(e) => { this.props.getProduct(this.props); }}>
+          <button type="button" className="btn btn-warning"
+                  onClick={(e) => {this.props.getProduct(this.props); }}>
           <i id={this.props.itemId} className="fas fa-heart"></i> Lite it Up</button>
         </div>
       </div>

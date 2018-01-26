@@ -80,11 +80,6 @@ class Profile extends Component {
             heading={`${profile.given_name ? profile.given_name : profile.nickname}'s LitList`}
             lead={"Search for new products or places to add to your list."}
           />
-          <NavBar 
-            currentView={"profile"} 
-            {...this.props}
-          /> 
-
           <div className="container pb-5">
             <div className="card">
               <div className="row">
@@ -112,6 +107,10 @@ class Profile extends Component {
                 <ApiSearch {...this.props}/>
             </Container>  
             <h3 className="text-center">Your Current List</h3>
+            {/* <NavBar 
+              currentView={"profile"} 
+              {...this.props}
+            /> */}
             <Container className="container">
               <h4>Lit Places</h4>
               <div className="card-columns mt-2">                
