@@ -90,7 +90,7 @@ class Profile extends Component {
                 </div>
                 <div className="col-sm">
                   <h5 className="card-title mt-3">{profile.name}</h5>
-                  <p className="card-text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  <p className="card-text">Place bio here.</p>
                 </div>
                 <div className="col-sm border-left text-center my-auto">
                     <h2 className="card-title score mt-3 counter-count">{this.state.products.length || '0'}</h2>
