@@ -8,7 +8,7 @@ class ApiResultsProducts extends Component {
         <img className="card-img-top img-fluid" src={this.props.img} alt="Card image cap"/>
         <div className="card-body">
           <div className="entry-category">
-            <a href="https://#" className="post-category category-design">{this.props.category}</a>
+            <a href="" className="post-category category-design">{this.props.category}</a>
           </div>
           <h4 className="card-title">{this.props.title}</h4>
           <p className="card-text"><strong>Brand:</strong> {this.props.brand}</p>

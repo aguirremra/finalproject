@@ -266,7 +266,7 @@ class ApiSearch extends Component {
       <Container width="container">
          {(this.state.errorMsg) ? <div className="alert alert-warning">{this.state.errorMsg}</div> : ''}
          <div className="row">
-           <form id="apiSearchForm" className="form-inline mt-5" onSubmit={this.handleFormSubmit}>
+           <form id="apiSearchForm" className="form-inline" onSubmit={this.handleFormSubmit}>
             <select className="custom-select mr-2" id="chooseCategory" onChange={this.handleChange} onClick={this.getCategory} defaultValue={this.state.selectValue}>
               <option value="">Choose category</option>
               <option value="products">Products</option>

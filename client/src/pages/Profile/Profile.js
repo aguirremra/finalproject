@@ -80,8 +80,11 @@ class Profile extends Component {
             heading={`${profile.given_name ? profile.given_name : profile.nickname}'s LitList`}
             lead={"Search for new products or places to add to your list."}
           />
+            <Container className="container mb-2">
+                <ApiSearch {...this.props}/>
+            </Container> 
           <div className="container pb-5">
-            <div className="card">
+            <div className="card py-3">
               <div className="row">
                 <div className="col-sm px-4 py-2 ml-3">
                   <img className="circle avatar-icon" src={profile.picture} alt={profile.name} title={profile.name}/>
@@ -101,11 +104,7 @@ class Profile extends Component {
               </div>
             </div>
           </div>
-          <Container className="container-fluid">
-            <Container className="container mb-2">
-                <h3 className="text-center">Search for New Products and Places</h3>
-                <ApiSearch {...this.props}/>
-            </Container>  
+          <Container className="container-fluid"> 
             <h3 className="text-center">Your Current List</h3>
             {/* <NavBar 
               currentView={"profile"} 
@@ -113,10 +112,12 @@ class Profile extends Component {
             /> */}
             <Container className="container">
               <h4>Lit Places</h4>
+              <hr class="hr-shadow" /> 
               <div className="card-columns mt-2">                
                 {this.renderUserFavPlaces()}             
               </div>
-              <h4>Lit Products</h4>  
+              <h4>Lit Products</h4>
+              <hr class="hr-shadow" /> 
               <div className="card-columns mt-2">
                 {this.renderUserFavProducts()}
               </div>
