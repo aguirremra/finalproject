@@ -8,7 +8,7 @@ class NotLoggedIn extends Component {
   }
 	render() {
 		return(
-			<ul className="header-social-icons navbar-nav ml-auto">
+			<ul className="header-social-icons nav ml-auto">
 				<li className="nav-item">		
 					<button onClick={this.login.bind(this)} type="button" className="btn btn-outline-success">
 						<i className="fas fa-unlock-alt mr-2"></i>

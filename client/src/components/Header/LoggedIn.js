@@ -47,7 +47,7 @@ class LoggedIn extends Component {
 	render() {
 
 		return(
-				<ul className="navbar-nav ml-auto">
+				<ul className="nav ml-auto">
 		           <a href="https://#" className="circle mr-3">
 		              <img src={this.state.userPhoto} alt={this.state.userName} title={this.state.userName}/>
 		            </a>
