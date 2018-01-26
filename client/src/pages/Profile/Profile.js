@@ -105,18 +105,18 @@ class Profile extends Component {
             </div>
           </div>
           <Container className="container-fluid"> 
-            <h3 className="text-center">Your Current List</h3>
-            {/* <NavBar 
+            {/* <h3 className="text-center">Your Current List</h3>
+            <NavBar 
               currentView={"profile"} 
               {...this.props}
             /> */}
             <Container className="container">
-              <h4>Lit Places</h4>
+              <h4>{`${profile.given_name ? profile.given_name : profile.nickname}'s Lit Places`}</h4>
               <hr class="hr-shadow" /> 
               <div className="card-columns mt-2">                
                 {this.renderUserFavPlaces()}             
               </div>
-              <h4>Lit Products</h4>
+              <h4>{`${profile.given_name ? profile.given_name : profile.nickname}'s Lit Products`}</h4>
               <hr class="hr-shadow" /> 
               <div className="card-columns mt-2">
                 {this.renderUserFavProducts()}
