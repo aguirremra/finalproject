@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './commentModal.css';
 
 class CommentModal extends Component {
 
@@ -18,7 +19,7 @@ class CommentModal extends Component {
               <div className="modal-body">
                 <div className="col-12">
                   <div className="card mb-3">
-                    <img className="card-img-top" src={this.props.image} />
+                    <img className="card-img-top-modal" src={this.props.image} />
                     <div className="card-body">
                       <h5 className="card-title">{this.props.name}</h5>
                     </div>
