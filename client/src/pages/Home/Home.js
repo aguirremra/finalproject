@@ -12,8 +12,8 @@ class Home extends Component {
 
       <div>
         <MainJumbo
-          heading={"Welcome Back to Lit List!"}
-          lead={"Add to your list, or explore Lit List community favorites."}
+          heading={"Welcome Back to LitList!"}
+          lead={"Add to your list, or explore LitList community favorites."}
         />
         <NavBar 
           currentView={"home"} 

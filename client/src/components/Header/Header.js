@@ -13,13 +13,16 @@ class Header extends Component {
 		return(
 			<header>
 
-				<Container width="container-fluid bg-dark">
+				<Container className="container-fluid bg-dark">
 
-					<Container width="container">
+					<Container className="container">
 						<nav className="navbar navbar-expand-lg navbar-dark px-0">
-					        <a className="navbar-brand" href="/home" title="Return to home page">
-					          <img src="images/fire.svg" className="logo-icon" alt="LitList"/> Lit<span className="text-weight-bold">List</span><sup className="dos">2</sup>
-					        </a>
+							<a className="navbar-brand" href="/home" title="Return to home page">
+								<img src="images/fire.svg" className="logo-icon" alt="LitList"/> Lit<span className="text-weight-bold">List</span><sup className="dos">2</sup>
+							</a>
+							<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+								<span className="navbar-toggler-icon"></span>
+							</button>
 					        
 		         							
 								{	
