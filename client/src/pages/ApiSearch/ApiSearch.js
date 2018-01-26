@@ -119,45 +119,49 @@ class ApiSearch extends Component {
   submitCommentModalForm(e) {
     e.preventDefault();
     const { userProfile, getProfile } = this.props.auth;
-    console.log(this.state.comment); // e.comment?
+    console.log("comment:" + this.state.comment); // e.comment?
+    console.log("key")
     console.log('Submit Comment Modal Form - This is where you want to call your API to save data to your database... smiley face');
   // @TODO: This needs to happen after the modal.
       getProfile((err, profile) => {
         this.setState({ profile });
         console.log("Profile ", profile);
         // return item;
-        if (this.state.listType === "places") {
-          API.savePlace({
-            place_id: this.state.place_id, 
-            name: this.state.name,
-            image: this.state.photo,
-            address: this.state.address,
-            city: this.state.city,
-            category: this.state.category,
-            user_id: profile.sub,
-            user_nickname: profile.nickname,
-            user_image: profile.picture,
-            comment: this.state.comment
+        let i = this.state.showModal
+        console.log("key: " + i)
+
+        {this.state.listType === "places"
+
+        ? API.savePlace({
+            // place_id: this.state.place_id, 
+            // name: this.state.resultsArray[i].name
+            // image: this.state.photo,
+            // address: this.state.address,
+            // city: this.state.city,
+            // category: this.state.category,
+            // user_id: profile.sub,
+            // user_nickname: profile.nickname,
+            // user_image: profile.picture,
+            // comment: this.state.comment
           })
             .then(res => console.log(res))
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
             //end savePlace
 
-        } else if (this.state.listType === "products") {
-          console.log("I'm in the products");
+        : console.log("I'm in the products", this.state.listItems[i].props);
 
           API.saveProduct({
-            product_id: this.state.upc.toString(), 
-            name: this.state.title,
-            image: this.state.img.toString(),
-            category: this.state.category.toString(),
-            brand: this.state.brand,
-            url: this.state.purchase_link,
-            price: this.state.price,
+            product_id: this.state.listItems[i].props.upc[0],
+            name: this.state.listItems[i].props.title,
+            image: this.state.listItems[i].props.img[0],
+            category: this.state.listItems[i].props.category[0],
+            brand: this.state.listItems[i].props.brand,
+            url: this.state.listItems[i].props.purchase_link,
+            price: this.state.listItems[i].props.price,
             user_id: profile.sub,
             user_nickname: profile.nickname,
             user_image: profile.picture,
-            comment: this.state.comment
+            user_comment: this.state.comment
           })
             .then(res => console.log(res))
             .catch(err => console.log(err));
@@ -195,7 +199,7 @@ class ApiSearch extends Component {
             <ApiResultsProducts
               brand={product.ItemAttributes[0].Brand ? product.ItemAttributes[0].Brand[0] : product.ItemAttributes[0].ProductGroup[0]}
               title={product.ItemAttributes[0].Title ? product.ItemAttributes[0].Title[0] : "Titleless"}
-              price={product.ItemAttributes[0].ListPrice ? product.ItemAttributes[0].ListPrice[0].FormattedPrice[0] : "expen$ive"}
+              price={product.ItemAttributes[0].ListPrice ? product.ItemAttributes[0].ListPrice[0].FormattedPrice[0] : "unknown"}
               upc={product.ItemAttributes[0].UPC ? product.ItemAttributes[0].UPC : "xoxoxoxoxo"}
               category={product.ItemAttributes[0].Binding ? product.ItemAttributes[0].Binding : "no Category"}
               img={product.LargeImage ? product.LargeImage[0].URL : "http://i1.wp.com/williamlobb.com/wp-content/uploads/2017/10/amazon-frown.jpeg"}
