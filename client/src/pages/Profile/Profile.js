@@ -56,7 +56,6 @@ class Profile extends Component {
   }
 
   renderUserFavProducts() {
-  console.log("count: " + this.state.productsCount); 
     if(this.state.products.length){
       return this.state.products.map((products, i) => {
         return (
@@ -81,6 +80,10 @@ class Profile extends Component {
             heading={`${profile.given_name ? profile.given_name : profile.nickname}'s Lit List`}
             lead={"Search for new products or places to add to your list."}
           />
+          <NavBar 
+            currentView={"profile"} 
+            {...this.props}
+          /> 
 
           <div className="container pb-5">
             <div className="card">
@@ -104,13 +107,6 @@ class Profile extends Component {
             </div>
           </div>
           <Container width="container-fluid">
-              <Container width="container mb-5">
-                  <h4 className="text-center">Browse Community Favorites</h4>               
-                    <NavBar 
-                      currentView={"profile"} 
-                      {...this.props}
-                    />  
-              </Container>
             <Container width="container mb-5">
                 <h4 className="text-center">Search for New Products and Places</h4>
                 <ApiSearch {...this.props}/>
@@ -118,12 +114,12 @@ class Profile extends Component {
             <hr className="mt-5 mb-5"/>    
             <h3 className="text-center"><small>Your Current List</small></h3>
             <Container width="container">
-              <div className="card-columns mt-5">
-                LiT Places
+              <h3>LiT Places</h3>
+              <div className="card-columns mt-5">                
                 {this.renderUserFavPlaces()}             
-              </div>  
+              </div>
+              <h3>LiT Products</h3>  
               <div className="card-columns mt-5">
-                LiT Products
               {this.renderUserFavProducts()}             
               </div>
             </Container> 
