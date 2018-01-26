@@ -65,6 +65,7 @@ li.nav-item {
 }
 .entry-category {
   text-transform: uppercase;
+  color: green;
   font-size: .8125rem;
   font-weight: 500;
   letter-spacing: .09rem;
@@ -128,6 +129,10 @@ li.nav-item {
 }
 .border-left {
   border-left: 1px solid #eee;
+}
+.form-control {
+  height: calc(2.428rem + 2px);
+  padding: .375rem 1.75rem .375rem .75rem;
 }
 
 /* Small devices (tablets, 767px and up) The navbar toggle appears at this breakpoint */

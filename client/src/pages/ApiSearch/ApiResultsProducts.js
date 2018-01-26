@@ -11,8 +11,8 @@ class ApiResultsProducts extends Component {
             <a href="https://#" className="post-category category-design">{this.props.category}</a>
           </div>
           <h4 className="card-title">{this.props.title}</h4>
-          <p className="card-text">Brand: {this.props.brand}</p>
-          <p className="card-text">Price: {this.props.price}</p>
+          <p className="card-text"><strong>Brand:</strong> {this.props.brand}</p>
+          <p className="card-text"><strong>Price:</strong> {this.props.price}</p>
         </div>
         <div className="card-footer text-center">
           <a href={this.props.purchase_link} target="_blank" className="btn btn-primary">

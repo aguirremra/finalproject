@@ -77,7 +77,7 @@ class Profile extends Component {
       <div>
 
           <MainJumbo {...this.props}
-            heading={`${profile.given_name ? profile.given_name : profile.nickname}'s Lit List`}
+            heading={`${profile.given_name ? profile.given_name : profile.nickname}'s LitList`}
             lead={"Search for new products or places to add to your list."}
           />
           <NavBar 
@@ -93,7 +93,7 @@ class Profile extends Component {
                 </div>
                 <div className="col-sm">
                   <h5 className="card-title mt-3">{profile.name}</h5>
-                  <p className="card-text">Place bio here.</p>
+                  <p className="card-text">I'm that actor in some of the movies you liked and some you didn't. Sometimes I'm in pretty good shape, other times I'm not. Hey, you gotta live, you know?</p>
                 </div>
                 <div className="col-sm border-left text-center my-auto">
                     <h2 className="card-title score mt-3 counter-count">{this.state.products.length || '0'}</h2>
@@ -106,21 +106,20 @@ class Profile extends Component {
               </div>
             </div>
           </div>
-          <Container width="container-fluid">
-            <Container width="container mb-5">
-                <h4 className="text-center">Search for New Products and Places</h4>
+          <Container className="container-fluid">
+            <Container className="container mb-2">
+                <h3 className="text-center">Search for New Products and Places</h3>
                 <ApiSearch {...this.props}/>
-            </Container>          
-            <hr className="mt-5 mb-5"/>    
-            <h3 className="text-center"><small>Your Current List</small></h3>
-            <Container width="container">
-              <h3>LiT Places</h3>
-              <div className="card-columns mt-5">                
+            </Container>  
+            <h3 className="text-center">Your Current List</h3>
+            <Container className="container">
+              <h4>Lit Places</h4>
+              <div className="card-columns mt-2">                
                 {this.renderUserFavPlaces()}             
               </div>
-              <h3>LiT Products</h3>  
-              <div className="card-columns mt-5">
-              {this.renderUserFavProducts()}             
+              <h4>Lit Products</h4>  
+              <div className="card-columns mt-2">
+                {this.renderUserFavProducts()}
               </div>
             </Container> 
           </Container>

@@ -141,16 +141,17 @@ class People extends Component {
               {...this.props}
             />
 
-            <Container width="container"> 
-              <div className="card-columns mt-5">
+            <Container width="container">
+            <h4>Favorite Members</h4>
+              <div className="card-columns mt-2">
                 {this.renderUsers()}              
               </div>
            
-              <div className="card-columns mt-5">
+              <div className="card-columns mt-2">
                 {this.renderUserFavPlaces()}            
               </div>
 
-              <div className="card-columns mt-5">
+              <div className="card-columns mt-2">
                 {this.renderUserFavProducts()}           
               </div>                            
             </Container>      
