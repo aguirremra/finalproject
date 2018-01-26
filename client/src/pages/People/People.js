@@ -4,6 +4,9 @@ import Container from '../../components/Containers/Container';
 import MainJumbo from '../../components/Containers/MainJumbo';
 import NavBar from '../../components/Navbar';
 import ResultsPeople from './ResultsPeople';
+import ResultsPeopleFavProducts from './ResultsPeopleFavProducts';
+import ResultsPeopleFavPlaces from './ResultsPeopleFavPlaces';
+import ResultsPeopleFav from './ResultsPeopleFav'
 import './People.css';
 
 class People extends Component {
@@ -12,21 +15,31 @@ class People extends Component {
     this.state = {
       users: [],
       selectedUser: "",
-      resultsArray: []
+      places: [],
+      products: [],
+      clicked: "",
+      userFavPhoto: "",
+      userFavName: "",
+      userFavNickname: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.renderUsers = this.renderUsers.bind(this);
     this.getSelectedFavorites = this.getSelectedFavorites.bind(this);
   }
-  componentWillMount(){
-    console.log("1: component will mount");
+  componentDidMount(){
     this.loadUsers();
+  }
+
+  reset(){
+    window.location.reload();
   }
 
   loadUsers(){
     console.log("3: load users function");
     API.getUsers()
-      .then(res => this.setState({users: res.data}))
+      .then(res => this.setState({
+        users: res.data
+      }))
       .catch(err => console.log(err));
   } 
 
@@ -39,19 +52,33 @@ class People extends Component {
   renderUsers() {
     console.log("4");
     console.log(this.state.users);
-    return this.state.users.map((user, i) => {
-      console.log("5: map user");
-      return (
-        <ResultsPeople 
-          name={user.name}
-          key={i}
-          user_id={user.sub}
-          photo={user.image}
-          nickname={user.nickname}
-          getFavorites={this.getSelectedFavorites}
-        />
-      );        
-    });
+    console.log("Clicked: " + this.state.clicked);
+    if(!this.state.clicked){
+      return this.state.users.map((user, i) => {
+        return (
+          <ResultsPeople 
+            name={user.name}
+            key={i}
+            user_id={user.sub}
+            photo={user.image}
+            nickname={user.nickname}
+            getFavorites={this.getSelectedFavorites}
+          />
+        );        
+      });
+    } else{
+        return (
+          <ResultsPeopleFav 
+            name={this.state.userFavName}
+            photo={this.state.userFavPhoto}
+            nickname={this.state.userFavNickname}
+            placeCount={this.state.places.length}
+            productCount={this.state.products.length}
+            reset={this.reset}
+          />
+        );
+    }
+
   }
 
   getSelectedFavorites(selectedUser){
@@ -59,10 +86,46 @@ class People extends Component {
   API.getFavorites(selectedUser.user_id)
     .then(res => this.setState({
       places: res.data.places,
-      products: res.data.products
+      products: res.data.products,
+      clicked: "yes",
+      userFavName: selectedUser.name,
+      userFavNickname: selectedUser.nickname,
+      userFavPhoto: selectedUser.photo
     }))
     .catch(err => console.log(err));
   }
+
+  renderUserFavProducts(){
+    if(this.state.products.length){
+      return this.state.products.map((products, i) => {
+        return (
+          <ResultsPeopleFavProducts
+          name={products.name}
+          category={products.category}
+          key={i}
+          upc={products.product_id}
+          photo={products.image}
+          />
+        );
+      });
+    }
+  }
+
+  renderUserFavPlaces() { 
+    if(this.state.places.length){
+      return this.state.places.map((places, i) => {
+        return (
+          <ResultsPeopleFavPlaces 
+            name={places.name}
+            photo={places.image} 
+            key={i}
+            city={places.city}
+            address={places.address}
+          />
+        );        
+      });
+    }
+  }    
 
   render() {
 
@@ -81,8 +144,15 @@ class People extends Component {
             <Container width="container"> 
               <div className="card-columns mt-5">
                 {this.renderUsers()}              
-              </div>                     
+              </div>
+           
+              <div className="card-columns mt-5">
+                {this.renderUserFavPlaces()}            
+              </div>
 
+              <div className="card-columns mt-5">
+                {this.renderUserFavProducts()}           
+              </div>                            
             </Container>      
         </div>
 
