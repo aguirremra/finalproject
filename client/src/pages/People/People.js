@@ -30,6 +30,10 @@ class People extends Component {
     this.loadUsers();
   }
 
+  reset(){
+    window.location.reload();
+  }
+
   loadUsers(){
     console.log("3: load users function");
     API.getUsers()
@@ -70,6 +74,7 @@ class People extends Component {
             nickname={this.state.userFavNickname}
             placeCount={this.state.places.length}
             productCount={this.state.products.length}
+            reset={this.reset}
           />
         );
     }

@@ -25,6 +25,12 @@ class ResultsPeopleFav extends Component {
               </div>
               </div>
             </div>
+            <div className="card-footer text-center">
+              <button type="button" 
+                      className="btn btn-warning"
+                      onClick={(e) => { this.props.reset(); }}>
+              <i id={this.props.itemId} className="fas fa-heart"></i> Return</button>
+            </div>
           </div>
     );
   }
