@@ -12,8 +12,8 @@ class ApiResultsPlaces extends Component {
           </div>
         <h4 className="card-title">{this.props.name}</h4>
         <p className="card-text">{this.props.address}</p>
-        <p className="card-text">Rating: {this.props.rating}</p>
-        <p className="card-text">City: {this.props.city}</p>
+        <p className="card-text"><strong>Rating:</strong> {this.props.rating}</p>
+        <p className="card-text"><strong>City:</strong> {this.props.city}</p>
         </div>
         <div className="card-footer text-center">
           <button type="button" 

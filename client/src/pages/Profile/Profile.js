@@ -90,7 +90,7 @@ class Profile extends Component {
                 </div>
                 <div className="col-sm">
                   <h5 className="card-title mt-3">{profile.name}</h5>
-                  <p className="card-text">Place bio here.</p>
+                  <p className="card-text">I'm that actor in some of the movies you liked and some you didn't. Sometimes I'm in pretty good shape, other times I'm not. Hey, you gotta live, you know?</p>
                 </div>
                 <div className="col-sm border-left text-center my-auto">
                     <h2 className="card-title score mt-3 counter-count">{this.state.products.length || '0'}</h2>
@@ -114,17 +114,16 @@ class Profile extends Component {
             <Container width="container mb-5">
                 <h4 className="text-center">Search for New Products and Places</h4>
                 <ApiSearch {...this.props}/>
-            </Container>          
-            <hr className="mt-5 mb-5"/>    
+            </Container>  
             <h3 className="text-center"><small>Your Current List</small></h3>
             <Container width="container">
+              <h4 className="d-block">LiT Places</h4>
               <div className="card-columns mt-5">
-                LiT Places
                 {this.renderUserFavPlaces()}             
-              </div>  
+              </div> 
+              <h4 className="d-block">LiT Products</h4> 
               <div className="card-columns mt-5">
-                LiT Products
-              {this.renderUserFavProducts()}             
+                {this.renderUserFavProducts()}             
               </div>
             </Container> 
           </Container>

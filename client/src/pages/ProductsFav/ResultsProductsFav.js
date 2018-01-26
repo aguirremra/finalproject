@@ -6,10 +6,12 @@ class ResultsProductsFav extends Component {
   render() {
     return (
 	    	<div className="card mb-5">
-			  <img className="card-img-top" src={this.props.photo} alt="Placeholder image" title="Placeholder image"/>
+			  <img className="card-img-top" src={this.props.photo} />
 			  <div className="card-body">
+				<div className="entry-category">
+            <a href="https://#" className="post-category category-design">{this.props.category}</a>
+          </div>
 			    <h5 className="card-title">{this.props.name}</h5>
-			    <p className="card-text">Category: {this.props.category}</p>
 			    <p className="card-text">UPC: {this.props.upc}</p>
 			  </div>
 			</div>
