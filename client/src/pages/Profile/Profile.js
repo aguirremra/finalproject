@@ -106,18 +106,18 @@ class Profile extends Component {
               </div>
             </div>
           </div>
-          <Container width="container-fluid">
-            <Container width="container mb-5">
-                <h4 className="text-center">Search for New Products and Places</h4>
+          <Container className="container-fluid">
+            <Container className="container mb-2">
+                <h3 className="text-center">Search for New Products and Places</h3>
                 <ApiSearch {...this.props}/>
             </Container>  
-            <h3 className="text-center"><small>Your Current List</small></h3>
-            <Container width="container">
-              <h3>LiT Places</h3>
+            <h3 className="text-center">Your Current List</h3>
+            <Container className="container">
+              <h4>LiT Places</h4>
               <div className="card-columns mt-5">                
                 {this.renderUserFavPlaces()}             
               </div>
-              <h3>LiT Products</h3>  
+              <h4>LiT Products</h4>  
               <div className="card-columns mt-5">
                 {this.renderUserFavProducts()}
               </div>

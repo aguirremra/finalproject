@@ -269,15 +269,15 @@ class ApiSearch extends Component {
          {(this.state.errorMsg) ? <div className="alert alert-warning">{this.state.errorMsg}</div> : ''}
          <div className="row">
            <form id="apiSearchForm" className="form-inline mt-5" onSubmit={this.handleFormSubmit}>
-            <select className="custom-select" id="chooseCategory" onChange={this.handleChange} onClick={this.getCategory} defaultValue={this.state.selectValue}>
+            <select className="custom-select mr-2" id="chooseCategory" onChange={this.handleChange} onClick={this.getCategory} defaultValue={this.state.selectValue}>
               <option value="">Choose category</option>
               <option value="products">Products</option>
               <option value="places">Places</option>
            </select>
-           <input type="text" id="searchString" onChange={this.handleChange} className="form-control" placeholder="Search term" value={this.state.searchString} />
+           <input type="text" id="searchString" onChange={this.handleChange} className="form-control mr-2" placeholder="Search" value={this.state.searchString} />
           <div>
-            <button type="submit" className="btn btn-warning">Search</button> 
-            <button onClick={this.handleFormClear.bind(this)} type="reset" className="btn">Reset</button>
+            <button type="submit" className="btn btn-warning mr-2">Search</button> 
+            <button onClick={this.handleFormClear.bind(this)} type="reset" className="btn btn-outline-light">Reset</button>
            </div>
            </form>
           </div>
