@@ -12,7 +12,7 @@ class Home extends Component {
 
       <div>
         <MainJumbo
-          heading={"Welcome Back to LitList!"}
+          heading={"Welcome to LitList!"}
           lead={"Add to your list, or explore LitList community favorites."}
         />
         <NavBar 

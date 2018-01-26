@@ -55,8 +55,8 @@ class PlacesFav extends Component {
             />
 
             <Container width="container">
-
-              <div className="card-columns mt-5">
+              <h4>Lit Places</h4>
+              <div className="card-columns mt-2">
                 {this.renderFavPlaces()}         
               </div>
             </Container> 

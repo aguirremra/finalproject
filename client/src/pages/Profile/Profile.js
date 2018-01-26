@@ -77,7 +77,7 @@ class Profile extends Component {
       <div>
 
           <MainJumbo {...this.props}
-            heading={`${profile.given_name ? profile.given_name : profile.nickname}'s Lit List`}
+            heading={`${profile.given_name ? profile.given_name : profile.nickname}'s LitList`}
             lead={"Search for new products or places to add to your list."}
           />
           <NavBar 
@@ -113,12 +113,12 @@ class Profile extends Component {
             </Container>  
             <h3 className="text-center">Your Current List</h3>
             <Container className="container">
-              <h4>LiT Places</h4>
-              <div className="card-columns mt-5">                
+              <h4>Lit Places</h4>
+              <div className="card-columns mt-2">                
                 {this.renderUserFavPlaces()}             
               </div>
-              <h4>LiT Products</h4>  
-              <div className="card-columns mt-5">
+              <h4>Lit Products</h4>  
+              <div className="card-columns mt-2">
                 {this.renderUserFavProducts()}
               </div>
             </Container> 
