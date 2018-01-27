@@ -26,9 +26,9 @@ class CommentModal extends Component {
                   </div>  
                 </div>
               </div>
-              <div class="form-group px-3">
-                <label for="exampleTextarea">Add a Comment</label>
-                <textarea class="form-control" id="exampleTextarea" rows="3" onChange={this.props.updateComment} value={this.props.comment}></textarea>
+              <div className="form-group px-3">
+                <label htmlFor="exampleTextarea">Add a Comment</label>
+                <textarea className="form-control" id="exampleTextarea" rows="3" onChange={this.props.updateComment} value={this.props.comment}></textarea>
               </div>
               <div className="modal-footer">
                 <button type="submit" className="btn btn-warning">Add to LitList</button>

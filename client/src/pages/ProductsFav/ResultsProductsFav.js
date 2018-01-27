@@ -11,7 +11,7 @@ class ResultsProductsFav extends Component {
 				<div className="entry-category">
             {this.props.category}
           </div>
-			    <h5 className="card-title">{this.props.name}</h5>
+			    <h5 className="card-title">{this.props.name.substring(0, 75)}</h5>
 			    <p className="card-text"><strong>UPC:</strong> {this.props.upc}</p>
 				  <p className="text-info">{this.props.username} - "{this.props.comments}"</p>			    
 			  </div>

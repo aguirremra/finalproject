@@ -114,12 +114,12 @@ class Profile extends Component {
             /> */}
             <Container className="container">
               <h4>{`${profile.given_name ? profile.given_name : profile.nickname}'s Lit Places`}</h4>
-              <hr class="hr-shadow" /> 
+              <hr className="hr-shadow" /> 
               <div className="card-columns mt-2">                
                 {this.renderUserFavPlaces()}             
               </div>
               <h4>{`${profile.given_name ? profile.given_name : profile.nickname}'s Lit Products`}</h4>
-              <hr class="hr-shadow" /> 
+              <hr className="hr-shadow" /> 
               <div className="card-columns mt-2">
                 {this.renderUserFavProducts()}
               </div>

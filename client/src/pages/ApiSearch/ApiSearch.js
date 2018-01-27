@@ -55,7 +55,6 @@ class ApiSearch extends Component {
           API
             .getProducts(this.state.searchString)
             .then((res) => {
-              // console.log("RESPONSE - AmazonProduct: ", res.data.Item);
                let returns = [];
 
               for (let i= 0; i < res.data.Item.length; ++i)
@@ -120,9 +119,7 @@ class ApiSearch extends Component {
   submitCommentModalForm(e) {
     e.preventDefault();
     const { userProfile, getProfile } = this.props.auth;
-    console.log("comment:" + this.state.comment); // e.comment?
-    console.log("key")
-    console.log('Submit Comment Modal Form - This is where you want to call your API to save data to your database... smiley face');
+    console.log("User comment:" + this.state.comment); // e.comment?
       getProfile((err, profile) => {
         this.setState({ profile });
         console.log("Profile ", profile);
@@ -152,10 +149,17 @@ class ApiSearch extends Component {
         }
 
         else if (this.state.chooseCategory === "products") {
+          let tempImg = [];
+          tempImg = (this.state.listItems.length >= i
+                     && this.state.listItems[i].props.img.length > 0
+                     && this.state.listItems[i].props.img[0].length > 1)
+                      ? this.state.listItems[i].props.img[0]
+                      : "http://i1.wp.com/williamlobb.com/wp-content/uploads/2017/10/amazon-frown.jpeg";
+          console.log("tempImg: ", tempImg);
           API.saveProduct({
             product_id: this.state.listItems[i].props.upc[0],
             name: this.state.listItems[i].props.title,
-            image: this.state.listItems[i].props.img[0],
+            image: tempImg.toString(),
             category: this.state.listItems[i].props.category[0],
             brand: this.state.listItems[i].props.brand,
             url: this.state.listItems[i].props.purchase_link,
@@ -237,7 +241,7 @@ class ApiSearch extends Component {
 
   getModalItemImage(i) {
     if (this.state.chooseCategory === "products") {
-        console.log("HELLO WORLD: ", this.state.listItems[i].props.img[0]);
+        // console.log("Product Img: ", this.state.listItems[i].props.img[0]);
       return (
         this.state.listItems.length >= i
           && this.state.listItems[i].props.img.length > 0
