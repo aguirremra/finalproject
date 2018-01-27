@@ -1,9 +1,9 @@
-#headerBrand:hover {
-	cursor: pointer;
-}
-
 @media (max-width: 480px) {
 	#userAvatar {
 		display: none;
+	}
+	#loginContainer {
+		padding-right: 0;
+		padding-left: 0;
 	}
 }
