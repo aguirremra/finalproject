@@ -34,6 +34,8 @@ class PlacesFav extends Component {
           key={i}
           photo={favPlaces.image}
           city={favPlaces.city}
+          comments={favPlaces.user_comment}
+          username={favPlaces.user_nickname}
         />
       );
     });

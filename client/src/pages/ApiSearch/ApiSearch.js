@@ -140,7 +140,7 @@ class ApiSearch extends Component {
             user_id: profile.sub,
             user_nickname: profile.nickname,
             user_image: profile.picture,
-            comment: this.state.comment
+            user_comment: this.state.comment
           })
             .then(res => console.log(res))
             .catch(err => console.log(err))

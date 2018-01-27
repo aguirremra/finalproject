@@ -49,6 +49,7 @@ class Profile extends Component {
             key={i}
             city={places.city}
             address={places.address}
+            comments={places.user_comment}
           />
         );        
       });
@@ -65,6 +66,7 @@ class Profile extends Component {
           key={i}
           upc={products.product_id}
           photo={products.image}
+          comments={products.user_comment}
           />
         );        
       });

@@ -13,6 +13,7 @@ class ResultsProfileFavProducts extends Component {
 				</div>
 			    <h5 className="card-title">{this.props.name}</h5>
 			    <p className="card-text"><strong>UPC:</strong> {this.props.upc}</p>
+			    <p className="card-text"><strong>Comments:</strong> {this.props.comments}</p>			    
 			  </div>
 			</div>
     );

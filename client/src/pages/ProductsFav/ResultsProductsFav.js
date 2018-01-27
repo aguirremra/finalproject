@@ -9,10 +9,11 @@ class ResultsProductsFav extends Component {
 			  <img className="card-img-top" src={this.props.photo} />
 			  <div className="card-body">
 				<div className="entry-category">
-            <a href="https://#" className="post-category category-design">{this.props.category}</a>
+            {this.props.category}
           </div>
 			    <h5 className="card-title">{this.props.name}</h5>
 			    <p className="card-text"><strong>UPC:</strong> {this.props.upc}</p>
+				  <p className="text-info">{this.props.username} - "{this.props.comments}"</p>			    
 			  </div>
 			</div>
     );

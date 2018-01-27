@@ -34,6 +34,8 @@ class ProductsFav extends Component {
           key={i}
           upc={favProducts.product_id}
           photo={favProducts.image}
+          username={favProducts.user_nickname}
+          comments={favProducts.user_comment}
         />
       );
     });
