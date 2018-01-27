@@ -56,9 +56,6 @@ class People extends Component {
   }
 
   renderUsers() {
-    console.log("4");
-    console.log(this.state.users);
-    console.log("Clicked: " + this.state.clicked);
     if(!this.state.clicked){
 
       return (
@@ -146,14 +143,16 @@ class People extends Component {
       });   
   }
 
-  renderUserFavPlaces() { 
+  renderUserFavPlaces() {
     if(this.state.places.length){
+      return (
         <Container width="container">
           <h4 className="text-center mb-4">{this.state.userFavName}'s Favorite Places</h4>
           <div className="card-columns">
           {this.addUserPlaces()}
           </div>
         </Container>
+      );
     }
   } 
 

@@ -274,8 +274,7 @@ class ApiSearch extends Component {
            </select>
            <input type="text" id="searchString" onChange={this.handleChange} className="form-control mr-2" placeholder="Search" value={this.state.searchString} />
           <div>
-            <button type="submit" className="btn btn-warning mr-2">Search</button> 
-            <button onClick={this.handleFormClear.bind(this)} type="reset" className="btn btn-outline-light">Reset</button>
+            <button type="submit" className="btn btn-warning mr-2">Search</button>
            </div>
            </form>
           </div>
