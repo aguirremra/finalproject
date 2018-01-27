@@ -64,7 +64,7 @@ class Land extends Component {
                     </div>
                     <h5 className="mb-1">Enrico Bernardo</h5>
                     <span className="text-muted d-block mb-2">Full Stack Developer</span>
-                    <p> Aenean imperdiet ultrices tortor id convallis. Donec id metus magna. Morbi pretium odio faucibus blandit gravida.</p>
+                    <p>Development Executive providing software quality assurance services to health, financial, insurance and entertainment sectors. He was a key member of the team that originally designed, developed, launched and operated the Sony PlayStation Network. He currently leads a software automation engineering team for American Specialty Health and is passionate about building teams who are healthy and motivated to be their best.</p>
                 </div>
 
                 <div className="col-md-4 testimonial text-center">
