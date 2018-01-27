@@ -48,7 +48,7 @@ class ProductsFav extends Component {
 
         <div>
             <MainJumbo
-              heading={"The Products of Lit List"}
+              heading={"The Products of LitList"}
               lead={"Explore the products favorited by other community members."}
             />
             <NavBar 
