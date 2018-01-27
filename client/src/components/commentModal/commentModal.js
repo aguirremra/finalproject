@@ -31,7 +31,7 @@ class CommentModal extends Component {
                 <textarea class="form-control" id="exampleTextarea" rows="3" onChange={this.props.updateComment} value={this.props.comment}></textarea>
               </div>
               <div className="modal-footer">
-                <button type="submit" className="btn btn-warning" data-dismiss="modal">Add to LitList</button>
+                <button type="submit" className="btn btn-warning">Add to LitList</button>
                 <button type="button" className="btn btn-outline-secondary" data-dismiss="modal">Close</button>
               </div>
             </form>

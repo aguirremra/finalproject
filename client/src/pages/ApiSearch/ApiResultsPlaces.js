@@ -16,7 +16,7 @@ class ApiResultsPlaces extends Component {
         <p className="card-text"><strong>City:</strong> {this.props.city}</p>
         </div>
         <div className="card-footer text-center">
-          <button type="button" className="btn btn-warning" onClick={(e) => { this.props.getPlace(this.props); }}>
+          <button type="button" className="btn btn-warning" data-toggle="modal" data-target="#myModal" onClick={(e) => { this.props.getPlace(this.props); }}>
           <i id={this.props.itemId} className="fas fa-heart"></i> Lite it Up</button>
         </div>
       </div>
