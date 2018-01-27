@@ -13,6 +13,7 @@ class ResultsProfileFavProducts extends Component {
 				</div>
 			    <h5 className="card-title">{this.props.name.substring(0, 75)}</h5>
 			    <p className="card-text"><strong>UPC:</strong> {this.props.upc}</p>
+			    <a target="_blank" href={this.props.url}> More Info</a>
 			    <p className="card-text"><strong>Comments:</strong> {this.props.comments}</p>			    
 			  </div>
 			</div>

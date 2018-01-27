@@ -137,6 +137,7 @@ class People extends Component {
           category={products.category}
           key={i}
           upc={products.product_id}
+          url={products.url}
           photo={products.image}
           comments={products.user_comment}
           user={products.user_nickname}

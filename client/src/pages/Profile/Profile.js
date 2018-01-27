@@ -67,6 +67,7 @@ class Profile extends Component {
           upc={products.product_id}
           photo={products.image}
           comments={products.user_comment}
+          url={products.url}
           />
         );        
       });

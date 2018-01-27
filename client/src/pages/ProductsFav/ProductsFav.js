@@ -36,6 +36,7 @@ class ProductsFav extends Component {
           photo={favProducts.image}
           username={favProducts.user_nickname}
           comments={favProducts.user_comment}
+          url={favProducts.url}
         />
       );
     });
