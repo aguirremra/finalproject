@@ -89,18 +89,18 @@
 }
 
 @media (max-width:991px) {
-    .shards-app-promo-page--1 .welcome {
+/*    .shards-app-promo-page--1 .welcome {
         height: auto
-    }
+    }*/
     .shards-app-promo-page--1 .welcome .header-social-icons {
         display: none
     }
 }
 
 @media (max-width:767px) {
-    .shards-app-promo-page--1 .welcome {
+/*    .shards-app-promo-page--1 .welcome {
         height: auto
-    }
+    }*/
     .shards-app-promo-page--1 .welcome .inner-wrapper {
         padding-top: 4.5rem;
         text-align: center

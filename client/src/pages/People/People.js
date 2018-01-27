@@ -139,6 +139,7 @@ class People extends Component {
           upc={products.product_id}
           photo={products.image}
           comments={products.user_comment}
+          user={products.user_nickname}
           />
         );
       });   
@@ -168,6 +169,7 @@ class People extends Component {
             city={places.city}
             address={places.address}
             comments={places.user_comment}
+            user={places.user_nickname}
           />
         );        
       });   

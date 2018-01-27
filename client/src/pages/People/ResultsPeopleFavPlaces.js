@@ -10,7 +10,7 @@ class ResultsPeopleFavPlaces extends Component {
 			  <div className="card-body">
 			    <h5 className="card-title">{this.props.name}</h5>
 			    <p className="card-text">{this.props.address}</p>	
-			    <p className="card-text">"{this.props.comments}"</p>				    		    
+			    <p className="card-text text-info">{this.props.user} - "{this.props.comments}"</p>				    		    
 			  </div>
 			</div>
     );

@@ -11,7 +11,7 @@ class ResultsPeopleFavProducts extends Component {
 			    <h5 className="card-title">{this.props.name}</h5>
 			    <p className="card-text"><strong>Category:</strong> {this.props.category}</p>
 			    <p className="card-text"><strong>UPC:</strong> {this.props.upc}</p>
-			    <p className="card-text">"{this.props.comments}"</p>	
+			    <p className="card-text text-info">{this.props.user} - "{this.props.comments}"</p>	
 			  </div>
 			</div>
     );
