@@ -113,6 +113,10 @@ class ApiSearch extends Component {
     });
   }
 
+  refreshPage() {
+    window.location.reload();
+  }
+
   submitCommentModalForm(e) {
     e.preventDefault();
     const { userProfile, getProfile } = this.props.auth;
@@ -142,7 +146,7 @@ class ApiSearch extends Component {
             user_image: profile.picture,
             user_comment: this.state.comment
           })
-            .then(res => console.log(res))
+            .then(this.refreshPage())
             .catch(err => console.log(err))
             //end savePlace
         }
@@ -161,7 +165,7 @@ class ApiSearch extends Component {
             user_image: profile.picture,
             user_comment: this.state.comment
           })
-            .then(res => console.log(res))
+            .then(this.refreshPage())
             .catch(err => console.log(err));
             //end saveProduct
         }//end if/else
