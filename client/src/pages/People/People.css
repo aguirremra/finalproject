@@ -17,10 +17,19 @@ img.circle.avatar-icon {
 	right: 0;
 }
 
+#returnBtnBtm {
+	display: none;
+}
+
 @media (max-width: 480px) {
 	#peopleProfile .card {
 		padding-left: 1em;
 		padding-right: 1em;
+	}
+	#returnBtnBtm {
+		display: block;
+		width: 100%;
+		margin-bottom: 20px;
 	}
 
 }

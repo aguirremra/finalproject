@@ -124,6 +124,12 @@ class People extends Component {
           <div className="card-columns">
           {this.addUserProducts()}
           </div>
+          <button 
+              id="returnBtnBtm"
+              type="button" 
+              className="btn btn-warning"
+              onClick={this.reset()}>
+              <i className="fa fa-angle-double-left"></i> return to people</button>
         </Container>
       );
     }
