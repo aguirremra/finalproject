@@ -37,7 +37,7 @@ class Land extends Component {
                     </div>
                     <h5 className="mb-1">Maria Reinbach</h5>
                     <span className="text-muted d-block mb-2">Full Stack Developer</span>
-                    <p>Vivamus quis ex mattis, gravida erat a, iaculis urna. Proin ac eleifend tortor. Nunc in augue eget enim venenatis viverra.</p>
+                    <p>Experienced Technologist with a demonstrated history of working in the utilities industry. Skilled in SharePoint, Analytical Skills, Requirements Analysis, and Enterprise Architecture. Strong professional with a Bachelor of Science (BS) focused in Information Technology and Database Mangement from University of Phoenix.</p>
                 </div>
 
                 <div className="col-md-4 testimonial text-center">
@@ -55,7 +55,7 @@ class Land extends Component {
                     </div>
                     <h5 className="mb-1">Dan Moneypenny</h5>
                     <span className="text-muted d-block mb-2">Full Stack Developer</span>
-                    <p> Aenean imperdiet ultrices tortor id convallis. Donec id metus magna. Morbi pretium odio faucibus blandit gravida.</p>
+                    <p> As an educational content professional Dan uses his technical skills to create ebooks in the college textbook market. Specifically, he develops interactive features, stylesheets, conceptualizes more efficient workflows, while working collaboratively with authors and vendors. </p>
                 </div>
 
                 <div className="col-md-4 testimonial text-center">
