@@ -12,10 +12,9 @@ class Navbar extends Component {
 		return(
 		
 			  <div id={this.props.currentView} className="container text-center mt-5 mb-5">
-			    {/*<button onClick={this.goTo.bind(this, 'home')} className="btn btn-light home mr-1"> Home</button>*/}
-			    <button onClick={this.goTo.bind(this, 'people')} className="btn btn-light people mr-1"> Browse People</button>
-			    <button onClick={this.goTo.bind(this, 'placesfav')} className="btn btn-light places mr-1"> Browse Places</button>
-			    <button onClick={this.goTo.bind(this, 'productsfav')} className="btn btn-light products"> Browse Products</button>
+			    <button id="navBtnPeople" onClick={this.goTo.bind(this, 'people')} className="btn btn-light people mr-1"> Browse People</button>
+			    <button id="navBtnPlaces" onClick={this.goTo.bind(this, 'placesfav')} className="btn btn-light places mr-1"> Browse Places</button>
+			    <button id="navBtnProducts" onClick={this.goTo.bind(this, 'productsfav')} className="btn btn-light products"> Browse Products</button>
 			  </div>
 		
 			);
