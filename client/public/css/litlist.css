@@ -42,6 +42,9 @@ button.btn.btn-outline-success.btn-sm {
   border-color: #17c67100;
 }
 .shards-app-promo-page--1 .welcome {
+  position: relative;
+  height: 92vh;
+  min-height: 750px;
   background: url(../images/welcome-cover.jpg) no-repeat center center fixed;
   background-size: cover;
 }
