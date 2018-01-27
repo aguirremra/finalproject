@@ -6,7 +6,7 @@ class CommentModal extends Component {
   render() {
     console.log('render commentModal');
     return(
-      <div className="modal fade show" tabIndex="-1" role="dialog">
+      <div className="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabellive">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <form onSubmit={this.props.handleSubmit}>
@@ -31,7 +31,7 @@ class CommentModal extends Component {
                 <textarea class="form-control" id="exampleTextarea" rows="3" onChange={this.props.updateComment} value={this.props.comment}></textarea>
               </div>
               <div className="modal-footer">
-                <button type="submit" className="btn btn-warning">Add to LitList</button>
+                <button type="submit" className="btn btn-warning" data-dismiss="modal">Add to LitList</button>
                 <button type="button" className="btn btn-outline-secondary" data-dismiss="modal">Close</button>
               </div>
             </form>
