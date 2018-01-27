@@ -21,14 +21,14 @@ class CommentModal extends Component {
                   <div className="card mb-3">
                     <img className="card-img-top-modal" src={this.props.image} />
                     <div className="card-body">
-                      <h5 className="card-title">{this.props.name}</h5>
+                      <h5 className="card-title text-center">{this.props.name}</h5>
                     </div>
                   </div>  
                 </div>
               </div>
-              <div class="form-group px-3">
+              <div className="form-group px-3">
                 <label for="exampleTextarea">Add a Comment</label>
-                <textarea class="form-control" id="exampleTextarea" rows="3" onChange={this.props.updateComment} value={this.props.comment}></textarea>
+                <textarea className="form-control" id="exampleTextarea" rows="3" onChange={this.props.updateComment} value={this.props.comment}></textarea>
               </div>
               <div className="modal-footer">
                 <button type="submit" className="btn btn-warning">Add to LitList</button>

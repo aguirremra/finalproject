@@ -1,4 +1,5 @@
-.card-img-top-modal {
-	height: 50%;
-    width: 50%;
+#myModal .card-img-top-modal {
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
 }
