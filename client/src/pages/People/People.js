@@ -181,7 +181,7 @@ class People extends Component {
 
         <div>
             <MainJumbo
-              heading={"The Lit List Community"}
+              heading={"The LitList Community"}
               lead={"Explore the favorites of other community members."}
             />
             <NavBar 
@@ -190,7 +190,7 @@ class People extends Component {
             />
 
             <Container className="container">
-            <h4 className="text-center mb-4">Favorite Members</h4>
+            <h4 className="text-center mb-4">Lit People</h4>
             
                 {this.renderUsers()}             
 

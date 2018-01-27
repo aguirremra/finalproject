@@ -48,7 +48,7 @@ class PlacesFav extends Component {
         <div>
         
             <MainJumbo
-              heading={"The Places of Lit List"}
+              heading={"The Places of LitList"}
               lead={"Explore the places favorited by other community members."}
             />
             <NavBar 
