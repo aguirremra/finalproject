@@ -5,7 +5,7 @@ class ResultsPeopleFav extends Component {
   
   render() {
     return (
-          <div className="container pb-5">
+          <div id="peopleProfile">
             <div className="card">
               <div className="row">
                 <div className="col-sm px-4 py-2 ml-3">
@@ -25,12 +25,14 @@ class ResultsPeopleFav extends Component {
               </div>
               </div>
             </div>
-            <div className="card-footer text-center">
-              <button type="button" 
+           
+              <button 
+                      id="returnBtn"
+                      type="button" 
                       className="btn btn-warning"
                       onClick={(e) => { this.props.reset(); }}>
-              <i id={this.props.itemId} className="fas fa-heart"></i> Return</button>
-            </div>
+              <i id={this.props.itemId} className="fa fa-angle-double-left"></i> return to people</button>
+           
           </div>
     );
   }

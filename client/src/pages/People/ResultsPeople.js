@@ -15,7 +15,7 @@ class ResultsPeople extends Component {
           <button type="button" 
                   className="btn btn-warning"
                   onClick={(e) => { this.props.getFavorites(this.props); }}>
-          <i id={this.props.itemId} className="fas fa-heart"></i> View Favorites</button>
+          <i id={this.props.itemId} className="fa fa-eye"></i> View Favorites</button>
         </div>
       </div>
     );

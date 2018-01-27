@@ -1,3 +1,18 @@
 img.circle.avatar-icon {
 	max-width: 80%;
 }
+
+#peopleProfile {
+	position: relative;
+}
+
+#peopleProfile .card {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+#returnBtn {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
