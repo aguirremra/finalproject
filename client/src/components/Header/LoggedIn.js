@@ -48,7 +48,7 @@ class LoggedIn extends Component {
 
 		return(
 				<ul className="nav ml-auto">
-          <img className="circle mr-3" src={this.state.userPhoto} alt={this.state.userName} title={this.state.userName}/>
+          <img id="userAvatar" className="circle mr-3" src={this.state.userPhoto} alt={this.state.userName} title={this.state.userName}/>
           <li className="nav-item">
             <button onClick={this.goTo.bind(this, 'profile')} type="button" className="btn btn-warning mr-3 btn-sm">
               <i className="fas fa-list-alt mr-2"></i>{this.state.userName}'s LitList</button>
