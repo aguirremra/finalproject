@@ -281,7 +281,7 @@ class ApiSearch extends Component {
               <option value="places">Places</option>
            </select>
            <input type="text" id="searchString" onChange={this.handleChange} className="form-control mr-2" placeholder="Search" value={this.state.searchString} />
-          <div>
+          <div id="searchBtnDiv">
             <button type="submit" className="btn btn-warning mr-2">Search</button>
            </div>
            </form>

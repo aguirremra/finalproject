@@ -21,7 +21,7 @@ class CommentModal extends Component {
                   <div className="card mb-3">
                     <img className="card-img-top-modal" src={this.props.image} />
                     <div className="card-body">
-                      <h5 className="card-title">{this.props.name}</h5>
+                      <h5 className="card-title text-center">{this.props.name}</h5>
                     </div>
                   </div>  
                 </div>

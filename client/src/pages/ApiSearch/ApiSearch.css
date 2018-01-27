@@ -7,3 +7,25 @@ h3#formHeading {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+@media (max-width: 480px) {
+	#apiSearchForm .custom-select {
+		width: 100%;
+	}
+
+	#apiSearchForm button.btn.btn-warning.mr-2 {
+		width: 100%;
+		margin-top: 12px;
+
+	}
+
+	#searchBtnDiv {
+		width: 100%;
+	}
+
+	#searchString {
+		margin-top: 12px;
+		width: 100%;
+	}
+
+}
