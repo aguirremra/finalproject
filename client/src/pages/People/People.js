@@ -11,7 +11,7 @@ import './People.css';
 
 //Variables for styling
 const cardStyle = "card-columns";
-const panelStyle = "container pb-5 single";
+const panelStyle = "container pb-5";
 
 class People extends Component {
   constructor(props){
